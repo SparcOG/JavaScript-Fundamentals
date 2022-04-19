@@ -1,7 +1,7 @@
 // = 78 / (169 * 169);
 // const country = "Ukranine";
 // const continent = "Europ";
-// let population = 44;
+
 // let finland = 6;
 // let averagePopulation = 33;
 // language = "Украинский";
@@ -40,13 +40,20 @@
 
 // let language;
 
-const marksWeights = 78;
-const marksTall = 169;
-const johnsWeights = 92;
-const johnTall = 195;
+// const marksWeights = 78;
+// const marksTall = 169;
+// const johnsWeights = 92;
+// const johnTall = 195;
 
-const marksIbm = marksWeights / marksTall ** 2;
-const johnIbm = johnsWeights / johnTall ** 2;
+// const marksIbm = marksWeights / marksTall ** 2;
+// const johnIbm = johnsWeights / johnTall ** 2;
 
-const markHigherBMI = marksIbm > johnIbm;
-console.log(marksIbm, johnIbm, markHigherBMI);
+// const markHigherBMI = marksIbm > johnIbm;
+// console.log(marksIbm, johnIbm, markHigherBMI);
+
+let population = 44;
+if (population >= 122) {
+  console.log("Portugals population is above average");
+} else {
+  console.log("Portugals population is 22 million below average");
+}
