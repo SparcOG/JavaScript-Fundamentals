@@ -1,5 +1,5 @@
 // = 78 / (169 * 169);
-// const country = "Ukranine";
+const country = "Ukranine";
 // const continent = "Europ";
 
 // let finland = 6;
@@ -52,8 +52,8 @@
 // console.log(marksIbm, johnIbm, markHigherBMI);
 
 let population = 44;
-if (population >= 122) {
-  console.log("Portugals population is above average");
+if (population >= 120) {
+  console.log(`${country} population is above average`);
 } else {
-  console.log("Portugals population is 22 million below average");
+  console.log(`${country} population is ${120 - population} below average`);
 }
