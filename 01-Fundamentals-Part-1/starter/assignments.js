@@ -41,20 +41,26 @@
 //   console.log(`${country} population is ${120 - population} below average`);
 // }
 
-const marksWeights = 78;
-const marksTall = 169;
-const johnsWeights = 92;
-const johnTall = 195;
+// const marksWeights = 78;
+// const marksTall = 169;
+// const johnsWeights = 92;
+// const johnTall = 195;
 
-const marksIbm = marksWeights / marksTall ** 2;
-const johnIbm = johnsWeights / johnTall ** 2;
+// const marksIbm = marksWeights / marksTall ** 2;
+// const johnIbm = johnsWeights / johnTall ** 2;
 
-const markHigherBMI = marksIbm > johnIbm;
+// const markHigherBMI = marksIbm > johnIbm;
 
-if (marksIbm > johnIbm) {
-  console.log(`Mark's BMI (${marksIbm}) is higher than John's (${johnIbm})`);
-} else {
-  console.log("John's BMI is higher than Mark's!");
-}
+// if (marksIbm > johnIbm) {
+//   console.log(`Mark's BMI (${marksIbm}) is higher than John's (${johnIbm})`);
+// } else {
+//   console.log("John's BMI is higher than Mark's!");
+// }
 
-console.log(marksIbm, johnIbm, markHigherBMI);
+// console.log(marksIbm, johnIbm, markHigherBMI);
+
+console.log("9" - "5"); //4
+console.log("19" - "13" + "17"); //617
+console.log("19" - "13" + 17); //23
+console.log("123" < 57); //fals
+console.log(5 + 6 + "4" + 9 - 4 - 2); //1143
