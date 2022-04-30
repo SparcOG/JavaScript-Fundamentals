@@ -1,10 +1,10 @@
 // = 78 / (169 * 169);
-const country = "Ukranine";
+// const country = "Ukranine";
 // const continent = "Europ";
-let population = 44;
+// let population = 44;
 // let finland = 6;
 // let averagePopulation = 33;
-language = "English";
+// language = "English";
 // const description =
 //   country +
 //   " " +
@@ -22,7 +22,7 @@ language = "English";
 // population = population / 2;
 // population++;
 // const isIsland = "Ukraine";
-const isIsland = false;
+// const isIsland = false;
 // console.log(description);
 // console.log(population < averagePopulation);
 // console.log(population > finland);
@@ -78,8 +78,57 @@ const isIsland = false;
 //   console.log("No borders");
 // }
 
-if (language === "English" && population < 50 && !isIsland) {
-  console.log(`You should live in ${country} :)`);
+// if (language === "English" && population < 50 && !isIsland) {
+//   console.log(`You should live in ${country} :)`);
+// } else {
+//   console.log(`${country} does not meet your criteria :(`);
+// }
+
+// const dolphins = (96 + 108 + 89) / 2;
+// const koalas = (88 + 91 + 110) / 2;
+
+// if (dolphins > koalas) {
+//   console.log("Dolphins win :)");
+// } else if (dolphins === koalas) {
+//   console.log("Koalas and Dolphins win :)");
+// } else {
+//   console.log("Koalas win :)");
+// }
+
+// const dolphinsTwo = (97 + 112 + 101) / 2;
+// const koalasTwo = (109 + 95 + 123) / 2;
+// const minimumScore = 100;
+
+// if (dolphinsTwo > koalasTwo) {
+//   if (dolphinsTwo > minimumScore) {
+//     console.log("DolphinsTwo win :)");
+//   } else {
+//     console.log("Dont have 100. Not win");
+//   }
+// } else {
+//   if (koalasTwo > minimumScore) {
+//     console.log("KoalasTwo win :)");
+//   } else {
+//     console.log("KoalasTwo dont have 100. Not win");
+//   }
+// }
+
+const dolphinsTwo = (97 + 112 + 101) / 2;
+const koalasTwo = (109 + 95 + 106) / 2;
+const minimumScore = 100;
+
+if (dolphinsTwo > koalasTwo) {
+  if (dolphinsTwo > minimumScore) {
+    console.log("DolphinsTwo win :)");
+  } else {
+    console.log("Dont have 100. Not win");
+  }
+} else if (dolphinsTwo && koalasTwo > minimumScore) {
+  console.log("Koalas and Dolphins win :)");
 } else {
-  console.log(`${country} does not meet your criteria :(`);
+  if (koalasTwo > minimumScore) {
+    console.log("KoalasTwo win :)");
+  } else {
+    console.log("KoalasTwo dont have 100. Not win");
+  }
 }
