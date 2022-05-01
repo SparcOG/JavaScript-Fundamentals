@@ -128,17 +128,17 @@
 //   console.log("No one wins 😒");
 // }
 
-const day = "sunday";
+const day = "dsfbsdfb";
 
 if (day === "monday") {
   console.log("Plan course structure");
 } else if (day === "tuesday") {
   console.log("Prepapre theory videos");
-} else if (day === "wednesday" || "thursday") {
+} else if (day === "wednesday" || day === "thursday") {
   console.log("Write code examples");
 } else if (day === "friday") {
   console.log("Record videos");
-} else if (day === "saturday" || "sunday") {
+} else if (day === "saturday" || day === "sunday") {
   console.log("Enjoy the weekend 😁");
 } else {
   console.log("Not a valid day!");
