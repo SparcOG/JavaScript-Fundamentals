@@ -172,3 +172,8 @@ const population = 44;
 population >= 33
   ? console.log(`${country} population is above average`)
   : console.log(`${country} population is below average`);
+
+//Jonathan's version
+console.log(
+  `${country}'s population is ${population > 33 ? "above" : "below"} average`
+);
