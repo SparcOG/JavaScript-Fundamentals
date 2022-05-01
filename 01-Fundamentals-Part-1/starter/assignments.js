@@ -84,8 +84,8 @@
 //   console.log(`${country} does not meet your criteria :(`);
 // }
 
-// const dolphins = (96 + 108 + 89) / 2;
-// const koalas = (88 + 91 + 110) / 2;
+// const dolphins = (96 + 108 + 89) / 3;
+// const koalas = (88 + 91 + 110) / 3;
 
 // if (dolphins > koalas) {
 //   console.log("Dolphins win :)");
@@ -95,9 +95,10 @@
 //   console.log("Koalas win :)");
 // }
 
-// const dolphinsTwo = (97 + 112 + 101) / 2;
-// const koalasTwo = (109 + 95 + 123) / 2;
+// const dolphinsTwo = (97 + 112 + 101) / 3;
+// const koalasTwo = (109 + 95 + 123) / 3;
 // const minimumScore = 100;
+// console.log(dolphinsTwo, koalasTwo);
 
 // if (dolphinsTwo > koalasTwo) {
 //   if (dolphinsTwo > minimumScore) {
@@ -113,22 +114,32 @@
 //   }
 // }
 
-const dolphinsTwo = (97 + 112 + 101) / 2;
-const koalasTwo = (109 + 95 + 106) / 2;
-const minimumScore = 100;
+// const dolphins = (97 + 112 + 80) / 3;
+// const koalas = (109 + 95 + 50) / 3;
+// console.log(dolphins, koalas);
 
-if (dolphinsTwo > koalasTwo) {
-  if (dolphinsTwo > minimumScore) {
-    console.log("DolphinsTwo win :)");
-  } else {
-    console.log("Dont have 100. Not win");
-  }
-} else if (dolphinsTwo && koalasTwo > minimumScore) {
-  console.log("Koalas and Dolphins win :)");
+// if (dolphins > koalas && dolphins >= 100) {
+//   console.log("Dolphins wins 🏆");
+// } else if (koalas > dolphins && koalas >= 100) {
+//   console.log("Koalas wins 🏆");
+// } else if (dolphins === koalas && dolphins >= 100 && koalas >= 100) {
+//   console.log("Both win 🏆");
+// } else {
+//   console.log("No one wins 😒");
+// }
+
+const day = "sunday";
+
+if (day === "monday") {
+  console.log("Plan course structure");
+} else if (day === "tuesday") {
+  console.log("Prepapre theory videos");
+} else if (day === "wednesday" || "thursday") {
+  console.log("Write code examples");
+} else if (day === "friday") {
+  console.log("Record videos");
+} else if (day === "saturday" || "sunday") {
+  console.log("Enjoy the weekend 😁");
 } else {
-  if (koalasTwo > minimumScore) {
-    console.log("KoalasTwo win :)");
-  } else {
-    console.log("KoalasTwo dont have 100. Not win");
-  }
+  console.log("Not a valid day!");
 }
