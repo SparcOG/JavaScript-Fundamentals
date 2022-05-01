@@ -53,9 +53,9 @@
 // const markHigherBMI = marksIbm > johnIbm;
 
 // if (marksIbm > johnIbm) {
-//   console.log(`Mark's BMI (${marksIbm}) is higher than John's (${johnIbm})`);
+//   console.log(`Mark"s BMI (${marksIbm}) is higher than John"s (${johnIbm})`);
 // } else {
-//   console.log("John's BMI is higher than Mark's!");
+//   console.log("John"s BMI is higher than Mark"s!");
 // }
 
 // console.log(marksIbm, johnIbm, markHigherBMI);
@@ -128,18 +128,41 @@
 //   console.log("No one wins 😒");
 // }
 
-const day = "dsfbsdfb";
+// const day = "dsfbsdfb";
 
-if (day === "monday") {
-  console.log("Plan course structure");
-} else if (day === "tuesday") {
-  console.log("Prepapre theory videos");
-} else if (day === "wednesday" || day === "thursday") {
-  console.log("Write code examples");
-} else if (day === "friday") {
-  console.log("Record videos");
-} else if (day === "saturday" || day === "sunday") {
-  console.log("Enjoy the weekend 😁");
-} else {
-  console.log("Not a valid day!");
+// if (day === "monday") {
+//   console.log("Plan course structure");
+// } else if (day === "tuesday") {
+//   console.log("Prepapre theory videos");
+// } else if (day === "wednesday" || day === "thursday") {
+//   console.log("Write code examples");
+// } else if (day === "friday") {
+//   console.log("Record videos");
+// } else if (day === "saturday" || day === "sunday") {
+//   console.log("Enjoy the weekend 😁");
+// } else {
+//   console.log("Not't a valid day!");
+// }
+
+const language = "sdfvsdfv";
+
+switch (language) {
+  case "chinese":
+  case "mandarin":
+    console.log("MOST number of native speakers!");
+    break;
+  case "spanish":
+    console.log("2nd place in number of native speakers");
+    break;
+  case "english":
+    console.log("3rd place");
+    break;
+  case "hindi":
+    console.log("Number 4");
+    break;
+  case "arabic":
+    console.log("5th most spoken language");
+    break;
+  default:
+    console.log("Great language too 😁");
 }
