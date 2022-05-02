@@ -167,13 +167,43 @@
 //     console.log("Great language too 😁");
 // }
 
-const country = "Ukranine";
-const population = 44;
-population >= 33
-  ? console.log(`${country} population is above average`)
-  : console.log(`${country} population is below average`);
+// const country = "Ukranine";
+// const population = 44;
+// population >= 33
+//   ? console.log(`${country} population is above average`)
+//   : console.log(`${country} population is below average`);
 
-//Jonathan's version
-console.log(
-  `${country}'s population is ${population > 33 ? "above" : "below"} average`
-);
+// //Jonathan's version
+// console.log(
+//   `${country}'s population is ${population > 33 ? "above" : "below"} average`
+// );
+
+const bill = 4;
+const tipFifteen = 15 / 100;
+const tipTwenty = 20 / 100;
+
+// if (bill >= 50 && bill <= 300) {
+//   console.log(
+// `The bill was ${bill}, the tip was ${
+//   bill * tipFifteen
+// }, and the total value ${bill * tipFifteen + bill}`
+//   );
+// } else {
+//   console.log(
+// `The bill was ${bill}, the tip was ${
+//   bill * tipTwenty
+// }, and the total value ${bill * tipTwenty + bill}`
+//   );
+// }
+
+bill >= 50 && bill <= 300
+  ? console.log(
+      `The bill was ${bill}, the tip was ${
+        bill * tipFifteen
+      }, and the total value ${bill * tipFifteen + bill}`
+    )
+  : console.log(
+      `The bill was ${bill}, the tip was ${
+        bill * tipTwenty
+      }, and the total value ${bill * tipTwenty + bill}`
+    );
