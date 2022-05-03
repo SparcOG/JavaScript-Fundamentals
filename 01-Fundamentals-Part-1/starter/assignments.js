@@ -178,9 +178,9 @@
 //   `${country}'s population is ${population > 33 ? "above" : "below"} average`
 // );
 
-const bill = 4;
-const tipFifteen = 15 / 100;
-const tipTwenty = 20 / 100;
+// const bill = 430;
+// const tipFifteen = 15 / 100;
+// const tipTwenty = 20 / 100;
 
 // if (bill >= 50 && bill <= 300) {
 //   console.log(
@@ -196,14 +196,20 @@ const tipTwenty = 20 / 100;
 //   );
 // }
 
-bill >= 50 && bill <= 300
-  ? console.log(
-      `The bill was ${bill}, the tip was ${
-        bill * tipFifteen
-      }, and the total value ${bill * tipFifteen + bill}`
-    )
-  : console.log(
-      `The bill was ${bill}, the tip was ${
-        bill * tipTwenty
-      }, and the total value ${bill * tipTwenty + bill}`
-    );
+// bill >= 50 && bill <= 300
+//   ? console.log(
+//       `The bill was ${bill}, the tip was ${
+//         bill * tipFifteen
+//       }, and the total value ${bill * tipFifteen + bill}`
+//     )
+//   : console.log(
+//       `The bill was ${bill}, the tip was ${
+//         bill * tipTwenty
+//       }, and the total value ${bill * tipTwenty + bill}`
+//     );
+
+const bill = 430;
+const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+console.log(
+  `The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`
+);
