@@ -26,11 +26,24 @@
 // const descFinland = describeCountry("Finland", 6, "Helsinki");
 // console.log(descPortugal, descGermany, descFinland);
 
-const populationcCountry = 38;
-
+//Обьявление функции
 function percentageOfWorld1(population) {
   return `${(population / 7900) * 100}`;
 }
 
-const population = percentageOfWorld1(populationcCountry);
-console.log(population);
+const ukraine = percentageOfWorld1(44);
+const poland = percentageOfWorld1(37);
+const canada = percentageOfWorld1(38);
+
+console.log(ukraine, poland, canada);
+
+//Функциональное выражение
+const percentageOfWorld2 = function (population) {
+  return `${(population / 7900) * 100}`;
+};
+
+const ukraine2 = percentageOfWorld2(44);
+const poland2 = percentageOfWorld2(37);
+const canada2 = percentageOfWorld2(38);
+
+console.log(ukraine2, poland2, canada2);
