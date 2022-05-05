@@ -26,24 +26,38 @@
 // const descFinland = describeCountry("Finland", 6, "Helsinki");
 // console.log(descPortugal, descGermany, descFinland);
 
-//Обьявление функции
+// //Обьявление функции
+// function percentageOfWorld1(population) {
+//   return `${(population / 7900) * 100}`;
+// }
+
+// const ukraine = percentageOfWorld1(44);
+// const poland = percentageOfWorld1(37);
+// const canada = percentageOfWorld1(38);
+
+// console.log(ukraine, poland, canada);
+
+// //Функциональное выражение
+// const percentageOfWorld2 = function (population) {
+//   return `${(population / 7900) * 100}`;
+// };
+
+// const ukraine2 = percentageOfWorld2(44);
+// const poland2 = percentageOfWorld2(37);
+// const canada2 = percentageOfWorld2(38);
+
+// console.log(ukraine2, poland2, canada2);
+
 function percentageOfWorld1(population) {
-  return `${(population / 7900) * 100}`;
+  return (population / 7900) * 100;
 }
 
-const ukraine = percentageOfWorld1(44);
-const poland = percentageOfWorld1(37);
-const canada = percentageOfWorld1(38);
-
-console.log(ukraine, poland, canada);
-
-//Функциональное выражение
 const percentageOfWorld2 = function (population) {
-  return `${(population / 7900) * 100}`;
+  return (population / 7900) * 100;
 };
 
-const ukraine2 = percentageOfWorld2(44);
-const poland2 = percentageOfWorld2(37);
-const canada2 = percentageOfWorld2(38);
+const percPortugal1 = percentageOfWorld1(10);
+const percChina1 = percentageOfWorld1(1441);
+const percUSA1 = percentageOfWorld1(332);
 
-console.log(ukraine2, poland2, canada2);
+console.log(percPortugal1, percChina1, percUSA1);
