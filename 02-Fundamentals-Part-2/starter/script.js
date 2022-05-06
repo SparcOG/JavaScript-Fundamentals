@@ -71,18 +71,26 @@
 
 // console.log(ukraine, poland, canada);
 
-const country1 = "China";
-const population1 = 1441;
-
 function percentageOfWorld1(population) {
   return `${(population / 7900) * 100}`;
 }
 
-function describePopulation(country, population) {
-  const calculatPercentage = percentageOfWorld1(population);
-  return `${country} has ${population} million people, which is about ${calculatPercentage} of the world`;
-}
+// function describePopulation(country, population) {
+//   const calculatPercentage = percentageOfWorld1(population);
+//   return `${country} has ${population} million people, which is about ${calculatPercentage} of the world`;
+// }
 
-console.log(describePopulation("Ukraine", 44));
-console.log(describePopulation("Poland", 37));
-console.log(describePopulation("Canada", 38));
+// console.log(describePopulation("Ukraine", 44));
+// console.log(describePopulation("Poland", 37));
+// console.log(describePopulation("Canada", 38));
+
+const describePopulation = function (country, population) {
+  const percentage = percentageOfWorld1(population);
+  const description = `${country} has ${population} million
+  people, which is about ${percentage}% of the world.`;
+  console.log(description);
+};
+
+describePopulation("Portugal", 10);
+describePopulation("China", 1441);
+describePopulation("USA", 332);
