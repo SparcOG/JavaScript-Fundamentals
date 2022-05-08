@@ -71,9 +71,9 @@
 
 // console.log(ukraine, poland, canada);
 
-function percentageOfWorld1(population) {
-  return `${(population / 7900) * 100}`;
-}
+// function percentageOfWorld1(population) {
+//   return `${(population / 7900) * 100}`;
+// }
 
 // function describePopulation(country, population) {
 //   const calculatPercentage = percentageOfWorld1(population);
@@ -84,13 +84,22 @@ function percentageOfWorld1(population) {
 // console.log(describePopulation("Poland", 37));
 // console.log(describePopulation("Canada", 38));
 
-const describePopulation = function (country, population) {
-  const percentage = percentageOfWorld1(population);
-  const description = `${country} has ${population} million
-  people, which is about ${percentage}% of the world.`;
-  console.log(description);
-};
+// const describePopulation = function (country, population) {
+//   const percentage = percentageOfWorld1(population);
+//   const description = `${country} has ${population} million
+//   people, which is about ${percentage}% of the world.`;
+//   console.log(description);
+// };
 
-describePopulation("Portugal", 10);
-describePopulation("China", 1441);
-describePopulation("USA", 332);
+// describePopulation("Portugal", 10);
+// describePopulation("China", 1441);
+// describePopulation("USA", 332);
+
+const dolhins = 44 + 23 + 71;
+const koalas = 65 + 54 + 49;
+
+const calcAverage = (scores) => scores / 3;
+
+const checkWinner = function (avgDolhins, avgKoalas) {
+  console.log(`Koalas win 30 vs. 13`);
+};
