@@ -95,8 +95,8 @@
 // describePopulation("China", 1441);
 // describePopulation("USA", 332);
 
-const dolhins = 44 + 23 + 71;
-const koalas = 65 + 54 + 49;
+const dolhins = 85 + 54 + 41;
+const koalas = 23 + 34 + 27;
 
 const calcAverage = (scores) => scores / 3;
 
@@ -104,10 +104,12 @@ const checkWinner = function (avgDolhins, avgKoalas) {
   const dolhins = calcAverage(avgDolhins);
   const koalas = calcAverage(avgKoalas);
 
-  if (avgDolhins > avgKoalas) {
+  if (dolhins >= 2 * koalas) {
     console.log(`Dolhins win ${dolhins} vs. ${koalas}`);
-  } else {
+  } else if (koalas >= 2 * dolhins) {
     console.log(`Koalas win ${koalas} vs. ${dolhins}`);
+  } else {
+    console.log(`Nobody won 😒`);
   }
 };
 
