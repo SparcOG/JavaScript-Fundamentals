@@ -101,5 +101,14 @@ const koalas = 65 + 54 + 49;
 const calcAverage = (scores) => scores / 3;
 
 const checkWinner = function (avgDolhins, avgKoalas) {
-  console.log(`Koalas win 30 vs. 13`);
+  const dolhins = calcAverage(avgDolhins);
+  const koalas = calcAverage(avgKoalas);
+
+  if (avgDolhins > avgKoalas) {
+    console.log(`Dolhins win ${dolhins} vs. ${koalas}`);
+  } else {
+    console.log(`Koalas win ${koalas} vs. ${dolhins}`);
+  }
 };
+
+checkWinner(dolhins, koalas);
