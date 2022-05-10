@@ -71,18 +71,18 @@
 
 // console.log(ukraine, poland, canada);
 
-// function percentageOfWorld1(population) {
-//   return `${(population / 7900) * 100}`;
-// }
+function percentageOfWorld1(population) {
+  return `${(population / 7900) * 100}`;
+}
 
-// function describePopulation(country, population) {
-//   const calculatPercentage = percentageOfWorld1(population);
-//   return `${country} has ${population} million people, which is about ${calculatPercentage} of the world`;
-// }
+function describePopulation(country, populationOne) {
+  const calculatPercentage = percentageOfWorld1(populationOne);
+  return `${country} has ${populationOne} million people, which is about ${calculatPercentage} of the world`;
+}
 
-// console.log(describePopulation("Ukraine", 44));
-// console.log(describePopulation("Poland", 37));
-// console.log(describePopulation("Canada", 38));
+console.log(describePopulation("Ukraine", 44));
+console.log(describePopulation("Poland", 37));
+console.log(describePopulation("Canada", 38));
 
 // const describePopulation = function (country, population) {
 //   const percentage = percentageOfWorld1(population);
@@ -95,19 +95,19 @@
 // describePopulation("China", 1441);
 // describePopulation("USA", 332);
 
-const dolhins = 85 + 54 + 41;
-const koalas = 23 + 34 + 27;
+// const dolhins = 85 + 54 + 41;
+// const koalas = 23 + 34 + 27;
 
-const calcAverage = (scores) => scores / 3;
+const calcAverage = (a, b, c) => (a + b + c) / 3;
+
+const dolhins = calcAverage(85, 54, 41);
+const koalas = calcAverage(23, 34, 27);
 
 const checkWinner = function (avgDolhins, avgKoalas) {
-  const dolhins = calcAverage(avgDolhins);
-  const koalas = calcAverage(avgKoalas);
-
-  if (dolhins >= 2 * koalas) {
-    console.log(`Dolhins win ${dolhins} vs. ${koalas}`);
+  if (avgDolhins >= 2 * avgKoalas) {
+    console.log(`Dolhins win ${avgDolhins} vs. ${avgKoalas}`);
   } else if (koalas >= 2 * dolhins) {
-    console.log(`Koalas win ${koalas} vs. ${dolhins}`);
+    console.log(`Koalas win ${avgKoalas} vs. ${avgDolhins}`);
   } else {
     console.log(`Nobody won 😒`);
   }
