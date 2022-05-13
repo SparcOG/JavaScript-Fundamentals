@@ -71,18 +71,18 @@
 
 // console.log(ukraine, poland, canada);
 
-function percentageOfWorld1(population) {
-  return `${(population / 7900) * 100}`;
-}
+// function percentageOfWorld1(population) {
+//   return `${(population / 7900) * 100}`;
+// }
 
-function describePopulation(country, populationOne) {
-  const calculatPercentage = percentageOfWorld1(populationOne);
-  return `${country} has ${populationOne} million people, which is about ${calculatPercentage} of the world`;
-}
+// function describePopulation(country, populationOne) {
+//   const calculatPercentage = percentageOfWorld1(populationOne);
+//   return `${country} has ${populationOne} million people, which is about ${calculatPercentage} of the world`;
+// }
 
-console.log(describePopulation("Ukraine", 44));
-console.log(describePopulation("Poland", 37));
-console.log(describePopulation("Canada", 38));
+// console.log(describePopulation("Ukraine", 44));
+// console.log(describePopulation("Poland", 37));
+// console.log(describePopulation("Canada", 38));
 
 // const describePopulation = function (country, population) {
 //   const percentage = percentageOfWorld1(population);
@@ -98,19 +98,48 @@ console.log(describePopulation("Canada", 38));
 // const dolhins = 85 + 54 + 41;
 // const koalas = 23 + 34 + 27;
 
-const calcAverage = (a, b, c) => (a + b + c) / 3;
+// const calcAverage = (a, b, c) => (a + b + c) / 3;
 
-const dolhins = calcAverage(85, 54, 41);
-const koalas = calcAverage(23, 34, 27);
+// const dolhins = calcAverage(85, 54, 41);
+// const koalas = calcAverage(23, 34, 27);
 
-const checkWinner = function (avgDolhins, avgKoalas) {
-  if (avgDolhins >= 2 * avgKoalas) {
-    console.log(`Dolhins win ${avgDolhins} vs. ${avgKoalas}`);
-  } else if (avgKoalas >= 2 * avgDolhins) {
-    console.log(`Koalas win ${avgKoalas} vs. ${avgDolhins}`);
-  } else {
-    console.log(`Nobody won 😒`);
-  }
-};
+// const checkWinner = function (avgDolhins, avgKoalas) {
+//   if (avgDolhins >= 2 * avgKoalas) {
+//     console.log(`Dolhins win ${avgDolhins} vs. ${avgKoalas}`);
+//   } else if (avgKoalas >= 2 * avgDolhins) {
+//     console.log(`Koalas win ${avgKoalas} vs. ${avgDolhins}`);
+//   } else {
+//     console.log(`Nobody won 😒`);
+//   }
+// };
 
-checkWinner(dolhins, koalas);
+// checkWinner(dolhins, koalas);
+
+const ukraine = 44;
+const poland = 37;
+const canada = 38;
+const usa = 329;
+
+const populations = [ukraine, poland, canada, usa];
+
+if (populations.length === 4) {
+  console.log("Array contains 4 elements 😁");
+} else {
+  console.log("Array does not contain 4 elements 😥");
+}
+
+function percentageOfWorld1(population) {
+  return `${(population / 7900) * 100}`;
+}
+
+percentageOfWorld1(populations[0]);
+percentageOfWorld1(populations[1]);
+percentageOfWorld1(populations[2]);
+percentageOfWorld1(populations[3]);
+
+const percentages = [
+  percentageOfWorld1(populations[0]),
+  percentageOfWorld1(populations[1]),
+  percentageOfWorld1(populations[2]),
+  percentageOfWorld1(populations[3]),
+];
