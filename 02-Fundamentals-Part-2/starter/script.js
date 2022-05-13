@@ -115,31 +115,41 @@
 
 // checkWinner(dolhins, koalas);
 
-const ukraine = 44;
-const poland = 37;
-const canada = 38;
-const usa = 329;
+// const ukraine = 44;
+// const poland = 37;
+// const canada = 38;
+// const usa = 329;
 
-const populations = [ukraine, poland, canada, usa];
+// const populations = [ukraine, poland, canada, usa];
 
-if (populations.length === 4) {
-  console.log("Array contains 4 elements 😁");
-} else {
-  console.log("Array does not contain 4 elements 😥");
-}
+// if (populations.length === 4) {
+//   console.log("Array contains 4 elements 😁");
+// } else {
+//   console.log("Array does not contain 4 elements 😥");
+// }
 
 function percentageOfWorld1(population) {
   return `${(population / 7900) * 100}`;
 }
 
-percentageOfWorld1(populations[0]);
-percentageOfWorld1(populations[1]);
-percentageOfWorld1(populations[2]);
-percentageOfWorld1(populations[3]);
+// percentageOfWorld1(populations[0]);
+// percentageOfWorld1(populations[1]);
+// percentageOfWorld1(populations[2]);
+// percentageOfWorld1(populations[3]);
 
+// const percentages = [
+//   percentageOfWorld1(populations[0]),
+//   percentageOfWorld1(populations[1]),
+//   percentageOfWorld1(populations[2]),
+//   percentageOfWorld1(populations[3]),
+// ];
+
+const populations = [10, 1441, 332, 83];
+console.log(populations.length === 4);
 const percentages = [
   percentageOfWorld1(populations[0]),
   percentageOfWorld1(populations[1]),
   percentageOfWorld1(populations[2]),
   percentageOfWorld1(populations[3]),
 ];
+console.log(percentages);
