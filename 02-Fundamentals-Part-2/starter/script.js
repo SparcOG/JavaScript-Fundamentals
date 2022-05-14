@@ -168,11 +168,9 @@ const neighbours = [
 ];
 
 neighbours.push("Utopia");
-neighbours.pop("Utopia");
+neighbours.pop();
 
-if (neighbours.includes("Germany")) {
-  console.log("This is a central European country 🏆");
-} else {
+if (!neighbours.includes("Germany")) {
   console.log("Probably not a central European country 😊");
 }
 
@@ -180,3 +178,18 @@ neighbours.indexOf("Poland");
 neighbours[4] = "Republic of Poland";
 
 console.log(neighbours);
+
+// const neighbours = ["Norway", "Sweden", "Russia"];
+
+// neighbours.push("Utopia");
+// console.log(neighbours);
+
+// neighbours.pop();
+// console.log(neighbours);
+
+// if (!neighbours.includes("Germany")) {
+//   console.log("Probably not a central European country :D");
+// }
+
+// neighbours[neighbours.indexOf("Sweden")] = "Republic of Sweden";
+// console.log(neighbours);
