@@ -128,9 +128,9 @@
 //   console.log("Array does not contain 4 elements 😥");
 // }
 
-function percentageOfWorld1(population) {
-  return `${(population / 7900) * 100}`;
-}
+// function percentageOfWorld1(population) {
+//   return `${(population / 7900) * 100}`;
+// }
 
 // percentageOfWorld1(populations[0]);
 // percentageOfWorld1(populations[1]);
@@ -144,12 +144,39 @@ function percentageOfWorld1(population) {
 //   percentageOfWorld1(populations[3]),
 // ];
 
-const populations = [10, 1441, 332, 83];
-console.log(populations.length === 4);
-const percentages = [
-  percentageOfWorld1(populations[0]),
-  percentageOfWorld1(populations[1]),
-  percentageOfWorld1(populations[2]),
-  percentageOfWorld1(populations[3]),
+// const populations = [10, 1441, 332, 83];
+
+// console.log(populations.length === 4);
+
+// const percentages = [
+//   percentageOfWorld1(populations[0]),
+//   percentageOfWorld1(populations[1]),
+//   percentageOfWorld1(populations[2]),
+//   percentageOfWorld1(populations[3]),
+// ];
+
+// console.log(percentages);
+
+const neighbours = [
+  "Romania",
+  "Moldova",
+  "Hungary",
+  "Slovakia",
+  "Poland",
+  "Belarus",
+  "Russia",
 ];
-console.log(percentages);
+
+neighbours.push("Utopia");
+neighbours.pop("Utopia");
+
+if (neighbours.includes("Germany")) {
+  console.log("This is a central European country 🏆");
+} else {
+  console.log("Probably not a central European country 😊");
+}
+
+neighbours.indexOf("Poland");
+neighbours[4] = "Republic of Poland";
+
+console.log(neighbours);
