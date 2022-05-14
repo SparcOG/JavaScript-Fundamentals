@@ -157,27 +157,27 @@
 
 // console.log(percentages);
 
-const neighbours = [
-  "Romania",
-  "Moldova",
-  "Hungary",
-  "Slovakia",
-  "Poland",
-  "Belarus",
-  "Russia",
-];
+// const neighbours = [
+//   "Romania",
+//   "Moldova",
+//   "Hungary",
+//   "Slovakia",
+//   "Poland",
+//   "Belarus",
+//   "Russia",
+// ];
 
-neighbours.push("Utopia");
-neighbours.pop();
+// neighbours.push("Utopia");
+// neighbours.pop();
 
-if (!neighbours.includes("Germany")) {
-  console.log("Probably not a central European country 😊");
-}
+// if (!neighbours.includes("Germany")) {
+//   console.log("Probably not a central European country 😊");
+// }
 
-neighbours.indexOf("Poland");
-neighbours[4] = "Republic of Poland";
+// neighbours.indexOf("Poland");
+// neighbours[4] = "Republic of Poland";
 
-console.log(neighbours);
+// console.log(neighbours);
 
 // const neighbours = ["Norway", "Sweden", "Russia"];
 
@@ -193,3 +193,13 @@ console.log(neighbours);
 
 // neighbours[neighbours.indexOf("Sweden")] = "Republic of Sweden";
 // console.log(neighbours);
+
+const bill = 100;
+const bills = [125, 555, 44];
+
+const calcTip = function (bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+};
+
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+console.log(tips);
