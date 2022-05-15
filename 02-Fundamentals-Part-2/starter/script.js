@@ -194,22 +194,18 @@
 // neighbours[neighbours.indexOf("Sweden")] = "Republic of Sweden";
 // console.log(neighbours);
 
-const bills = [125, 555, 44];
-
 const calcTip = function (bill) {
   return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
 };
 
-const tips = [
-  `Tipping is ${calcTip(bills[0])}  dollars`,
-  `Tipping is ${calcTip(bills[1])} dollars`,
-  `Tipping is ${calcTip(bills[2])} dollars`,
-];
+const bills = [125, 555, 44];
+
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
 
 const total = [
-  `Total tips are ${calcTip(bills[0]) + bills[0]}`,
-  `Total tips are ${calcTip(bills[1]) + bills[1]}`,
-  `Total tips are ${calcTip(bills[2]) + bills[2]}`,
+  `Total tips are ${tips[0] + bills[0]}`,
+  `Total tips are ${tips[1] + bills[1]}`,
+  `Total tips are ${tips[2] + bills[2]}`,
 ];
 
 console.log(tips);
