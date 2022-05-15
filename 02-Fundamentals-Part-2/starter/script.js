@@ -210,10 +210,25 @@
 
 // console.log(tips, total);
 
-const jonas = {
-  firstName: "Jonas",
-  lastName: "Schmedtmann",
-  age: 2037 - 1991,
-  job: "teacher",
-  friends: ["Michael", "Peter", "Steven"],
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   age: 2037 - 1991,
+//   job: "teacher",
+// };
+
+const myCountry = {
+  country: "Ukraine",
+  capital: "Kiev",
+  language: "Ukrainian",
+  population: 44,
+  neighbours: [
+    "Romania",
+    "Moldova",
+    "Hungary",
+    "Slovakia",
+    "Poland",
+    "Belarus",
+    "Russia",
+  ],
 };
