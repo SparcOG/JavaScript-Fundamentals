@@ -246,21 +246,21 @@
 //   `${jonas.firstName} has ${jonas.friends.length} friends, and his best friends is called ${jonas.friends[0]}`
 // );
 
-const myCountry = {
-  country: "Ukraine",
-  capital: "Kiev",
-  language: "ukrainian",
-  population: 44,
-  neighbours: [
-    "Romania",
-    "Moldova",
-    "Hungary",
-    "Slovakia",
-    "Poland",
-    "Belarus",
-    "Russia",
-  ],
-};
+// const myCountry = {
+//   country: "Ukraine",
+//   capital: "Kiev",
+//   language: "ukrainian",
+//   population: 44,
+//   neighbours: [
+//     "Romania",
+//     "Moldova",
+//     "Hungary",
+//     "Slovakia",
+//     "Poland",
+//     "Belarus",
+//     "Russia",
+//   ],
+// };
 
 // myCountry.population = myCountry.population + 2;
 // myCountry["population"] = myCountry["population"] - 2;
@@ -269,15 +269,50 @@ const myCountry = {
 //   `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`
 // );
 
-console.log(
-  `${myCountry.country} has ${myCountry.population} million
-  ${myCountry.language}-speaking people,
-  ${myCountry.neighbours.length} neighbouring countries and
-  a capital called ${myCountry.capital}.`
-);
+// console.log(
+//   `${myCountry.country} has ${myCountry.population} million
+//   ${myCountry.language}-speaking people,
+//   ${myCountry.neighbours.length} neighbouring countries and
+//   a capital called ${myCountry.capital}.`
+// );
 
-myCountry.population += 2;
-console.log(myCountry.population);
+// myCountry.population += 2;
+// console.log(myCountry.population);
 
-myCountry["population"] -= 2;
-console.log(myCountry.population);
+// myCountry["population"] -= 2;
+// console.log(myCountry.population);
+
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  birthYeah: 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYeah) {
+  //   return 2037 - birthYeah;
+  // },
+
+  // calcAge: function () {yeah
+  //   console.log(this);
+  //   return 2037 - this.birthYeah;
+  // },
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYeah;
+    return this.age;
+  },
+  getSummary: function () {
+    if (hasDriversLicense) {
+    }
+  },
+};
+
+console.log(jonas.calcAge());
+
+console.log(jonas.age);
+console.log(jonas.age);
+console.log(jonas.age);
+
+// console.log(jonas["calcAge"](1991));
