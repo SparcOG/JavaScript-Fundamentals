@@ -210,54 +210,61 @@
 
 // console.log(tips, total);
 
-// const myCountry = {
-//   country: "Ukraine",
-//   capital: "Kiev",
-//   language: "Ukrainian",
-//   population: 44,
-//   neighbours: [
-//     "Romania",
-//     "Moldova",
-//     "Hungary",
-//     "Slovakia",
-//     "Poland",
-//     "Belarus",
-//     "Russia",
-//   ],
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   age: 2037 - 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
 // };
 
-const jonas = {
-  firstName: "Jonas",
-  lastName: "Schmedtmann",
-  age: 2037 - 1991,
-  job: "teacher",
-  friends: ["Michael", "Peter", "Steven"],
+// console.log(jonas);
+
+// console.log(jonas.lastName);
+// console.log(jonas["lastName"]);
+
+// const nameKey = "Name";
+// console.log(jonas["first" + nameKey]);
+// console.log(jonas["last" + nameKey]);
+
+// const interestedIn = prompt(
+//   "What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends"
+// );
+
+// if (jonas[interestedIn]) {
+//   console.log(jonas[interestedIn]);
+// } else {
+//   console.log(
+//     "Wrong request! Choose between firstName, lastName, age, job, and friends"
+//   );
+// }
+
+// jonas.location = "Portugal";
+// jonas["twitter"] = "@igorstashok";
+
+// console.log(
+//   `${jonas.firstName} has ${jonas.friends.length} friends, and his best friends is called ${jonas.friends[0]}`
+// );
+
+const myCountry = {
+  country: "Ukraine",
+  capital: "Kiev",
+  language: "ukrainian",
+  population: 44,
+  neighbours: [
+    "Romania",
+    "Moldova",
+    "Hungary",
+    "Slovakia",
+    "Poland",
+    "Belarus",
+    "Russia",
+  ],
 };
 
-console.log(jonas);
-
-console.log(jonas.lastName);
-console.log(jonas["lastName"]);
-
-const nameKey = "Name";
-console.log(jonas["first" + nameKey]);
-console.log(jonas["last" + nameKey]);
-
-const interestedIn = prompt(
-  "What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends"
-);
-
-if (jonas[interestedIn]) {
-  console.log(jonas[interestedIn]);
-} else {
-  console.log(
-    "Wrong request! Choose between firstName, lastName, age, job, and friends"
-  );
-}
-
-jonas.location = "Portugal";
-jonas["twitter"] = "@igorstashok";
+myCountry.population = myCountry.population + 2;
+myCountry["population"] = myCountry["population"] - 2;
 
 console.log(
-  `${jonas.firstName} has ${jonas.friends.length} friends, and his best friends is called ${jonas.friends[0]}`
+  `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}.`
 );
