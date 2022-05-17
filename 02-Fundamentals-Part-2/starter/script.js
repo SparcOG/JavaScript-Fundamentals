@@ -231,6 +231,7 @@ const jonas = {
   lastName: "Schmedtmann",
   age: 2037 - 1991,
   job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
 };
 
 console.log(jonas);
@@ -253,3 +254,10 @@ if (jonas[interestedIn]) {
     "Wrong request! Choose between firstName, lastName, age, job, and friends"
   );
 }
+
+jonas.location = "Portugal";
+jonas["twitter"] = "@igorstashok";
+
+console.log(
+  `${jonas.firstName} has ${jonas.friends.length} friends, and his best friends is called ${jonas.friends[0]}`
+);
