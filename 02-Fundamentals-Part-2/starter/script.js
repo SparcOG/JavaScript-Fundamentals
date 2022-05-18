@@ -304,7 +304,10 @@ const jonas = {
     return this.age;
   },
   getSummary: function () {
-    if (hasDriversLicense) {
+    if (this.hasDriversLicense) {
+      return "a driver's license";
+    } else {
+      return "no driver's license";
     }
   },
 };
@@ -315,4 +318,12 @@ console.log(jonas.age);
 console.log(jonas.age);
 console.log(jonas.age);
 
+console.log(
+  `${jonas.firstName} is a ${
+    jonas.age
+  }-year old teacher and he has ${jonas.getSummary()}`
+);
+
 // console.log(jonas["calcAge"](1991));
+
+//'Jonas is a 46-year old teacher and he has a driver's license' and he has no driver's license
