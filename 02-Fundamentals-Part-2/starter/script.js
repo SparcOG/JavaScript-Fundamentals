@@ -303,12 +303,17 @@ const jonas = {
     this.age = 2037 - this.birthYeah;
     return this.age;
   },
+  // getSummary: function () {
+  //   if (this.hasDriversLicense) {
+  //     return "a driver's license";
+  //   } else {
+  //     return "no driver's license";
+  //   }
+  // },
   getSummary: function () {
-    if (this.hasDriversLicense) {
-      return "a driver's license";
-    } else {
-      return "no driver's license";
-    }
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      this.job
+    } and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
   },
 };
 
@@ -318,11 +323,13 @@ console.log(jonas.age);
 console.log(jonas.age);
 console.log(jonas.age);
 
-console.log(
-  `${jonas.firstName} is a ${
-    jonas.age
-  }-year old teacher and he has ${jonas.getSummary()}`
-);
+console.log(jonas.getSummary());
+
+// console.log(
+//   `${jonas.firstName} is a ${
+//     jonas.age
+//   }-year old teacher and he has ${jonas.getSummary()}`
+// );
 
 // console.log(jonas["calcAge"](1991));
 
