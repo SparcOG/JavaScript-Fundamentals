@@ -282,48 +282,47 @@
 // myCountry["population"] -= 2;
 // console.log(myCountry.population);
 
-const jonas = {
-  firstName: "Jonas",
-  lastName: "Schmedtmann",
-  birthYeah: 1991,
-  job: "teacher",
-  friends: ["Michael", "Peter", "Steven"],
-  hasDriversLicense: true,
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Schmedtmann",
+//   birthYeah: 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriversLicense: true,
+// calcAge: function (birthYeah) {
+//   return 2037 - birthYeah;
+// },
 
-  // calcAge: function (birthYeah) {
-  //   return 2037 - birthYeah;
-  // },
+// calcAge: function () {yeah
+//   console.log(this);
+//   return 2037 - this.birthYeah;
+// },
 
-  // calcAge: function () {yeah
-  //   console.log(this);
-  //   return 2037 - this.birthYeah;
-  // },
+// calcAge: function () {
+//   this.age = 2037 - this.birthYeah;
+//   return this.age;
+// },
+// getSummary: function () {
+//   if (this.hasDriversLicense) {
+//     return "a driver's license";
+//   } else {
+//     return "no driver's license";
+//   }
+// },
+//   getSummary: function () {
+//     return `${this.firstName} is a ${this.calcAge()}-year old ${
+//       this.job
+//     } and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
+//   },
+// };
 
-  calcAge: function () {
-    this.age = 2037 - this.birthYeah;
-    return this.age;
-  },
-  // getSummary: function () {
-  //   if (this.hasDriversLicense) {
-  //     return "a driver's license";
-  //   } else {
-  //     return "no driver's license";
-  //   }
-  // },
-  getSummary: function () {
-    return `${this.firstName} is a ${this.calcAge()}-year old ${
-      this.job
-    } and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
-  },
-};
+// console.log(jonas.calcAge());
 
-console.log(jonas.calcAge());
+// console.log(jonas.age);
+// console.log(jonas.age);
+// console.log(jonas.age);
 
-console.log(jonas.age);
-console.log(jonas.age);
-console.log(jonas.age);
-
-console.log(jonas.getSummary());
+// console.log(jonas.getSummary());
 
 // console.log(
 //   `${jonas.firstName} is a ${
@@ -334,3 +333,33 @@ console.log(jonas.getSummary());
 // console.log(jonas["calcAge"](1991));
 
 //'Jonas is a 46-year old teacher and he has a driver's license' and he has no driver's license
+
+const myCountry = {
+  country: "Ukraine",
+  capital: "Kiev",
+  language: "ukrainian",
+  population: 44,
+  neighbours: [
+    "Romania",
+    "Moldova",
+    "Hungary",
+    "Slovakia",
+    "Poland",
+    "Belarus",
+    "Russia",
+  ],
+
+  describe: function () {
+    console.log(
+      `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`
+    );
+  },
+
+  checkIsland: function () {
+    return (this.isIsland = this.neighbours.length > 0 ? true : false);
+  },
+};
+
+myCountry.describe();
+
+console.log(myCountry.checkIsland());
