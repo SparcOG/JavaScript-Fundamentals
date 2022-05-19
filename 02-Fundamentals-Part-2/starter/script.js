@@ -391,28 +391,63 @@
 // myCountry.checkIsland();
 // console.log(myCountry);
 
+// const mark = {
+//   firstName: "Mark",
+//   lastName: "Miller",
+//   mass: 78,
+//   height: 169,
+//   calcBM: function () {
+//     return this.mass / this.height ** 2;
+//   },
+// };
+
+// const john = {
+//   firstName: "John",
+//   lastName: "Smith",
+//   mass: 92,
+//   height: 195,
+//   calcBM: function () {
+//     return this.mass / this.height ** 2;
+//   },
+// };
+
+// console.log(
+//   `${john.firstName} ${john.lastName} ${john.calcBM()} is ${
+//     john.calcBM() > mark.calcBM() ? "higher" : "lower"
+//   } than ${mark.firstName} ${mark.lastName} ${mark.calcBM()}`
+// );
+
 const mark = {
-  firstName: "Mark",
-  lastName: "Miller",
+  fullName: "Mark Miller",
   mass: 78,
   height: 169,
   calcBM: function () {
-    return this.mass / this.height ** 2;
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
   },
 };
 
 const john = {
-  firstName: "John",
-  lastName: "Smith",
+  fullName: "John Smith",
   mass: 92,
   height: 195,
   calcBM: function () {
-    return this.mass / this.height ** 2;
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
   },
 };
 
-console.log(
-  `${john.firstName} ${john.lastName} ${john.calcBM()} is ${
-    john.calcBM() > mark.calcBM() ? "higher" : "lower"
-  } than ${mark.firstName} ${mark.lastName} ${mark.calcBM()}`
-);
+john.calcBM();
+mark.calcBM();
+
+console.log(mark.bmi, john.bmi);
+
+if (mark.bmi > john.bmi) {
+  console.log(
+    `${mark.fullName}'s BMI ${mark.bmi} is higher than BMI ${john.fullName}'s ${john.bmi}`
+  );
+} else if (john.bmi > mark.bmi) {
+  console.log(
+    `${john.fullName}'s BMI ${john.bmi} is higher than ${mark.fullName}'s BMI ${mark.bmi}`
+  );
+}
