@@ -334,32 +334,58 @@
 
 //'Jonas is a 46-year old teacher and he has a driver's license' and he has no driver's license
 
+// const myCountry = {
+//   country: "Ukraine",
+//   capital: "Kiev",
+//   language: "ukrainian",
+//   population: 44,
+//   neighbours: [
+//     "Romania",
+//     "Moldova",
+//     "Hungary",
+//     "Slovakia",
+//     "Poland",
+//     "Belarus",
+//     "Russia",
+//   ],
+
+//   describe: function () {
+//     console.log(
+//       `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`
+//     );
+//   },
+
+//   checkIsland: function () {
+//     return (this.isIsland = this.neighbours.length > 0 ? true : false);
+//   },
+// };
+
+// myCountry.describe();
+
+// console.log(myCountry.checkIsland());
+
 const myCountry = {
-  country: "Ukraine",
-  capital: "Kiev",
-  language: "ukrainian",
-  population: 44,
-  neighbours: [
-    "Romania",
-    "Moldova",
-    "Hungary",
-    "Slovakia",
-    "Poland",
-    "Belarus",
-    "Russia",
-  ],
+  country: "Finland",
+  capital: "Helsinki",
+  language: "finnish",
+  population: 6,
+  neighbours: ["Norway", "Sweden", "Russia"],
 
   describe: function () {
     console.log(
-      `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`
+      `${this.country} has ${this.population} million
+  ${this.language}-speaking people,
+  ${this.neighbours.length} neighbouring countries and a
+  capital called ${this.capital}.`
     );
   },
 
   checkIsland: function () {
-    return (this.isIsland = this.neighbours.length > 0 ? true : false);
+    this.isIsland = this.neighbours.length === 0 ? true : false;
+    // Even simpler version (see why this works...)
+    // this.isIsland = !Boolean(this.neighbours.length);
   },
 };
-
 myCountry.describe();
-
-console.log(myCountry.checkIsland());
+myCountry.checkIsland();
+console.log(myCountry);
