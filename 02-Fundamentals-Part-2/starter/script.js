@@ -412,7 +412,7 @@ const john = {
 };
 
 console.log(
-  `${john.mark} ${john.mark} ${john.calcBM()} is ${
+  `${john.firstName} ${john.lastName} ${john.calcBM()} is ${
     john.calcBM() > mark.calcBM() ? "higher" : "lower"
-  } than ${john.firstName} ${john.lastName} ${mark.calcBM()}`
+  } than ${mark.firstName} ${mark.lastName} ${mark.calcBM()}`
 );
