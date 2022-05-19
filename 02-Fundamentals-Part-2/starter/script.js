@@ -364,28 +364,55 @@
 
 // console.log(myCountry.checkIsland());
 
-const myCountry = {
-  country: "Finland",
-  capital: "Helsinki",
-  language: "finnish",
-  population: 6,
-  neighbours: ["Norway", "Sweden", "Russia"],
+//Jonas
+// const myCountry = {
+//   country: "Finland",
+//   capital: "Helsinki",
+//   language: "finnish",
+//   population: 6,
+//   neighbours: ["Norway", "Sweden", "Russia"],
 
-  describe: function () {
-    console.log(
-      `${this.country} has ${this.population} million
-  ${this.language}-speaking people,
-  ${this.neighbours.length} neighbouring countries and a
-  capital called ${this.capital}.`
-    );
-  },
+//   describe: function () {
+//     console.log(
+//       `${this.country} has ${this.population} million
+//   ${this.language}-speaking people,
+//   ${this.neighbours.length} neighbouring countries and a
+//   capital called ${this.capital}.`
+//     );
+//   },
 
-  checkIsland: function () {
-    this.isIsland = this.neighbours.length === 0 ? true : false;
-    // Even simpler version (see why this works...)
-    // this.isIsland = !Boolean(this.neighbours.length);
+//   checkIsland: function () {
+//     this.isIsland = this.neighbours.length === 0 ? true : false;
+//     // Even simpler version (see why this works...)
+//     // this.isIsland = !Boolean(this.neighbours.length);
+//   },
+// };
+// myCountry.describe();
+// myCountry.checkIsland();
+// console.log(myCountry);
+
+const mark = {
+  firstName: "Mark",
+  lastName: "Miller",
+  mass: 78,
+  height: 169,
+  calcBM: function () {
+    return this.mass / this.height ** 2;
   },
 };
-myCountry.describe();
-myCountry.checkIsland();
-console.log(myCountry);
+
+const john = {
+  firstName: "John",
+  lastName: "Smith",
+  mass: 92,
+  height: 195,
+  calcBM: function () {
+    return this.mass / this.height ** 2;
+  },
+};
+
+console.log(
+  `${john.mark} ${john.mark} ${john.calcBM()} is ${
+    john.calcBM() > mark.calcBM() ? "higher" : "lower"
+  } than ${john.firstName} ${john.lastName} ${mark.calcBM()}`
+);
