@@ -115,7 +115,7 @@
 
 // checkWinner(dolhins, koalas);
 
-// const ukraine = 44;
+// const ukraine = 44;-------------------------
 // const poland = 37;
 // const canada = 38;
 // const usa = 329;
@@ -472,48 +472,62 @@
 //   console.log(`Voter number ${voting} is currently voting`);
 // }
 
-const jonas = [
-  "Jonas",
-  "Schmedtmann",
-  2037 - 1991,
-  "teacher",
-  ["Michael", "Peter", "Steven"],
-  true,
-];
+// const jonas = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+//   true,
+// ];
 
-const types = [];
+// const types = [];
 
-for (let i = 0; i < jonas.length; i++) {
-  // Reading from jonas array
-  console.log(jonas[i], typeof jonas[i]);
+// for (let i = 0; i < jonas.length; i++) {
+//   // Reading from jonas array
+//   console.log(jonas[i], typeof jonas[i]);
 
-  //filling types array
-  // types[i] = jonas[i];
-  types.push(typeof jonas[i]);
+//   //filling types array
+//   // types[i] = jonas[i];
+//   types.push(typeof jonas[i]);
+// }
+
+// console.log(types);
+
+// const years = [1991, 2007, 1969, 2020];
+// const ages = [];
+
+// for (let i = 0; i < years.length; i++) {
+//   ages.push(2037 - years[i]);
+// }
+
+// console.log(ages);
+
+// // continue and break
+// console.log("--- ONLY STRINGS ---");
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] !== "string") continue;
+
+//   console.log(jonas[i], typeof jonas[i]);
+// }
+
+// console.log("--- BREAK WITH NUMBER ---");
+// for (let i = 0; i < jonas.length; i++) {
+//   if (typeof jonas[i] !== "string") break;
+
+//   console.log(jonas[i], typeof jonas[i]);
+// }
+
+const populations = [10, 1441, 332, 83];
+
+const percentages2 = [];
+
+const percentageOfWorld1 = function (population) {
+  return `${(population / 7900) * 100}`;
+};
+
+for (let i = 0; i < populations.length; i++) {
+  percentages2.push(percentageOfWorld1(populations[i]));
 }
 
-console.log(types);
-
-const years = [1991, 2007, 1969, 2020];
-const ages = [];
-
-for (let i = 0; i < years.length; i++) {
-  ages.push(2037 - years[i]);
-}
-
-console.log(ages);
-
-// continue and break
-console.log("--- ONLY STRINGS ---");
-for (let i = 0; i < jonas.length; i++) {
-  if (typeof jonas[i] !== "string") continue;
-
-  console.log(jonas[i], typeof jonas[i]);
-}
-
-console.log("--- BREAK WITH NUMBER ---");
-for (let i = 0; i < jonas.length; i++) {
-  if (typeof jonas[i] !== "string") break;
-
-  console.log(jonas[i], typeof jonas[i]);
-}
+console.log(percentages2);
