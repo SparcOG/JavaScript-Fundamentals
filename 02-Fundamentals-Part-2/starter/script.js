@@ -464,6 +464,10 @@
 // console.log("Lifting weights repetition 10");
 
 //for loop keeps running condition is TRUE
-for (let rep = 1; rep <= 10; rep++) {
-  console.log(`Lifting weights repetition ${rep}`);
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep}`);
+// }
+
+for (let voting = 1; voting <= 50; voting++) {
+  console.log(`Voter number ${voting} is currently voting`);
 }
