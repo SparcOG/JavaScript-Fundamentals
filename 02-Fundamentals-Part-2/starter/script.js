@@ -611,23 +611,32 @@
 //   if (dice === 6) console.log("Loop is about to end");
 // }
 
-const populations = [10, 1441, 332, 83];
+// const populations = [10, 1441, 332, 83];
 
-const percentages3 = [];
+// const percentages3 = [];
 
-const percentageOfWorld1 = function (population) {
-  return `${(population / 7900) * 100}`;
-};
+// const percentageOfWorld1 = function (population) {
+//   return `${(population / 7900) * 100}`;
+// };
 
 // for (let i = 0; i < populations.length; i++) {
 //   percentages3.push(percentageOfWorld1(populations[i]));
 // }
 
-let i = 0;
+// let i = 0;
 
+// while (i < populations.length) {
+//   percentages3.push(percentageOfWorld1(populations[i]));
+//   i++;
+// }
+
+// console.log(percentages3);
+
+const percentages3 = [];
+let i = 0;
 while (i < populations.length) {
-  percentages3.push(percentageOfWorld1(populations[i]));
+  const perc = percentageOfWorld1(populations[i]);
+  percentages3.push(perc);
   i++;
 }
-
 console.log(percentages3);
