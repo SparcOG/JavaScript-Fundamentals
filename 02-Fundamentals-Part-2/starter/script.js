@@ -573,9 +573,13 @@ const listOfNeighbours = [
   ["Norway", "Sweden", "Russia"],
 ];
 
-for (let i = 0; i < listOfNeighbours.length; i++) {
+for (let i = 0; i < 1; i++) {
   console.log(listOfNeighbours[i]);
-  for (let i = 0; i < 1; i++) {
-    console.log(`Neighbour: ${listOfNeighbours[i][0]}`);
+  for (let i = 0; i < 3; i++) {
+    console.log(
+      `${listOfNeighbours[i][0]} neighbour: ${
+        (listOfNeighbours[i].shift(), listOfNeighbours[i])
+      }`
+    );
   }
 }
