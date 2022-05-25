@@ -567,19 +567,28 @@
 //   }
 // }
 
+// const listOfNeighbours = [
+//   ["Canada", "Mexico"],
+//   ["Spain"],
+//   ["Norway", "Sweden", "Russia"],
+// ];
+
+// for (let i = 0; i < 1; i++) {
+//   console.log(listOfNeighbours[i]);
+//   for (let i = 0; i < 3; i++) {
+//     console.log(
+//       `${listOfNeighbours[i][0]} neighbour: ${
+//         (listOfNeighbours[i].shift(), listOfNeighbours[i])
+//       }`
+//     );
+//   }
+// }
+
 const listOfNeighbours = [
   ["Canada", "Mexico"],
   ["Spain"],
   ["Norway", "Sweden", "Russia"],
 ];
-
-for (let i = 0; i < 1; i++) {
-  console.log(listOfNeighbours[i]);
-  for (let i = 0; i < 3; i++) {
-    console.log(
-      `${listOfNeighbours[i][0]} neighbour: ${
-        (listOfNeighbours[i].shift(), listOfNeighbours[i])
-      }`
-    );
-  }
-}
+for (let i = 0; i < listOfNeighbours.length; i++)
+  for (let y = 0; y < listOfNeighbours[i].length; y++)
+    console.log(`Neighbour: ${listOfNeighbours[i][y]}`);
