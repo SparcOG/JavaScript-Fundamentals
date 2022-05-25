@@ -597,16 +597,37 @@
 //   console.log(`Lifting weight repetition ${rep}`);
 // }
 
-let rep = 1;
-while (rep <= 10) {
-  console.log(`While: Lifting weight repetition ${rep}`);
-  rep++;
+// let rep = 1;
+// while (rep <= 10) {
+//   console.log(`While: Lifting weight repetition ${rep}`);
+//   rep++;
+// }
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+//   if (dice === 6) console.log("Loop is about to end");
+// }
+
+const populations = [10, 1441, 332, 83];
+
+const percentages3 = [];
+
+const percentageOfWorld1 = function (population) {
+  return `${(population / 7900) * 100}`;
+};
+
+// for (let i = 0; i < populations.length; i++) {
+//   percentages3.push(percentageOfWorld1(populations[i]));
+// }
+
+let i = 0;
+
+while (i < populations.length) {
+  percentages3.push(percentageOfWorld1(populations[i]));
+  i++;
 }
 
-let dice = Math.trunc(Math.random() * 6) + 1;
-
-while (dice !== 6) {
-  console.log(`You rolled a ${dice}`);
-  dice = Math.trunc(Math.random() * 6) + 1;
-  if (dice === 6) console.log("Loop is about to end");
-}
+console.log(percentages3);
