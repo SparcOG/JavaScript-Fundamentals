@@ -532,14 +532,37 @@
 
 // console.log(percentages2);
 
-const populations = [10, 1441, 332, 83];
+// const populations = [10, 1441, 332, 83];
 
-const percentages2 = [];
+// const percentages2 = [];
 
-for (let i = 0; i < populations.length; i++) {
-  const perc = percentageOfWorld1(populations[i]);
+// for (let i = 0; i < populations.length; i++) {
+//   const perc = percentageOfWorld1(populations[i]);
 
-  percentages2.push(perc);
+//   percentages2.push(perc);
+// }
+
+// console.log(percentages2);
+
+const jonas = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+];
+
+// 0, 1, ..., 4
+// 4, 3, ..., 0
+
+for (let i = jonas.length - 1; i >= 0; i--) {
+  console.log(i, jonas[i]);
 }
 
-console.log(percentages2);
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`--------------- Starting exercise ${exercise}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Exercise ${exercise}: Lifting weight repetition ${rep}`);
+  }
+}
