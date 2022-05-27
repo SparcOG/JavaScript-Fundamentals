@@ -632,11 +632,30 @@
 
 // console.log(percentages3);
 
-const percentages3 = [];
-let i = 0;
-while (i < populations.length) {
-  const perc = percentageOfWorld1(populations[i]);
-  percentages3.push(perc);
-  i++;
+// const percentages3 = [];
+// let i = 0;
+// while (i < populations.length) {
+//   const perc = percentageOfWorld1(populations[i]);
+//   percentages3.push(perc);
+//   i++;
+// }
+// console.log(percentages3);
+
+// -----Part 2-----Coding Challenge #4----------!!!!!!
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tips = [];
+const totals = [];
+
+const calcTip = function (bills) {
+  const calcBills = bills >= 50 && bills <= 300 ? bills * 0.15 : bills * 0.2;
+  return calcBills;
+};
+
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(tips[i] + bills[i]);
 }
-console.log(percentages3);
+
+console.log(tips, totals);
