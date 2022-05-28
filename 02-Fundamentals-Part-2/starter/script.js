@@ -643,19 +643,31 @@
 
 // -----Part 2-----Coding Challenge #4----------!!!!!!
 
-const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
 
-const tips = [];
-const totals = [];
+// const tips = [];
+// const totals = [];
 
-const calcTip = function (bills) {
-  const calcBills = bills >= 50 && bills <= 300 ? bills * 0.15 : bills * 0.2;
-  return calcBills;
-};
+// const calcTip = function (bills) {
+//   const calcBills = bills >= 50 && bills <= 300 ? bills * 0.15 : bills * 0.2;
+//   return calcBills;
+// };
 
-for (let i = 0; i < bills.length; i++) {
-  tips.push(calcTip(bills[i]));
-  totals.push(tips[i] + bills[i]);
+// for (let i = 0; i < bills.length; i++) {
+//   tips.push(calcTip(bills[i]));
+//   totals.push(tips[i] + bills[i]);
+// }
+
+// console.log(tips, totals);
+
+const arr = [453, 543, 12, 57, 56];
+let sum = 0;
+
+for (let i = 0; i < arr.length; i = i + 1) {
+  sum = sum + arr[i];
 }
+console.log(sum);
 
-console.log(tips, totals);
+const calcAverage = (sum) => sum / arr.length;
+
+console.log(calcAverage(sum));
