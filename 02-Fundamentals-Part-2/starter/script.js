@@ -666,7 +666,6 @@ let sum = 0;
 for (let i = 0; i < arr.length; i = i + 1) {
   sum = sum + arr[i];
 }
-console.log(sum);
 
 const calcAverage = (sum) => sum / arr.length;
 
