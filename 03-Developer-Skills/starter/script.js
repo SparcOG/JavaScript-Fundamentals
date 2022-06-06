@@ -61,12 +61,24 @@ const printForecast = function (arr) {
 
 const amplitudeBug = printForecast(testDataTwo);
 
-// if (arr.length > 3) {
-//   console.log(
-//     `... ${arr[0]}°C in 1 days ... ${arr[1]}°C in 2 days ... ${arr[2]}°C in 3 days ... ${arr[3]}°C in 4 days ... ${arr[4]}°C`
-//   );
-// } else {
-//   console.log(
-//     `... ${arr[0]}°C in 1 days ... ${arr[1]}°C in 2 days ... ${arr[2]}°C`
-//   );
-// }
+// 1) Uderstanding the problem
+// - Arrey tranformed to string, separated by ...
+// - What is the X days? Answer: Index + 1
+
+// 2) Breaking up into sub-problems
+// - Transform array into string
+// - Tranform each element to string wiht °C
+// - Strings needs to contain day (index + 1)
+// - Add ... between elements and start and end of string
+// - log string to console
+
+// 1) Понимание проблемы
+// - Массив преобразуется в строку, разделенную ...
+// - Что такое X дней? Ответ: Индекс + 1
+
+// 2) Разбиение на подпроблемы
+// - Преобразовать массив в строку
+// - Преобразование каждого элемента в строку с помощью °C
+// - Строка должна содержать день (индекс + 1)
+// - Добавьте ... между элементами и началом и концом строки
+// - Вывести строку на консоль
