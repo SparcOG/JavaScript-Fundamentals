@@ -51,15 +51,21 @@ const testDataOne = [17, 21, 23];
 const testDataTwo = [12, 5, -5, 0, 4];
 
 const printForecast = function (arr) {
-  if (arr.length > 3) {
-    console.log(
-      `... ${arr[0]}°C in 1 days ... ${arr[1]}°C in 2 days ... ${arr[2]}°C in 3 days ... ${arr[3]}°C in 4 days ... ${arr[4]}°C `
-    );
-  } else {
-    console.log(
-      `... ${arr[0]}°C in 1 days ... ${arr[1]}°C in 2 days ... ${arr[2]}°C`
-    );
+  let str = '';
+  for (let i = 0; i < arr.length; i++) {
+    str = str + ` ... ${arr[i]}°C in ${i + 1} days`;
   }
+  console.log(str);
 };
 
-const amplitudeBug = printForecast(testDataOne);
+const amplitudeBug = printForecast(testDataTwo);
+
+// if (arr.length > 3) {
+//   console.log(
+//     `... ${arr[0]}°C in 1 days ... ${arr[1]}°C in 2 days ... ${arr[2]}°C in 3 days ... ${arr[3]}°C in 4 days ... ${arr[4]}°C`
+//   );
+// } else {
+//   console.log(
+//     `... ${arr[0]}°C in 1 days ... ${arr[1]}°C in 2 days ... ${arr[2]}°C`
+//   );
+// }
