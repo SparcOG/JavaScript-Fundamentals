@@ -16,7 +16,8 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
-let currentScore = 0;
+let currentScore0 = 0;
+let currentScore1 = 0;
 
 // Roling dice functionality
 btnRoll.addEventListener('click', function () {
@@ -29,16 +30,14 @@ btnRoll.addEventListener('click', function () {
   diceEl.src = `dice-${dice}.png`;
 
   // 3. Check for rolled 1: if tru, swich to next player
-  if (dice !== 1) {
+  if (dice !== 1 && currentScore1 == 0) {
     // Add dice to current score
-    // currentScore = currentScore + dice;
-    currentScore += dice; // it will be the same string up (short version)
-    current0El.textContent = currentScore;
-  } else if (dice === 1) {
+    currentScore0 += dice; // currentScore = currentScore + dice; it will be the same string (short version)
+    current0El.textContent = currentScore0;
+  } else if (currentScore0 > 0) {
+    currentScore1 += dice;
+    current1El.textContent = currentScore1 - 1;
     current0El.textContent = 0;
-  } else if (dice == 1) {
-    currentScore += dice;
-    current1El.textContent = currentScore;
   } else {
     // Switch to next player
     // I'm tri do it one
