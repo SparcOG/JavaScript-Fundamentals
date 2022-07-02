@@ -30,14 +30,20 @@ btnRoll.addEventListener('click', function () {
   diceEl.src = `dice-${dice}.png`;
 
   // 3. Check for rolled 1: if tru, swich to next player
-  if (dice !== 1 && currentScore1 == 0) {
+  if (dice !== 1 && current1El.textContent == 0) {
     // Add dice to current score
     currentScore0 += dice; // currentScore = currentScore + dice; it will be the same string (short version)
     current0El.textContent = currentScore0;
-  } else if (currentScore0 > 0) {
-    currentScore1 += dice;
-    current1El.textContent = currentScore1 - 1;
+  } else if (dice === 1) {
+    // currentScore1 += dice;
     current0El.textContent = 0;
+    current1El.textContent = 1;
+    // score1El.textContent = 1;
+    // current0El.textContent = 0;
+  } else if (current1El.textContent > 0 && dice !== 1) {
+    current0El.textContent = 0;
+    currentScore1 += dice; // currentScore = currentScore + dice; it will be the same string (short version)
+    current1El.textContent = currentScore1;
   } else {
     // Switch to next player
     // I'm tri do it one
