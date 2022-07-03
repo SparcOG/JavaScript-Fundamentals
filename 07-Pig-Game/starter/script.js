@@ -37,11 +37,10 @@ btnRoll.addEventListener('click', function () {
   } else if (dice === 1) {
     // currentScore1 += dice;
     current0El.textContent = 0;
-    current1El.textContent = 1;
+    current1El.textContent = 0;
     // score1El.textContent = 1;
     // current0El.textContent = 0;
-  } else if (current1El.textContent > 0 && dice !== 1) {
-    current0El.textContent = 0;
+  } else if (current0El.textContent >= 0) {
     currentScore1 += dice; // currentScore = currentScore + dice; it will be the same string (short version)
     current1El.textContent = currentScore1;
   } else {
