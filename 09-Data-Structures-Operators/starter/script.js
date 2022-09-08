@@ -64,7 +64,10 @@ const rest2 = {
 rest1.numGuests ??= 10;
 rest2.numGuests ??= 10;
 
-rest1.owner = rest2.owner && '<ANONYMOUS>';
+// rest1.owner = rest2.owner && '<ANONYMOUS>';
+// rest1.owner = rest2.owner && '<ANONYMOUS>';
+rest1.owner &&= 'ANONYMOUS';
+rest2.owner &&= 'ANONYMOUS';
 
 console.log(rest1);
 console.log(rest2);
