@@ -61,16 +61,16 @@ const rest2 = {
 // rest2.numGuests ||= 10;
 
 // nullish assignment operator (null or undefined)
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
 
 // rest1.owner = rest2.owner && '<ANONYMOUS>';
 // rest1.owner = rest2.owner && '<ANONYMOUS>';
-rest1.owner &&= 'ANONYMOUS';
-rest2.owner &&= 'ANONYMOUS';
+// rest1.owner &&= 'ANONYMOUS';
+// rest2.owner &&= 'ANONYMOUS';
 
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
 
 // console.log('----- OR -----');
 // // Use ANY data type, return ANY data type, short-circuiting
@@ -164,9 +164,9 @@ console.log(rest2);
 // const newMenu = [...restaurant.mainMenu, 'Gnocci'];
 // console.log(newMenu);
 
-// // Copy array
-// const mainMenuCopy = [...restaurant.mainMenu];
-// console.log(mainMenuCopy);
+// Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+console.log(mainMenuCopy);
 
 // // Join 2 arrays
 // const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
@@ -268,3 +268,57 @@ console.log(rest2);
 // const [p = 1, q = 1, r = 1] = [8];
 // console.log(p, q, r);
 */
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+const players1 = game.players[0];
+const players2 = game.players[1];
+console.log(players1, players2);
+
+const gk = game.players[0][0];
+console.log(gk);
+
+const fieldPlayers = [, ...game.players[0]];
+console.log([, ...fieldPlayers]);
+
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
