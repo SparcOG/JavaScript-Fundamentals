@@ -1,47 +1,47 @@
 'use strict';
 
-// const restaurant = {
-//   name: 'Classico Italiano',
-//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
-//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-//   openingHours: {
-//     thu: {
-//       open: 12,
-//       close: 22,
-//     },
-//     fri: {
-//       open: 11,
-//       close: 23,
-//     },
-//     sat: {
-//       open: 0, // Open 24 hours
-//       close: 24,
-//     },
-//   },
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
 
-//   order: function (starterIndex, mainIndex) {
-//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-//   },
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
 
-//   orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
-//     console.log(
-//       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-//     );
-//   },
+  orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
 
-//   orderPasta: function (ing1, ing2, ing3) {
-//     console.log(
-//       `Here is your declicionus pasta with ${ing1}, ${ing2} and ${ing3}`
-//     );
-//   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your declicionus pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
 
-//   orderPizza: function (mainIngredient, ...otherIngredients) {
-//     console.log(mainIngredient);
-//     console.log(otherIngredients);
-//   },
-// };
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
+};
 
 // const rest1 = {
 //   name: 'Capri',
@@ -252,7 +252,7 @@ console.log(mainMenuCopy);
 
 // [main, secondary] = [secondary, main];
 // console.log(main, secondary);
-
+sdfvbsdfvsdfbv sdfbsa
 // // Receive 2 return values from a function
 // const [starter, mainCourse] = restaurant.order(2, 0);
 // console.log(starter, mainCourse);
@@ -311,44 +311,56 @@ const game = {
   },
 };
 
-
 // 1)
-const players1 = game.players[0];
-const players2 = game.players[1];
+// const players1 = game.players[0];
+// const players2 = game.players[1];
+// console.log(players1, players2);
+
+const [players1, players2] = game.players;
 console.log(players1, players2);
 
 // 2)
-const gk = game.players[0][0];
-console.log(gk);
+// const gk = game.players[0][0];
+// console.log(gk);
+
+// const fieldPlayers = [, ...game.players[0]];
+// console.log([, ...fieldPlayers]);
+
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
 
 // 3)
-const fieldPlayers = [, ...game.players[0]];
-console.log([, ...fieldPlayers]);
-
 const allPlayers = [...players1, ...players2];
 console.log(allPlayers);
 
 // 4)
-const players1Final = [game.players[0], 'Thiago', 'Coutinho', 
-'Perisic'];
-
+// const players1Final = [game.players[0], 'Thiago', 'Coutinho',
+// 'Perisic'];
+// console.log(players1Final)
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Periscic'];
 
 // 5)
-const [team1, drow, team2] = [game.odds.team1, game.odds.x, 
-  game.odds.team2];
-
+let {
+  odds: { team1, x: drow, team2 },
+} = game;
+console.log(team1, drow, team2);
 
 // 6)
+// const printGoals = function (...players) {
+//   let sum = 0;
+//   for (let i = 0; i < players.length; i++) {
+//     console.log(...players[i], players[i].length);
+//   }
+// };
+// printGoals(['Davies', 'Muller', 'Lewandowski', 'Kimmich']);
+// printGoals(game.scored);
 const printGoals = function (...players) {
-  let sum = 0;
-  for (let i = 0; i < players.length; i++) {
-console.log(...players[i], players[i].length)
-  }
-}
-printGoals(['Davies', 'Muller', 'Lewandowski', 'Kimmich'])
-printGoals(...game.players)
+  console.log(...players, `- ${players.length} gols were scored`);
+};
+
+printGoals(...['Davies', 'Muller', 'Lewandowski', 'Kimmich']);
+printGoals(...game.scored);
 
 // 7)
-console.log(game.odds.team2 && game.odds.team1)
-
-
+team1 < team2 && console.log('Team 1 is more likely to win');
+// console.log(game.odds.team2 && game.odds.team1);
