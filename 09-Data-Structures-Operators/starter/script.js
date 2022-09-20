@@ -43,6 +43,19 @@ const restaurant = {
   },
 };
 
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of menu) console.log(item);
+
+for (const item of menu.entries()) {
+  console.log(`${item[0] + 1}: ${item[1]}`);
+}
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`);
+}
+
+// console.log([...menu.entries()]);
 // const rest1 = {
 //   name: 'Capri',
 //   // numGuests: 20,
@@ -269,98 +282,98 @@ sdfvbsdfvsdfbv sdfbsa
 // console.log(p, q, r);
 */
 
-//////////////////////////////////////////////////////////////
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+// //////////////////////////////////////////////////////////////
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
 
-// 1)
-// const players1 = game.players[0];
-// const players2 = game.players[1];
+// // 1)
+// // const players1 = game.players[0];
+// // const players2 = game.players[1];
+// // console.log(players1, players2);
+
+// const [players1, players2] = game.players;
 // console.log(players1, players2);
 
-const [players1, players2] = game.players;
-console.log(players1, players2);
+// // 2)
+// // const gk = game.players[0][0];
+// // console.log(gk);
 
-// 2)
-// const gk = game.players[0][0];
-// console.log(gk);
+// // const fieldPlayers = [, ...game.players[0]];
+// // console.log([, ...fieldPlayers]);
 
-// const fieldPlayers = [, ...game.players[0]];
-// console.log([, ...fieldPlayers]);
+// const [gk, ...fieldPlayers] = players1;
+// console.log(gk, fieldPlayers);
 
-const [gk, ...fieldPlayers] = players1;
-console.log(gk, fieldPlayers);
+// // 3)
+// const allPlayers = [...players1, ...players2];
+// console.log(allPlayers);
 
-// 3)
-const allPlayers = [...players1, ...players2];
-console.log(allPlayers);
+// // 4)
+// // const players1Final = [game.players[0], 'Thiago', 'Coutinho',
+// // 'Perisic'];
+// // console.log(players1Final)
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Periscic'];
 
-// 4)
-// const players1Final = [game.players[0], 'Thiago', 'Coutinho',
-// 'Perisic'];
-// console.log(players1Final)
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Periscic'];
+// // 5)
+// let {
+//   odds: { team1, x: drow, team2 },
+// } = game;
+// console.log(team1, drow, team2);
 
-// 5)
-let {
-  odds: { team1, x: drow, team2 },
-} = game;
-console.log(team1, drow, team2);
-
-// 6)
+// // 6)
+// // const printGoals = function (...players) {
+// //   let sum = 0;
+// //   for (let i = 0; i < players.length; i++) {
+// //     console.log(...players[i], players[i].length);
+// //   }
+// // };
+// // printGoals(['Davies', 'Muller', 'Lewandowski', 'Kimmich']);
+// // printGoals(game.scored);
 // const printGoals = function (...players) {
-//   let sum = 0;
-//   for (let i = 0; i < players.length; i++) {
-//     console.log(...players[i], players[i].length);
-//   }
+//   console.log(...players, `- ${players.length} gols were scored`);
 // };
-// printGoals(['Davies', 'Muller', 'Lewandowski', 'Kimmich']);
-// printGoals(game.scored);
-const printGoals = function (...players) {
-  console.log(...players, `- ${players.length} gols were scored`);
-};
 
-printGoals(...['Davies', 'Muller', 'Lewandowski', 'Kimmich']);
-printGoals(...game.scored);
+// printGoals(...['Davies', 'Muller', 'Lewandowski', 'Kimmich']);
+// printGoals(...game.scored);
 
-// 7)
-team1 < team2 && console.log('Team 1 is more likely to win');
-// console.log(game.odds.team2 && game.odds.team1);
+// // 7)
+// team1 < team2 && console.log('Team 1 is more likely to win');
+// // console.log(game.odds.team2 && game.odds.team1);
