@@ -3,7 +3,7 @@
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const openingHours = {
-  [weekdays[0]]: {
+  man: {
     open: 12,
     close: 22,
   },
@@ -49,6 +49,22 @@ const restaurant = {
   },
 };
 
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open);
+
+// WITH optional chaining
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+// Example
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  console.log(day);
+}
+
+/////////////////////////////////////////////
+// The for-of Loop
 // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
 // for (const item of menu) console.log(item);
@@ -61,6 +77,7 @@ const restaurant = {
 //   console.log(`${i + 1}: ${el}`);
 // }
 
+//////////////////////////////////////////////////////////////////
 // console.log([...menu.entries()]);
 // const rest1 = {
 //   name: 'Capri',
