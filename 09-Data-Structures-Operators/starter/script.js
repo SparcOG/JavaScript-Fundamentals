@@ -3,15 +3,15 @@
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 const openingHours = {
-  man: {
+  [weekdays[3]]: {
     open: 12,
     close: 22,
   },
-  fri: {
+  [weekdays[4]]: {
     open: 11,
     close: 23,
   },
-  [`day-${2 + 4}`]: {
+  [`day-${3 + 2}`]: {
     open: 0, // Open 24 hours
     close: 24,
   },
@@ -60,8 +60,22 @@ console.log(restaurant.openingHours?.mon?.open);
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
 for (const day of days) {
-  console.log(day);
+  const open = restaurant.openingHours[day]?.open;
+  console.log(`Oh ${day}, we open at ${open}`);
 }
+
+// Methods
+console.log(restaurant.order?.(0, 1) ?? 'Method does not exist');
+console.log(restaurant.orderRisitto?.(0, 1) ?? 'Method does not exist');
+
+// Arrays
+const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+// const users = [];
+
+console.log(users[0]?.name ?? 'User array empty');
+
+if (users.length > 0) console.log(users[0].name);
+else console.log('user array empty');
 
 /////////////////////////////////////////////
 // The for-of Loop
