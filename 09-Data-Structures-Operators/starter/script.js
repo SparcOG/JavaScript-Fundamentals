@@ -58,6 +58,113 @@ for (const day of properties) {
 }
 console.log(openStr);
 
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+for (const players of game.scored) {
+  console.log(players, game.scored.length);
+}
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+/*
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+  // ES 6 enhanced object literals
+  openingHours,
+
+  order(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your declicionus pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
+};
+
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties) {
+  openStr = openStr + `${day}, `;
+}
+console.log(openStr);
+
 // Propery VALUES
 const values = Object.values(openingHours);
 console.log(values);
@@ -70,6 +177,7 @@ console.log(entries);
 for (const [day, { open, close }] of entries) {
   console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
+*/
 
 /*
 ////////////////////////////////////////////////
@@ -421,15 +529,15 @@ sdfvbsdfvsdfbv sdfbsa
 // } = game;
 // console.log(team1, drow, team2);
 
-// // 6)
-// // const printGoals = function (...players) {
-// //   let sum = 0;
-// //   for (let i = 0; i < players.length; i++) {
-// //     console.log(...players[i], players[i].length);
-// //   }
-// // };
-// // printGoals(['Davies', 'Muller', 'Lewandowski', 'Kimmich']);
-// // printGoals(game.scored);
+// 6)
+// const printGoals = function (...players) {
+//   let sum = 0;
+//   for (let i = 0; i < players.length; i++) {
+//     console.log(...players[i], players[i].length);
+//   }
+// };
+// printGoals(['Davies', 'Muller', 'Lewandowski', 'Kimmich']);
+// printGoals(game.scored);
 // const printGoals = function (...players) {
 //   console.log(...players, `- ${players.length} gols were scored`);
 // };
