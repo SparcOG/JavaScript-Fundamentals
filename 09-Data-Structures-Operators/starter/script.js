@@ -49,15 +49,6 @@ const restaurant = {
   },
 };
 
-const properties = Object.keys(openingHours);
-console.log(properties);
-
-let openStr = `We are open on ${properties.length} days: `;
-for (const day of properties) {
-  openStr = openStr + `${day}, `;
-}
-console.log(openStr);
-
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -100,7 +91,17 @@ const game = {
 };
 
 for (const players of game.scored) {
-  console.log(players, game.scored.length);
+  console.log(players);
+}
+
+let sum = 0;
+
+for (let i = 0; i < game.scored.length; i++) {
+  sum = sum + 1;
+}
+
+for (const sums of sum) {
+  console.log(sums);
 }
 
 //////////////////////////////////////////////////////////////////////////
