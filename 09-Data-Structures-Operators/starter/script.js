@@ -90,18 +90,12 @@ const game = {
   },
 };
 
-for (const players of game.scored) {
-  console.log(players);
-}
-
 let sum = 0;
 
-for (let i = 0; i < game.scored.length; i++) {
-  sum = sum + 1;
-}
-
-for (const sums of sum) {
-  console.log(sums);
+for (const players of game.scored) {
+  // sum = sum + sum or sum += 1
+  sum++;
+  console.log(`Goal ${sum}:`, players);
 }
 
 //////////////////////////////////////////////////////////////////////////
