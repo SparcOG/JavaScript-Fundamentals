@@ -90,6 +90,7 @@ const game = {
   },
 };
 
+// 1.
 let sum = 0;
 
 for (const players of game.scored) {
@@ -97,6 +98,19 @@ for (const players of game.scored) {
   sum++;
   console.log(`Goal ${sum}:`, players);
 }
+
+// 2.
+
+const object1 = {
+  a: 5,
+  b: 42,
+  c: 6,
+};
+
+const cacacac = [...Object.values(object1)];
+const sdfsdsdsd = cacacac / 3;
+
+console.log(sdfsdsdsd);
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
