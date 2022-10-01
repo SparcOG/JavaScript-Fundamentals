@@ -99,18 +99,72 @@ for (const players of game.scored) {
   console.log(`Goal ${sum}:`, players);
 }
 
-// 2.
-
-const object1 = {
-  a: 5,
-  b: 42,
-  c: 6,
+var codes = {
+  // телефонные коды в формате "код страны": "название"
+  7: 'Россия',
+  38: 'Украина',
+  1: 'США',
 };
 
-const cacacac = [...Object.values(object1)];
-const sdfsdsdsd = cacacac / 3;
+for (var code in codes) console.log(code);
 
-console.log(sdfsdsdsd);
+// 2.
+// const object1 = {
+//   a: 5,
+//   b: 42,
+//   c: 6,
+// };
+
+// const nubersOdds = Object.values(object1);
+// // const sdfsdsdsd = ...cacacac
+
+// const caclAverage = function (...nubersOdds) {
+//   const [...sum] = nubersOdds;
+//   console.log(sum);
+// };
+// caclAverage(...nubersOdds);
+const nubersOdds = Object.values(game.odds);
+for (const sum in nubersOdds) {
+  console.log(sum);
+}
+
+//An array of numbers that we want to get
+//the average of.
+var nums = [2, 10, 9, 6, 12, 3];
+
+//Work out the sum of the numbers in
+//our array
+var totalSum = 0;
+for (var i in nums) {
+  totalSum += nums[i];
+}
+
+//Work out how many numbers are
+//in our array.
+var numsCnt = nums.length;
+
+//Finally, get the average.
+var average = (totalSum + numsCnt) / nums.length;
+console.log(average);
+
+// //An array of numbers that we want to get
+// //the average of.
+// var nums = [2, 10, 9, 6, 12, 3];
+
+// //Work out the sum of the numbers in
+// //our array
+// var totalSum = 0;
+// for (var i of nums) {
+//   totalSum += nums[i];
+// }
+
+// //Work out how many numbers are
+// //in our array.
+// var numsCnt = nums.length;
+
+// //Finally, get the average.
+// var average = (totalSum + numsCnt) / nums.length;
+// console.log(i);
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
