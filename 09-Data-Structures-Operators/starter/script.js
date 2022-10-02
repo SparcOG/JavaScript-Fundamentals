@@ -99,16 +99,45 @@ for (const players of game.scored) {
   console.log(`Goal ${sum}:`, players);
 }
 
-// 2.
+// 2. // Попробуй записать в обычный цикл ради експеримента :)
 const numbersOdds = Object.values(game.odds);
 let mediumSum = 0;
 
 for (const sum in numbersOdds) {
   mediumSum = mediumSum + numbersOdds[sum];
 }
-
 const mediumAverage = mediumSum / numbersOdds.length;
 console.log(mediumAverage);
+
+// 3.
+const [team1, drow, team2] = Object.values(game.odds);
+console.log(`Odd of victory Bayern Munich: ${team1} 
+Odd of draw: ${drow}  
+Odd of victory Borrussia Dortmund: ${team2}`);
+
+// 4.
+
+let sdfsdf = ({
+  scored: { Lewandowski },
+} = game);
+console.log(sdfsdf.scored);
+
+// Entire object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+// [key, value] maybe any name
+for (const [day, { open: w, close }] of entries) {
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
+
+// const scorers = {
+//   Gnarby: 1,
+//   Hummels: 1,
+//   Lewandowski: 2,
+// };
+
+// let { Lewandowski: w, height: h, title } = game.scored;
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
