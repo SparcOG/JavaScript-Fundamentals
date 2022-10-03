@@ -117,10 +117,10 @@ Odd of victory Borrussia Dortmund: ${team2}`);
 
 // 4.
 
-let sdfsdf = ({
-  scored: { Lewandowski },
-} = game);
-console.log(sdfsdf.scored);
+// let sdfsdf = ({
+//   scored: { Lewandowski },
+// } = game);
+// console.log(sdfsdf.scored);
 
 // Entire object
 const entries = Object.entries(openingHours);
@@ -131,13 +131,14 @@ for (const [day, { open: w, close }] of entries) {
   console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
 
-// const scorers = {
-//   Gnarby: 1,
-//   Hummels: 1,
-//   Lewandowski: 2,
-// };
+const scorers = {
+  Gnarby: 1,
+  Hummels: 1,
+  Lewandowski: 2,
+};
 
-// let { Lewandowski: w, height: h, title } = game.scored;
+let { sueName, fir } = game.scored;
+console.log(fir);
 
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
