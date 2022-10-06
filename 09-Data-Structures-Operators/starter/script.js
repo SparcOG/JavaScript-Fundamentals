@@ -116,31 +116,12 @@ Odd of draw: ${drow}
 Odd of victory Borrussia Dortmund: ${team2}`);
 
 // 4.
-
-// let sdfsdf = ({
-//   scored: { Lewandowski },
-// } = game);
-// console.log(sdfsdf.scored);
-
-// Entire object
-const entries = Object.entries(openingHours);
-console.log(entries);
-
-// [key, value] maybe any name
-for (const [day, { open, close }] of entries) {
-  console.log(`On ${day} we open at ${open} and close at ${close}`);
-}
-
 const scorers = {
-  Gnarby: 1,
-  Hummels: 1,
-  Lewandowski: 2,
+  [game.scored[1]]: 1,
+  [game.scored[3]]: 1,
+  [game.scored[0]]: 2,
 };
-
-let [sueName, fir] = game.scored;
-let { what } = fir;
-console.log(fir);
-
+console.log(scorers);
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
