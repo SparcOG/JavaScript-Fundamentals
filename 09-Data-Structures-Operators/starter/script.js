@@ -17,6 +17,8 @@ const openingHours = {
   },
 };
 
+///////////////////////////////////////////////////////////////
+////// Maps: Fundamentals
 const restaurant = {
   name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -48,6 +50,38 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Fireze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organc'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+console.log(rest.get('name'));
+console.log(rest.get(true));
+console.log(rest.get(1));
+
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+const arr = [1, 2];
+rest.set(arr, 'Test');
+rest.set(document.querySelector('h1'), 'Heading');
+console.log(rest.has('categories'));
+rest.delete(2);
+console.log(rest);
+console.log(rest.size);
+
+console.log(rest.get(arr));
+
+/*
+//////////////////////////////////////////////
+// Setss
 
 const game = {
   team1: 'Bayern Munich',
@@ -90,6 +124,44 @@ const game = {
   },
 };
 
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(ordersSet);
+
+console.log(new Set('Jonas'));
+
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+// ordersSet.clear();
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+const staffUnique = [...new Set(staff)];
+console.log(staffUnique);
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+console.log(new Set('sdfsjhgasdhasdvasdwaasddas').size);
+
+*/
+
+///////////////////////////////////////////////////////////////
+///////////////// Coding Challenge #2
+
 // 1.
 // let sum = 0;
 
@@ -98,33 +170,33 @@ const game = {
 //   sum++;
 //   console.log(`Goal ${sum}:`, players);
 // }
-for (const [i, player] of game.scored.entries())
-  console.log(`Goal ${i + 1}: ${player}`);
+// for (const [i, player] of game.scored.entries())
+//   console.log(`Goal ${i + 1}: ${player}`);
 
-// 2. // Попробуй записать в обычный цикл ради експеримента :)
-// const numbersOdds = Object.values(game.odds);
-// let mediumSum = 0;
+// // 2. // Попробуй записать в обычный цикл ради експеримента :)
+// // const numbersOdds = Object.values(game.odds);
+// // let mediumSum = 0;
 
-// for (const sum in numbersOdds) {
-//   mediumSum = mediumSum + numbersOdds[sum];
+// // for (const sum in numbersOdds) {
+// //   mediumSum = mediumSum + numbersOdds[sum];
+// // }
+// // const mediumAverage = mediumSum / numbersOdds.length;
+// // console.log(mediumAverage);
+// // const odds = Object.values(game.odds);
+// // let average = 0;
+// // for (const odd of odds) average += odd;
+// // average /= odds.length;
+// // console.log(average);
+
+// // // 3.
+// // const [team1, drow, team2] = Object.values(game.odds);
+// // console.log(`Odd of victory Bayern Munich: ${team1}
+// // Odd of draw: ${drow}
+// // Odd of victory Borrussia Dortmund: ${team2}`);
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamStr} ${odd}`);
 // }
-// const mediumAverage = mediumSum / numbersOdds.length;
-// console.log(mediumAverage);
-// const odds = Object.values(game.odds);
-// let average = 0;
-// for (const odd of odds) average += odd;
-// average /= odds.length;
-// console.log(average);
-
-// // 3.
-// const [team1, drow, team2] = Object.values(game.odds);
-// console.log(`Odd of victory Bayern Munich: ${team1}
-// Odd of draw: ${drow}
-// Odd of victory Borrussia Dortmund: ${team2}`);
-for (const [team, odd] of Object.entries(game.odds)) {
-  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
-  console.log(`Odd of ${teamStr} ${odd}`);
-}
 
 // // 4.
 // const scorers = {
@@ -578,3 +650,15 @@ sdfvbsdfvsdfbv sdfbsa
 // // 7)
 // team1 < team2 && console.log('Team 1 is more likely to win');
 // // console.log(game.odds.team2 && game.odds.team1);
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct 🎉'],
+//   [false, 'Try again!']
+// ]);
+// console.log(question);
+
+// console.log(Object.entries(openingHours));
