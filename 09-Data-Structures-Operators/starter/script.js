@@ -91,37 +91,48 @@ const game = {
 };
 
 // 1.
-let sum = 0;
+// let sum = 0;
 
-for (const players of game.scored) {
-  // sum = sum + sum or sum += 1
-  sum++;
-  console.log(`Goal ${sum}:`, players);
-}
+// for (const players of game.scored) {
+//   // sum = sum + sum or sum += 1
+//   sum++;
+//   console.log(`Goal ${sum}:`, players);
+// }
+for (const [i, player] of game.scored.entries())
+  console.log(`Goal ${i + 1}: ${player}`);
 
 // 2. // Попробуй записать в обычный цикл ради експеримента :)
-const numbersOdds = Object.values(game.odds);
-let mediumSum = 0;
+// const numbersOdds = Object.values(game.odds);
+// let mediumSum = 0;
 
-for (const sum in numbersOdds) {
-  mediumSum = mediumSum + numbersOdds[sum];
+// for (const sum in numbersOdds) {
+//   mediumSum = mediumSum + numbersOdds[sum];
+// }
+// const mediumAverage = mediumSum / numbersOdds.length;
+// console.log(mediumAverage);
+// const odds = Object.values(game.odds);
+// let average = 0;
+// for (const odd of odds) average += odd;
+// average /= odds.length;
+// console.log(average);
+
+// // 3.
+// const [team1, drow, team2] = Object.values(game.odds);
+// console.log(`Odd of victory Bayern Munich: ${team1}
+// Odd of draw: ${drow}
+// Odd of victory Borrussia Dortmund: ${team2}`);
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} ${odd}`);
 }
-const mediumAverage = mediumSum / numbersOdds.length;
-console.log(mediumAverage);
 
-// 3.
-const [team1, drow, team2] = Object.values(game.odds);
-console.log(`Odd of victory Bayern Munich: ${team1} 
-Odd of draw: ${drow}  
-Odd of victory Borrussia Dortmund: ${team2}`);
-
-// 4.
-const scorers = {
-  [game.scored[1]]: 1,
-  [game.scored[3]]: 1,
-  [game.scored[0]]: 2,
-};
-console.log(scorers);
+// // 4.
+// const scorers = {
+//   [game.scored[1]]: 1,
+//   [game.scored[3]]: 1,
+//   [game.scored[0]]: 2,
+// };
+// console.log(scorers);
 //////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
