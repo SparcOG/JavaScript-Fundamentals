@@ -49,6 +49,72 @@ const restaurant = {
   },
 };
 
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '� Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '� Substitution'],
+  [64, '� Yellow card'],
+  [69, '� Red card'],
+  [70, '� Substitution'],
+  [72, '� Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '� Yellow card'],
+]);
+
+// 1.
+const events = new Set(gameEvents.values());
+console.log(events);
+
+// 2.
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 3.
+gameEvents.set(90, 'An event happened, on average, every 9 minutes');
+console.log(gameEvents.get(90));
+
+// 4.
+// // Quiz app
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+
+for (const [key, value] of gameEvents) {
+  console.log('first half', key, value);
+}
+
+// for (let amout of gameEvents.keys) {
+//   console.log(amout);
+// }
+
+// console.log(new Set([gameEvents]));
+// console.log(new Set([...gameEvents]));
+// const [events] = [...gameEvents];
+// console.log(new Set([...events]));
+
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct 🎉'],
+//   [false, 'Try again!'],
+// ]);
+
+// // Convert map to array
+// console.log([...question]);
+// // console.log(question.entries());
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
+
+/*
+///////////////////////////////////////////////////////////////
+////// Maps: Interation
+
 const question = new Map([
   ['question', 'What is the best programming language in the world?'],
   [1, 'C'],
@@ -81,13 +147,12 @@ console.log([...question]);
 console.log([...question.keys()]);
 console.log([...question.values()]);
 
-/*
-///////////////////////////////////////////////////////////////
-////// Maps: Fundamentals
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Fireze, Italy');
+console.log(rest);
 
-/*
-///////////////////////////////////////////////////////////////
-////// Maps: Fundamentals
+
 
 const rest = new Map();
 rest.set('name', 'Classico Italiano');
