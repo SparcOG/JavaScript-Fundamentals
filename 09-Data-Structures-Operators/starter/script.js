@@ -83,7 +83,11 @@ console.log(gameEvents.get(90));
 // }
 
 for (const [key, value] of gameEvents) {
-  console.log('first half', key, value);
+  if (key < 45) {
+    console.log(`[FIRST HALF]${key}: ${value}`);
+  } else {
+    console.log(`[SECOND HALF]${key}: ${value}`);
+  }
 }
 
 // for (let amout of gameEvents.keys) {
