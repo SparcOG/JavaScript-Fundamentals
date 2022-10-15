@@ -64,7 +64,10 @@ const gameEvents = new Map([
 ]);
 
 // 1.
-const events = new Set(gameEvents.values());
+// const events = new Set(gameEvents.values());
+// console.log(events);
+// Jonas
+const events = [...new Set(gameEvents.values())];
 console.log(events);
 
 // 2.
@@ -72,23 +75,34 @@ gameEvents.delete(64);
 console.log(gameEvents);
 
 // 3.
-gameEvents.set(90, 'An event happened, on average, every 9 minutes');
-console.log(gameEvents.get(90));
+// gameEvents.set(90, 'An event happened, on average, every 9 minutes');
+// console.log(gameEvents.get(90));
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+);
+const time = [...gameEvents.keys()].pop();
+console.log(time);
+console.log(`
+  An event happened, on average, every ${time / gameEvents.size} minutes`);
 
 // 4.
+for (const [min, event] of gameEvents) {
+  const half = min <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
+}
 // // Quiz app
 // console.log(question.get('question'));
 // for (const [key, value] of question) {
 //   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
 // }
 
-for (const [key, value] of gameEvents) {
-  if (key < 45) {
-    console.log(`[FIRST HALF]${key}: ${value}`);
-  } else {
-    console.log(`[SECOND HALF]${key}: ${value}`);
-  }
-}
+// for (const [key, value] of gameEvents) {
+//   if (key < 45) {
+//     console.log(`[FIRST HALF]${key}: ${value}`);
+//   } else {
+//     console.log(`[SECOND HALF]${key}: ${value}`);
+//   }`
+// }
 
 // for (let amout of gameEvents.keys) {
 //   console.log(amout);
