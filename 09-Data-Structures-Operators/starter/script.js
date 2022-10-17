@@ -73,6 +73,22 @@ console.log(airline.slice(airline.lastIndexOf(' ') + 1));
 console.log(airline.slice(-2));
 console.log(airline.slice(1, -1));
 
+const checkMiddSeat = function (seat) {
+  // B and E are middle seats
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat 😬');
+  else console.log('You got lucky 😎');
+};
+
+checkMiddSeat('11B');
+checkMiddSeat('23C');
+checkMiddSeat('3E');
+
+console.log(new String('jonas'));
+console.log(typeof new String('jonas'));
+
+console.log(typeof new String('jonas').slice(1));
+
 //////////////////////////////////////////////
 /////// Coding challenge #3
 /*
