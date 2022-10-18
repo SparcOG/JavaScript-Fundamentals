@@ -54,6 +54,20 @@ const airline = 'TAP Air Portugal';
 console.log(airline.toLowerCase());
 console.log(airline.toUpperCase());
 
+// Fix capitalization in name
+const passenger = 'jOnAS';
+const passengerLower = passenger.toLocaleLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+const email = 'hello@jonas.io';
+const logingEmail = ' Hello@Jonas.Io  \n';
+
+const lowerEmail = logingEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+
 /*
 ////////////////////////////////////////////////////////////////////////
 ///////////////////// Working Whith Strings - Part 1
