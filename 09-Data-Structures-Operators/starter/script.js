@@ -64,10 +64,30 @@ console.log(passengerCorrect);
 const email = 'hello@jonas.io';
 const logingEmail = ' Hello@Jonas.Io  \n';
 
-const lowerEmail = logingEmail.toLowerCase();
-const trimmedEmail = lowerEmail.trim();
-console.log(trimmedEmail);
+// const lowerEmail = logingEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+const normalizedEmail = logingEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
 
+// replacing
+const priceGB = '288,97 💷';
+const priceUS = priceGB.replace('💷', '💲').replace(',', '.');
+
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+
+console.log(announcement.replace('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replace(/door/g, 'gate'));
+
+// Booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air'));
 /*
 ////////////////////////////////////////////////////////////////////////
 ///////////////////// Working Whith Strings - Part 1
