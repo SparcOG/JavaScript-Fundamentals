@@ -48,8 +48,9 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+console.log('a+very+nice+string'.split('+'));
 
-/*
+/*  
 //////////////////////////////////////////////////////////////
 ////////// Working With Strings - Part 2
 
