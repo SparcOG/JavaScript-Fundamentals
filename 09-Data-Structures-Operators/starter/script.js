@@ -49,6 +49,10 @@ const restaurant = {
   },
 };
 
+/*
+//////////////////////////////////////////////////////////////
+////////// Working With Strings - Part 2
+
 const airline = 'TAP Air Portugal';
 
 console.log(airline.toLowerCase());
@@ -106,6 +110,7 @@ const checkBaggage = function (items) {
 checkBaggage('I have a laptop, some foof and a pocket knife');
 checkBaggage('Socks and camera');
 checkBaggage('Got some snacks and a gun for protection');
+*/
 /*
 ////////////////////////////////////////////////////////////////////////
 ///////////////////// Working Whith Strings - Part 1
