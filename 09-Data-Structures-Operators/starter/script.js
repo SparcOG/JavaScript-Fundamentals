@@ -49,6 +49,15 @@ const restaurant = {
   },
 };
 
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const textarea = document.querySelector('textarea').value;
+const button = document.querySelector('button');
+
+/*
+///////////////////////////////////////////////////////////////
+////////////// Working With Strings - part 3
 // Split and join
 console.log('a+very+nice+string'.split('+'));
 console.log('Jonas Schmedtmann'.split(' '));
@@ -98,6 +107,7 @@ const planesInLine = function (n) {
 planesInLine(5);
 planesInLine(3);
 planesInLine(12);
+*/
 /*  
 //////////////////////////////////////////////////////////////
 ////////// Working With Strings - Part 2
