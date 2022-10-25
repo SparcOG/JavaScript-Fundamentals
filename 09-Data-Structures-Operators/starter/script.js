@@ -52,9 +52,21 @@ const restaurant = {
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 
-const textarea = document.querySelector('textarea').value;
+const textarea = document.querySelector('textarea');
 const button = document.querySelector('button');
 
+textarea.textContent = `underscore_case
+first_name
+Some_Variable 
+ calculate_AGE
+delayed_departure`;
+
+button.addEventListener('click', function () {
+  console.log();
+});
+
+console.log('a+very+nice+string'.split('+'));
+console.log('Jonas Schmedtmann'.split(' '));
 /*
 ///////////////////////////////////////////////////////////////
 ////////////// Working With Strings - part 3
