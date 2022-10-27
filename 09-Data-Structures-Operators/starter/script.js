@@ -55,15 +55,18 @@ document.body.append(document.createElement('button'));
 const textarea = document.querySelector('textarea');
 const button = document.querySelector('button');
 
-textarea.textContent = `underscore_case
+textarea.value = `underscore_case
 first_name
 Some_Variable 
  calculate_AGE
 delayed_departure`;
 
-button.addEventListener('click', function () {
-  console.log();
-});
+const transformation = function (textarea) {
+  console.log(textarea.value.toUpperCase());
+};
+transformation(textarea);
+
+button.addEventListener('click', transformation);
 
 console.log('a+very+nice+string'.split('+'));
 console.log('Jonas Schmedtmann'.split(' '));
@@ -205,7 +208,7 @@ console.log(airline.slice(4, 7));
 
 console.log(airline.slice(0, airline.indexOf(' ')));
 console.log(airline.slice(airline.lastIndexOf(' ') + 1));
-
+\
 console.log(airline.slice(-2));
 console.log(airline.slice(1, -1));
 
