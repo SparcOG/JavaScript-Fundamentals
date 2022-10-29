@@ -55,28 +55,48 @@ document.body.append(document.createElement('button'));
 const textarea = document.querySelector('textarea');
 const button = document.querySelector('button');
 
-textarea.value = `underscore_case
+textarea.textContent = `underscore_case
 first_name
 Some_Variable 
  calculate_AGE
 delayed_departure`;
 
 const transformation = function (textarea) {
-  console.log(textarea.value.toUpperCase());
+  const split = textarea.value.split(/\r?\n/);
+  const replaceOne = split[0].replace('_', '');
+  const replaceTwo = split[1].replace('_', '');
+  console.log(replaceOne.replace('c', 'C'));
+  console.log(replaceTwo.replace('n', 'N'));
 };
 transformation(textarea);
 
 button.addEventListener('click', transformation);
 
-console.log('a+very+nice+string'.split('+'));
-console.log('Jonas Schmedtmann'.split(' '));
+// const capitalizeName = function (name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
+
+//   for (const n of names) {
+//     // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//     namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+//   }
+//   console.log(namesUpper.join(' '));
+// };
+
+// capitalizeName('jessica ann smith davis');
+// capitalizeName('jonas Shmedtmann');
+
 /*
 ///////////////////////////////////////////////////////////////
 ////////////// Working With Strings - part 3
 // Split and join
 console.log('a+very+nice+string'.split('+'));
 console.log('Jonas Schmedtmann'.split(' '));
-
+underscoreCase
+firstName
+someVariable
+calculateAge 
+delayedDeparture 
 const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
 
 const newName = ['Mr.', firstName, lastName.toLocaleUpperCase()].join(' ');
