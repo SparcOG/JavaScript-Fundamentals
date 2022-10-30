@@ -62,16 +62,31 @@ Some_Variable
 delayed_departure`;
 
 const transformation = function (textarea) {
-  const split = textarea.value.split(/\r?\n/);
-  const replaceOne = split[0].replace('_', '');
-  const replaceTwo = split[1].replace('_', '');
-  console.log(replaceOne.replace('c', 'C'));
-  console.log(replaceTwo.replace('n', 'N'));
+  const split = textarea.value.toLowerCase().split(/\r?\n/);
+  console.log(
+    split[0].replace('_', '').replace('c', 'C').padEnd(20, '     ✅')
+  );
+  console.log(
+    split[1].replace('_', '').padEnd(19, ' ').replace('n', 'N').padEnd(21, '✅')
+  );
+  console.log(
+    split[2].replace('_', '').replace('v', 'V').padEnd(19, ' ').padEnd(22, '✅')
+  );
+  const replaceAge = split[3].split('_');
+  console.log(
+    replaceAge[0].trim() +
+      replaceAge[1].replace('a', 'A').padEnd(10, ' ').padEnd(14, '✅')
+  );
+  const replaceDeparture = split[4].split('_');
+  console.log(
+    replaceDeparture[0] +
+      replaceDeparture[1].replace('d', 'D').padEnd(12, ' ').padEnd(17, '✅')
+  );
 };
 transformation(textarea);
 
 button.addEventListener('click', transformation);
-
+// console.log([...split[3]].join('').toUpperCase());
 // const capitalizeName = function (name) {
 //   const names = name.split(' ');
 //   const namesUpper = [];
