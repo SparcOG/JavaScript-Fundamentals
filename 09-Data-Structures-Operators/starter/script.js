@@ -52,54 +52,52 @@ const restaurant = {
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 
-const textarea = document.querySelector('textarea');
-const button = document.querySelector('button');
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('/n');
 
-textarea.textContent = `underscore_case
-first_name
-Some_Variable 
- calculate_AGE
-delayed_departure`;
+  for (const row of rows) {
+    const [first, two] = row.toLowerCase().trim().split('_');
 
-const transformation = function (textarea) {
-  const split = textarea.value.toLowerCase().split(/\r?\n/);
-  console.log(
-    split[0].replace('_', '').replace('c', 'C').padEnd(20, '     ✅')
-  );
-  console.log(
-    split[1].replace('_', '').padEnd(19, ' ').replace('n', 'N').padEnd(21, '✅')
-  );
-  console.log(
-    split[2].replace('_', '').replace('v', 'V').padEnd(19, ' ').padEnd(22, '✅')
-  );
-  const replaceAge = split[3].split('_');
-  console.log(
-    replaceAge[0].trim() +
-      replaceAge[1].replace('a', 'A').padEnd(10, ' ').padEnd(14, '✅')
-  );
-  const replaceDeparture = split[4].split('_');
-  console.log(
-    replaceDeparture[0] +
-      replaceDeparture[1].replace('d', 'D').padEnd(12, ' ').padEnd(17, '✅')
-  );
-};
-transformation(textarea);
+    const output = `${first}${two}`;
+    console.log(output);
+  }
+});
 
-button.addEventListener('click', transformation);
-// console.log([...split[3]].join('').toUpperCase());
-// const capitalizeName = function (name) {
-//   const names = name.split(' ');
-//   const namesUpper = [];
+// const textarea = document.querySelector('textarea');
+// const button = document.querySelector('button');
 
-//   for (const n of names) {
-//     // namesUpper.push(n[0].toUpperCase() + n.slice(1));
-//     namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
-//   }
-//   console.log(namesUpper.join(' '));
+// textarea.value = `underscore_case
+// first_name
+// Some_Variable
+//  calculate_AGE
+// delayed_departure`;
+
+// const transformation = function (textarea) {
+//   const split = textarea.value.toLowerCase().split(/\r?\n/);
+//   console.log(
+//     split[0].replace('_', '').replace('c', 'C').padEnd(20, '     ✅')
+//   );
+//   console.log(
+//     split[1].replace('_', '').padEnd(19, ' ').replace('n', 'N').padEnd(21, '✅')
+//   );
+//   console.log(
+//     split[2].replace('_', '').replace('v', 'V').padEnd(19, ' ').padEnd(22, '✅')
+//   );
+//   const replaceAge = split[3].split('_');
+//   console.log(
+//     replaceAge[0].trim() +
+//       replaceAge[1].replace('a', 'A').padEnd(10, ' ').padEnd(14, '✅')
+//   );
+//   const replaceDeparture = split[4].split('_');
+//   console.log(
+//     replaceDeparture[0] +
+//       replaceDeparture[1].replace('d', 'D').padEnd(12, ' ').padEnd(17, '✅')
+//   );
 // };
+// transformation(textarea);
 
-// capitalizeName('jessica ann smith davis');
-// capitalizeName('jonas Shmedtmann');
+// button.addEventListener('click', transformation);
 
 /*
 ///////////////////////////////////////////////////////////////
