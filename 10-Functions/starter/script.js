@@ -87,20 +87,47 @@
 
 // ['Jonas', 'Martha', 'Adam'].forEach(high5);
 
-const greet = function (greeting) {
-  return function (name) {
-    console.log(`${greeting} ${name}`);
-  };
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('Hey');
+// greeterHey('Jonas');
+// greeterHey('Steven');
+
+// greet('Hello');
+// greet('Hello')('Jonas');
+
+// // Challenge
+// const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+// greetArr('Hi')('Jonas');
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function() {}
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}}`
+    );
+  },
 };
 
-const greeterHey = greet('Hey');
-greeterHey('Jonas');
-greeterHey('Steven');
+lufthansa.book(239, 'Jonas Schmedtmann');
+lufthansa.book(635, 'John Smith');
+console.log(lufthansa);
 
-greet('Hello');
-greet('Hello')('Jonas');
+const eurowings = {
+  name: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
 
-// Challenge
-const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+const book = lufthansa.book;
 
-greetArr('Hi')('Jonas');
+// Does NOT work
+// book(23, 'Sarah Williams'); 133. The call and apply Methods
