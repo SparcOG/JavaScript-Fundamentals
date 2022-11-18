@@ -112,7 +112,7 @@ const lufthansa = {
   // book: function() {}
   book(flightNum, name) {
     console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}}`
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
     );
   },
 };
@@ -130,4 +130,26 @@ const eurowings = {
 const book = lufthansa.book;
 
 // Does NOT work
-// book(23, 'Sarah Williams'); 133. The call and apply Methods
+// book(23, 'Sarah Williams');
+
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  name: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+// Apply method
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
