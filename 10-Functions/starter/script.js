@@ -227,3 +227,7 @@ poll.registerNewAnswer = prompt(`${poll.question}
   1: Python
   2: Rust
   3: C++`);
+
+if ((poll.registerNewAnswer = 3)) {
+  poll.answers.slice;
+}
