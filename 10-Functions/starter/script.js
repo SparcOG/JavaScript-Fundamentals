@@ -222,12 +222,20 @@ const poll = {
   answers: new Array(4).fill(0),
 };
 
-poll.registerNewAnswer = prompt(`${poll.question}
+const number = typeof choiceAnswer == 'number' && answers <= 4;
+const answers = poll.registerNewAnswer;
+
+const hidePrompt = function () {
+  poll.registerNewAnswer = prompt(`${poll.question}
   0: JavaScript
   1: Python
   2: Rust
   3: C++`);
+};
 
-if (typeof poll.registerNewAnswer == 'number' && poll.registerNewAnswer == 3) {
-  poll.answers.length = 3;
-}
+if (number && answers == 1) poll.answers.length = 1;
+else if (number && answers == 2) poll.answers.length = 2;
+else if (number && answers == 3) poll.answers.length = 3;
+else if (number && answers == 4) poll.answers.length = 4;
+
+document.querySelector('.buy').addEventListener('click', hidePrompt);
