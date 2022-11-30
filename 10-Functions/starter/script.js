@@ -223,9 +223,9 @@ const poll = {
 };
 
 const number = typeof choiceAnswer == 'number' && answers <= 4;
-const answers = poll.registerNewAnswer;
+let answers = poll.registerNewAnswer;
 
-const hidePrompt = function () {
+const registerNewAnswer = function () {
   poll.registerNewAnswer = prompt(`${poll.question}
   0: JavaScript
   1: Python
@@ -238,4 +238,6 @@ else if (number && answers == 2) poll.answers.length = 2;
 else if (number && answers == 3) poll.answers.length = 3;
 else if (number && answers == 4) poll.answers.length = 4;
 
-document.querySelector('.buy').addEventListener('click', hidePrompt);
+document.querySelector('.poll').addEventListener('click', registerNewAnswer);
+// poll.displayResults =
+// const type = [...poll.answers];
