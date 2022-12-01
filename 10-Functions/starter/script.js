@@ -222,17 +222,18 @@ const poll = {
   answers: new Array(4).fill(0),
 };
 
-const number = typeof choiceAnswer == 'number' && answers <= 4;
 let answers = poll.registerNewAnswer;
+const number = typeof answers == 'number' && answers <= 4;
 
 const registerNewAnswer = function () {
-  poll.registerNewAnswer = prompt(`${poll.question}
+  poll.registerNewAnswer = Number(
+    prompt(`${poll.question}
   0: JavaScript
   1: Python
   2: Rust
-  3: C++`);
+  3: C++`)
+  );
 };
-
 if (number && answers == 1) poll.answers.length = 1;
 else if (number && answers == 2) poll.answers.length = 2;
 else if (number && answers == 3) poll.answers.length = 3;
