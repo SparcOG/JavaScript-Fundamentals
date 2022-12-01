@@ -222,8 +222,8 @@ const poll = {
   answers: new Array(4).fill(0),
 };
 
-let answers = poll.registerNewAnswer;
-const number = typeof answers == 'number' && answers <= 4;
+const number =
+  typeof poll.registerNewAnswer == 'number' && poll.registerNewAnswer <= 4;
 
 const registerNewAnswer = function () {
   poll.registerNewAnswer = Number(
@@ -234,11 +234,30 @@ const registerNewAnswer = function () {
   3: C++`)
   );
 };
-if (number && answers == 1) poll.answers.length = 1;
-else if (number && answers == 2) poll.answers.length = 2;
-else if (number && answers == 3) poll.answers.length = 3;
-else if (number && answers == 4) poll.answers.length = 4;
+
+if (
+  typeof poll.registerNewAnswer == 'number' &&
+  poll.registerNewAnswer <= 4 &&
+  poll.registerNewAnswer == 1
+) {
+  console.log(2 + 2);
+}
+
+const forExamp = 2;
+const forTwo = 3;
+
+if (forExamp == 2 && forTwo == 3) {
+  console.log(2 + 2);
+}
+
+// else if (number && poll.registerNewAnswer == 2)
+//   poll.registerNewAnswer.length = 2;
+// else if (number && poll.registerNewAnswer == 3)
+//   poll.registerNewAnswer.length = 3;
+// else if (number && poll.registerNewAnswer == 4)
+//   poll.registerNewAnswer.length = 4;
 
 document.querySelector('.poll').addEventListener('click', registerNewAnswer);
 // poll.displayResults =
 // const type = [...poll.answers];
+// console.log(2 + 2);
