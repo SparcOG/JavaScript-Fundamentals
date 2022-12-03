@@ -222,9 +222,6 @@ const poll = {
   answers: new Array(4).fill(0),
 };
 
-const number =
-  typeof poll.registerNewAnswer == 'number' && poll.registerNewAnswer <= 4;
-
 const registerNewAnswer = function () {
   poll.registerNewAnswer = Number(
     prompt(`${poll.question}
@@ -233,31 +230,39 @@ const registerNewAnswer = function () {
   2: Rust
   3: C++`)
   );
+
+  if (
+    typeof poll.registerNewAnswer == 'number' &&
+    poll.registerNewAnswer <= 4 &&
+    poll.registerNewAnswer == 1
+  ) {
+    poll.answers.length = 1;
+  } else if (
+    typeof poll.registerNewAnswer == 'number' &&
+    poll.registerNewAnswer <= 4 &&
+    poll.registerNewAnswer == 2
+  ) {
+    poll.answers.length = 2;
+  } else if (
+    typeof poll.registerNewAnswer == 'number' &&
+    poll.registerNewAnswer <= 4 &&
+    poll.registerNewAnswer == 3
+  ) {
+    poll.answers.length = 3;
+  } else if (
+    typeof poll.registerNewAnswer == 'number' &&
+    poll.registerNewAnswer <= 4 &&
+    poll.registerNewAnswer == 4
+  ) {
+    poll.answers.length = 4;
+  }
+
+  displayResults(poll.answers);
 };
 
-if (
-  typeof poll.registerNewAnswer == 'number' &&
-  poll.registerNewAnswer <= 4 &&
-  poll.registerNewAnswer == 1
-) {
-  console.log(2 + 2);
-}
-
-const forExamp = 2;
-const forTwo = 3;
-
-if (forExamp == 2 && forTwo == 3) {
-  console.log(2 + 2);
-}
-
-// else if (number && poll.registerNewAnswer == 2)
-//   poll.registerNewAnswer.length = 2;
-// else if (number && poll.registerNewAnswer == 3)
-//   poll.registerNewAnswer.length = 3;
-// else if (number && poll.registerNewAnswer == 4)
-//   poll.registerNewAnswer.length = 4;
-
 document.querySelector('.poll').addEventListener('click', registerNewAnswer);
-// poll.displayResults =
-// const type = [...poll.answers];
-// console.log(2 + 2);
+
+const displayResults = function (type) {
+  poll.displayResults = type;
+  console.log(this.displayResults);
+};
