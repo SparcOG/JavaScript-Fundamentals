@@ -220,49 +220,55 @@ const poll = {
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section!
   answers: new Array(4).fill(0),
+  displayResults: function (type) {
+    this.displayResults = type;
+    console.log(this.displayResults);
+  },
+  registerNewAnswer: function () {
+    this.registerNewAnswer = Number(
+      prompt(`${poll.question}
+        0: JavaScript
+        1: Python
+        2: Rust
+        3: C++`)
+    );
+
+    if (
+      typeof this.registerNewAnswer == 'number' &&
+      this.registerNewAnswer <= 4 &&
+      this.registerNewAnswer == 1
+    ) {
+      poll.answers.length = 1;
+    } else if (
+      typeof this.registerNewAnswer == 'number' &&
+      this.registerNewAnswer <= 4 &&
+      this.registerNewAnswer == 2
+    ) {
+      poll.answers.length = 2;
+    } else if (
+      typeof this.registerNewAnswer == 'number' &&
+      this.registerNewAnswer <= 4 &&
+      this.registerNewAnswer == 3
+    ) {
+      poll.answers.length = 3;
+    } else if (
+      typeof this.registerNewAnswer == 'number' &&
+      this.registerNewAnswer <= 4 &&
+      this.registerNewAnswer == 4
+    ) {
+      poll.answers.length = 4;
+    }
+    poll.displayResults(poll.answers);
+    // console.log(poll);
+    // console.log(this);
+    // console.log(this.displayResults(poll.answers));
+  },
 };
 
-const registerNewAnswer = function () {
-  poll.registerNewAnswer = Number(
-    prompt(`${poll.question}
-  0: JavaScript
-  1: Python
-  2: Rust
-  3: C++`)
-  );
-
-  if (
-    typeof poll.registerNewAnswer == 'number' &&
-    poll.registerNewAnswer <= 4 &&
-    poll.registerNewAnswer == 1
-  ) {
-    poll.answers.length = 1;
-  } else if (
-    typeof poll.registerNewAnswer == 'number' &&
-    poll.registerNewAnswer <= 4 &&
-    poll.registerNewAnswer == 2
-  ) {
-    poll.answers.length = 2;
-  } else if (
-    typeof poll.registerNewAnswer == 'number' &&
-    poll.registerNewAnswer <= 4 &&
-    poll.registerNewAnswer == 3
-  ) {
-    poll.answers.length = 3;
-  } else if (
-    typeof poll.registerNewAnswer == 'number' &&
-    poll.registerNewAnswer <= 4 &&
-    poll.registerNewAnswer == 4
-  ) {
-    poll.answers.length = 4;
-  }
-
-  displayResults(poll.answers);
-};
-
-document.querySelector('.poll').addEventListener('click', registerNewAnswer);
-
-const displayResults = function (type) {
-  poll.displayResults = type;
-  console.log(this.displayResults);
-};
+// (poll.displayResults = function (type) {
+//   this.displayResults = type;
+//   console.log(this.displayResults);
+// }),
+document
+  .querySelector('.poll')
+  .addEventListener('click', poll.registerNewAnswer);
