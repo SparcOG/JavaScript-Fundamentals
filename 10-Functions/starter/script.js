@@ -220,7 +220,7 @@ const poll = {
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section!
   answers: new Array(4).fill(0),
-  displayResults: function (type) {
+  displayResults: function (...type) {
     this.displayResults = type;
     console.log(this.displayResults);
   },
@@ -257,9 +257,7 @@ const poll = {
       this.registerNewAnswer == 4
     ) {
       poll.answers.length = 4;
-      ``;
     }
-
     displayResults(poll.answers);
   },
 };
@@ -269,3 +267,6 @@ const displayResults = poll.displayResults.bind(poll);
 document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer);
+
+displayResults(5, 2, 3);
+displayResults(String(1, 5, 3, 9, 6, 1));
