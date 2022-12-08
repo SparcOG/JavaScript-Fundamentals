@@ -257,18 +257,15 @@ const poll = {
       this.registerNewAnswer == 4
     ) {
       poll.answers.length = 4;
+      ``;
     }
-    poll.displayResults(poll.answers);
-    // console.log(poll);
-    // console.log(this);
-    // console.log(this.displayResults(poll.answers));
+
+    displayResults(poll.answers);
   },
 };
 
-// (poll.displayResults = function (type) {
-//   this.displayResults = type;
-//   console.log(this.displayResults);
-// }),
+const displayResults = poll.displayResults.bind(poll);
+
 document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer);
