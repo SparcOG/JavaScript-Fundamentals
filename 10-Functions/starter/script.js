@@ -269,4 +269,4 @@ document
   .addEventListener('click', poll.registerNewAnswer);
 
 displayResults(5, 2, 3);
-displayResults(String(1, 5, 3, 9, 6, 1));
+displayResults(String([1, 5, 3, 9, 6, 1]));
