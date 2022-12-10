@@ -215,58 +215,93 @@ console.log(addVAT2(100));
 console.log(addVAT2(23));
 */
 
+// const poll = {
+//   question: 'What is your favourite programming language?',
+//   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+//   // This generates [0, 0, 0, 0]. More in the next section!
+//   answers: new Array(4).fill(0),
+//   displayResults: function (...type) {
+//     this.displayResults = type;
+//     console.log(this.displayResults);
+//   },
+//   registerNewAnswer: function () {
+//     this.registerNewAnswer = Number(
+//       prompt(`${poll.question}
+//         0: JavaScript
+//         1: Python
+//         2: Rust
+//         3: C++`)
+//     );
+
+//     if (
+//       typeof this.registerNewAnswer == 'number' &&
+//       this.registerNewAnswer <= 4 &&
+//       this.registerNewAnswer == 1
+//     ) {
+//       poll.answers.length = 1;
+//     } else if (
+//       typeof this.registerNewAnswer == 'number' &&
+//       this.registerNewAnswer <= 4 &&
+//       this.registerNewAnswer == 2
+//     ) {
+//       poll.answers.length = 2;
+//     } else if (
+//       typeof this.registerNewAnswer == 'number' &&
+//       this.registerNewAnswer <= 4 &&
+//       this.registerNewAnswer == 3
+//     ) {
+//       poll.answers.length = 3;
+//     } else if (
+//       typeof this.registerNewAnswer == 'number' &&
+//       this.registerNewAnswer <= 4 &&
+//       this.registerNewAnswer == 4
+//     ) {
+//       poll.answers.length = 4;
+//     }
+//     displayResults(poll.answers);
+//   },
+// };
+
+// const displayResults = poll.displayResults.bind(poll);
+
+// document
+//   .querySelector('.poll')
+//   .addEventListener('click', poll.registerNewAnswer);
+
+// displayResults(5, 2, 3);
+// displayResults(String([1, 5, 3, 9, 6, 1]));
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   // This generates [0, 0, 0, 0]. More in the next section!
   answers: new Array(4).fill(0),
-  displayResults: function (...type) {
-    this.displayResults = type;
-    console.log(this.displayResults);
-  },
-  registerNewAnswer: function () {
-    this.registerNewAnswer = Number(
-      prompt(`${poll.question}
-        0: JavaScript
-        1: Python
-        2: Rust
-        3: C++`)
+  registerNewAnswer() {
+    // Get answer
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+      )
     );
+    console.log(answer);
 
-    if (
-      typeof this.registerNewAnswer == 'number' &&
-      this.registerNewAnswer <= 4 &&
-      this.registerNewAnswer == 1
-    ) {
-      poll.answers.length = 1;
-    } else if (
-      typeof this.registerNewAnswer == 'number' &&
-      this.registerNewAnswer <= 4 &&
-      this.registerNewAnswer == 2
-    ) {
-      poll.answers.length = 2;
-    } else if (
-      typeof this.registerNewAnswer == 'number' &&
-      this.registerNewAnswer <= 4 &&
-      this.registerNewAnswer == 3
-    ) {
-      poll.answers.length = 3;
-    } else if (
-      typeof this.registerNewAnswer == 'number' &&
-      this.registerNewAnswer <= 4 &&
-      this.registerNewAnswer == 4
-    ) {
-      poll.answers.length = 4;
+    typeof answer === 'number' &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+
+    this.displayResults();
+    this.displayResults('string');
+  },
+
+  displayResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`Poll results are ${this.answers.join(', ')}`);
     }
-    displayResults(poll.answers);
   },
 };
-
-const displayResults = poll.displayResults.bind(poll);
+// poll.registerNewAnswer();
 
 document
   .querySelector('.poll')
-  .addEventListener('click', poll.registerNewAnswer);
-
-displayResults(5, 2, 3);
-displayResults(String([1, 5, 3, 9, 6, 1]));
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
