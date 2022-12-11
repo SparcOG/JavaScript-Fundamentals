@@ -214,7 +214,9 @@ const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(100));
 console.log(addVAT2(23));
 */
-
+/*
+///////////////////////////////////////////////////////////////////////
+///////////////////// Coding Chalange #1
 // const poll = {
 //   question: 'What is your favourite programming language?',
 //   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
@@ -309,3 +311,50 @@ document
 poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+*/
+
+/*
+//////////////////////////////////////////////////////////////////////
+////////////// 137. Closures
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+console.dir(booker);
+*/
+
+///////////////////////////////////////////////////////////////////
+//////////////////// 138. More Closure Examples
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 23;
+  f = function () {
+    console.log(b * 777);
+  };
+};
+
+g();
+f();
+
+// Re-assigning f function
+h();
+f();
