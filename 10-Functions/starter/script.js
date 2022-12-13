@@ -333,7 +333,7 @@ booker();
 
 console.dir(booker);
 */
-
+/*
 ///////////////////////////////////////////////////////////////////
 //////////////////// 138. More Closure Examples
 // Example 1
@@ -378,3 +378,14 @@ boardPassengers(180, 3);
 
 const perGroup = 1000;
 boardPassengers(180, 3);
+*/
+///////////////////////////////////////////////////////
+////////////////// Coding Challenge #2
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  const body = document.querySelector('body');
+  body.addEventListener('click', (header.style.color = 'blue'));
+})();
+
+// ('Нужно прикрепить слушатель событий к бади и при нажатии будет менятся цвет на синий');
