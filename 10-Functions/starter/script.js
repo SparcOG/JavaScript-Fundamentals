@@ -385,7 +385,9 @@ boardPassengers(180, 3);
   const header = document.querySelector('h1');
   header.style.color = 'red';
   const body = document.querySelector('body');
-  body.addEventListener('click', (header.style.color = 'blue'));
+  body.addEventListener('click', function () {
+    body.style.background = 'blue';
+  });
 })();
 
 // ('Нужно прикрепить слушатель событий к бади и при нажатии будет менятся цвет на синий');
