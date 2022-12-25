@@ -104,20 +104,20 @@ console.log(letters.join(' - '));
 ///////////////////////////////////////////////////////////////////
 /////////////// 143. The new at Method
 
-const arr = [23, 11, 64];
-console.log(arr[0]);
-console.log(arr.at(0));
+// const arr = [23, 11, 64];
+// console.log(arr[0]);
+// console.log(arr.at(0));
 
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)[0]);
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
 
-// getting last array element
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)[0]);
-console.log(arr.at(-1));
+// // getting last array element
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
+// console.log(arr.at(-1));
 
-console.log('jonas'.at(0));
-console.log('jonas'.at(-1));
+// console.log('jonas'.at(0));
+// console.log('jonas'.at(-1));
 
 /////////////////////////////////////////////////////////////////////////
 ////////////////////////// 144. Looping Arrays: forEach
@@ -244,10 +244,20 @@ Hints: Use tools from all lectures in this section so far
 const juliaData1 = [3, 5, 2, 12, 7];
 const juliaData2 = [9, 16, 6, 8, 3];
 
-const kateData1 = [9, 16, 6, 8, 3];
+const kateData1 = [4, 1, 15, 8, 3];
 const kateData2 = [10, 5, 6, 1, 4];
 
 const checkdogs = function (julia, kate) {
-  console.log(typeof julia);
+  const [...dogs] = [...julia.slice(1, -1), ...kate];
+  dogs.forEach(function (years, position) {
+    const dogs1 =
+      years >= 5
+        ? console.log(
+            `Dog number ${position + 1} is an adult, and is ${years} years old`
+          )
+        : console.log(`Dog number ${position + 1} is still a puppy`);
+  });
+  // const years = element >= 5 ? console.log('more') : console.log('less');
 };
-checkdogs(juliaData1.slice(1, -1), juliaData2);
+checkdogs(juliaData1, kateData1);
+checkdogs(juliaData2, kateData2);
