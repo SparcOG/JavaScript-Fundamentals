@@ -63,8 +63,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-// LECTURES
-
 /////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////
@@ -105,7 +103,7 @@ console.log(letters.join(' - '));
 
 ///////////////////////////////////////////////////////////////////
 /////////////// 143. The new at Method
-/*
+
 const arr = [23, 11, 64];
 console.log(arr[0]);
 console.log(arr.at(0));
@@ -120,7 +118,7 @@ console.log(arr.at(-1));
 
 console.log('jonas'.at(0));
 console.log('jonas'.at(-1));
-*/
+
 /////////////////////////////////////////////////////////////////////////
 ////////////////////////// 144. Looping Arrays: forEach
 /*
@@ -167,10 +165,11 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function (value, _, map) {
   console.log(`${value}: ${value}`);
 });
-
 */
+
 //////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////// 147. Creating DOM Elements
+/*
 const displayMovements = function (movements) {
   movements.forEach(function (mov, i) {
     // containerMovements.innerHTML = '';
@@ -189,3 +188,66 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+*/
+
+//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////Coding Challenge #2
+/*
+Coding Challenge #1
+Julia and Kate are doing a study on dogs. So each of them asked 5 dog owners 
+about their dog's age, and stored the data into an array (one array for each). For 
+now, they are just interested in knowing whether a dog is an adult or a puppy.
+A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years 
+old.
+Your tasks:
+Create a function 'checkDogs', which accepts 2 arrays of dog's ages 
+('dogsJulia' and 'dogsKate'), and does the following things:
+1. Julia found out that the owners of the first and the last two dogs actually have 
+cats, not dogs! So create a shallow copy of Julia's array, and remove the cat 
+ages from that copied array (because it's a bad practice to mutate function 
+parameters)
+2. Create an array with both Julia's (corrected) and Kate's data
+3. For each remaining dog, log to the console whether it's an adult ("Dog number 1 
+is an adult, and is 5 years old") or a puppy ("Dog number 2 is still a puppy ")
+4. Run the function for both test datasets
+
+Test data:
+§ Data 1: Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
+§ Data 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
+
+Hints: Use tools from all lectures in this section so far
+
+	Задача по кодированию №1
+	Джулия и Кейт проводят исследование о собаках. Каждая из них спросила 5 владельцев собак
+	о возрасте их собак и сохранили данные в массив (по одному массиву на каждого). Для
+	Сейчас их интересует только то, является ли собака взрослой или щенком.
+	Собака является взрослой, если ей не менее 3 лет, и щенком, если ей меньше 3 лет.
+	Ваши задачи:
+	создать функцию 'checkdogs', которая принимает 2 массива возрастов собак
+	('dogsjulia' и 'dogskate') и выполняет следующие действия:
+	1. Джулия выяснила, что у хозяев первой и последних двух собак на самом деле есть
+	кошки, а не собаки! Поэтому создайте неглубокую копию массива Джулии и удалите кошачий
+	из этого скопированного массива (потому что это плохая практика - мутировать параметры функции).
+	параметры)
+	2. Создайте массив с данными Джулии (исправленными) и Кейт.
+	3. Для каждой оставшейся собаки выведите на консоль сообщение о том, является ли она взрослой ("собака номер 1
+	взрослая, ей 5 лет") или щенок ("собака номер 2 еще щенок").
+	4. Запустите функцию для обоих тестовых наборов данных
+
+тестовые данные:
+данные 1: данные джулии [3, 5, 2, 12, 7], данные кейт [4, 1, 15, 8, 3].
+данные 2: данные юлии [9, 16, 6, 8, 3], данные кейт [10, 5, 6, 1, 4]
+
+подсказки: используйте инструменты из всех лекций этого раздела на данный момент
+*/
+
+const juliaData1 = [3, 5, 2, 12, 7];
+const juliaData2 = [9, 16, 6, 8, 3];
+
+const kateData1 = [9, 16, 6, 8, 3];
+const kateData2 = [10, 5, 6, 1, 4];
+
+const checkdogs = function (julia, kate) {
+  console.log(typeof julia);
+};
+checkdogs(juliaData1.slice(1, -1), juliaData2);
