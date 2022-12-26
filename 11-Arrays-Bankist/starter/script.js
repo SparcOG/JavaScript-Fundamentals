@@ -241,14 +241,15 @@ Hints: Use tools from all lectures in this section so far
 подсказки: используйте инструменты из всех лекций этого раздела на данный момент
 */
 
+/*
 const juliaData1 = [3, 5, 2, 12, 7];
 const juliaData2 = [9, 16, 6, 8, 3];
 
 const kateData1 = [4, 1, 15, 8, 3];
 const kateData2 = [10, 5, 6, 1, 4];
 
-const checkdogs = function (julia, kate) {
-  const [...dogs] = [...julia.slice(1, -1), ...kate];
+const checkDogs = function (julia, kate) {
+  const [...dogs] = [...julia.slice(1, -2), ...kate];
   dogs.forEach(function (years, position) {
     const dogs1 =
       years >= 5
@@ -259,5 +260,23 @@ const checkdogs = function (julia, kate) {
   });
   // const years = element >= 5 ? console.log('more') : console.log('less');
 };
-checkdogs(juliaData1, kateData1);
-checkdogs(juliaData2, kateData2);
+checkDogs(juliaData1, kateData1);
+checkDogs(juliaData2, kateData2);
+*/
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrected = dogsJulia.slice();
+  dogsJuliaCorrected.splice(0, 1);
+  dogsJuliaCorrected.splice(-2);
+  const dogs = dogsJuliaCorrected.concat(dogsKate);
+
+  dogs.forEach((dog, i) => {
+    if (dog >= 3) {
+      console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
+    } else {
+      console.log(`Dog number ${i + 1} is still a puppy 🐶`);
+    }
+  });
+};
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
