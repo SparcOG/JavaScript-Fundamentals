@@ -285,6 +285,7 @@ checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////150. The map Method
+/*
 const eurToUsd = 1.1;
 
 const movementsUSD = movements.map(function (mov) {
@@ -307,3 +308,18 @@ const movementsDescriptions = movements.map(
     )}`
 );
 console.log(movementsDescriptions);
+*/
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////151. Computing Usernames
+
+const createUsenames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUsenames(accounts);
+console.log(accounts);
