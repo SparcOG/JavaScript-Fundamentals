@@ -311,7 +311,7 @@ console.log(movementsDescriptions);
 */
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////151. Computing Usernames
-
+/*
 const createUsenames = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
@@ -323,3 +323,23 @@ const createUsenames = function (accs) {
 };
 createUsenames(accounts);
 console.log(accounts);
+*/
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////152. The filter Method
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const deposit = movements.filter(function (mov) {
+  return mov > 0;
+});
+// console.log(movements);
+// console.log(deposit);
+
+const depositsFor = [];
+for (const mov of movements) if (mov > 0) depositsFor.push(mov);
+
+const withdrawals = function (mov) {
+  if (mov < 0) console.log(sdf);
+  if (mov > 0) console.log(432);
+};
+
+console.log(withdrawals(movements));
