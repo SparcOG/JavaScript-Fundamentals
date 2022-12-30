@@ -327,19 +327,21 @@ console.log(accounts);
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////152. The filter Method
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const deposit = movements.filter(function (mov) {
   return mov > 0;
 });
-// console.log(movements);
-// console.log(deposit);
+console.log(movements);
+console.log(deposit);
 
 const depositsFor = [];
 for (const mov of movements) if (mov > 0) depositsFor.push(mov);
 
+let deposits = [];
 const withdrawals = function (mov) {
-  if (mov < 0) console.log(sdf);
-  if (mov > 0) console.log(432);
+  mov.forEach(element => {
+    if (element < 0) deposits.unshift(element);
+  });
 };
 
-console.log(withdrawals(movements));
+withdrawals(movements);
+console.log(deposits);
