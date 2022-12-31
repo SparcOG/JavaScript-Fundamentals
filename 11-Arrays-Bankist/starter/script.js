@@ -383,6 +383,7 @@ console.log(deposits);
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 153. The reduce Method
 ///////////////////////////////////////////////////////////////////////////////
+/*
 console.log(movements);
 
 // accumulator -> SNOWBALL
@@ -402,3 +403,33 @@ const max = movements.reduce((acc, mov) => {
   if (acc > mov) return acc;
   else return mov;
 }, movements[0]);
+*/
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 154. Coding Challenge #2
+///////////////////////////////////////////////////////////////////////////////
+const data1 = [5, 2, 4, 1, 15, 8, 3];
+const data2 = [16, 6, 10, 5, 6, 1, 4];
+
+const calcAverageHumanAge = function (data) {
+  const calculateDogHumanYears = data.reduce(function (dogs, dogAge) {
+    const humanAge = function (dogAge) {
+      if (dogAge <= 2) dogAge * 2;
+      else 16 + dogAge * 4;
+      return dogAge;
+    };
+    console.log(humanAge);
+
+    return humanAge(dogAge);
+  }, 0);
+};
+calcAverageHumanAge(data1);
+// const humanAge = function (dogAge) {
+//   return dogAge * 2;
+// };
+// return humanAge.push(dogAge);
+
+// const humanAge = dogAge * 2;
+// const humanAge2 = 16 + dogAge * 4;
+// console.log(humanAge);
+// console.log(`${humanAge2}    323`);
+// return humanAge2.push(dogs);
