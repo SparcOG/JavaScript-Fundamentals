@@ -410,19 +410,36 @@ const max = movements.reduce((acc, mov) => {
 const data1 = [5, 2, 4, 1, 15, 8, 3];
 const data2 = [16, 6, 10, 5, 6, 1, 4];
 
-const calcAverageHumanAge = function (data) {
-  const calculateDogHumanYears = data.reduce(function (dogs, dogAge) {
-    const humanAge = function (dogAge) {
-      if (dogAge <= 2) dogAge * 2;
-      else 16 + dogAge * 4;
-      return dogAge;
-    };
-    console.log(humanAge);
+// const calcAverageHumanAge = function (data) {
+//   const dogHumanYears = data.map(function (dogs) {
+//     if (dogs <= 2) return dogs * 2;
+//     else return 16 + dogs * 4;
+//   });
+//   console.log(dogHumanYears);
+// };
+// calcAverageHumanAge(data1);
 
-    return humanAge(dogAge);
-  }, 0);
-};
-calcAverageHumanAge(data1);
+const calculateDogHumanYears = data1.reduce(function (dogs, dogAge) {
+  const sdfvsd = dogs + dogAge;
+  console.log(dogAge.length);
+
+  return sdfvsd;
+}, 0);
+// console.log(calculateDogHumanYears);
+
+const arr = [1, 2, 3, 4, 5];
+
+let result = arr.reduce((sum, current) => sum + current, 0);
+console.log(result);
+
+//   return dogAge * 2;
+// };
+// console.log(humanAge());
+// return humanAge(dogAge);
+
+// if (dogAge <= 2) dogAge * 2;
+// else 16 + dogAge * 4;
+
 // const humanAge = function (dogAge) {
 //   return dogAge * 2;
 // };
