@@ -62,8 +62,8 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
   movements.forEach(function (mov, i) {
-    containerMovements.innerHTML = '';
     // .textContent = 0
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
@@ -83,6 +83,14 @@ const claclDispleyBalance = function (movements) {
   labelBalance.textContent = `${balance} EUR`;
 };
 claclDispleyBalance(account1.movements);
+
+const calclDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes} 💶`;
+};
+calclDisplaySummary(account1.movements);
 
 const createUsenames = function (accs) {
   accs.forEach(function (acc) {
@@ -407,34 +415,62 @@ const max = movements.reduce((acc, mov) => {
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 154. Coding Challenge #2
 ///////////////////////////////////////////////////////////////////////////////
-// const data1 = [5, 2, 4, 1, 15, 8, 3];
-// const data2 = [16, 6, 10, 5, 6, 1, 4];
+/*
+const data1 = [5, 2, 4, 1, 15, 8, 3];
+const data2 = [16, 6, 10, 5, 6, 1, 4];
 
-// const calcAverageHumanAge = function (data) {
-//   const dogHumanYears = data.map(function (dogs) {
-//     if (dogs <= 2) return dogs * 2;
-//     else return 16 + dogs * 4;
-//   });
+const calcAverageHumanAge = function (data) {
+  const dogHumanYears = data.map(function (dogs) {
+    if (dogs <= 2) return dogs * 2;
+    else return 16 + dogs * 4;
+  });
 
-//   const excludeDogs = dogHumanYears.filter(function (oldDogs) {
-//     return oldDogs > 18;
-//   });
+  const excludeDogs = dogHumanYears.filter(function (oldDogs) {
+    return oldDogs > 18;
+  });
 
-//   let result =
-//     excludeDogs.reduce(function (sum, current) {
-//       return sum + current;
-//     }, 0) / excludeDogs.length;
-//   console.log(result);
-// };
-// calcAverageHumanAge(data1);
-// calcAverageHumanAge(data2);
-
+  let result =
+    excludeDogs.reduce(function (sum, current) {
+      return sum + current;
+    }, 0) / excludeDogs.length;
+  console.log(result);
+};
+calcAverageHumanAge(data1);
+calcAverageHumanAge(data2);
+*/
+/*
 const calcAverageHumanAge = function (ages) {
   const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
   const adults = humanAges.filter(age => age >= 18);
-  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  // Same way
+  // const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+  const average = adults.reduce(
+    (acc, age, i, arr) => acc + age / arr.length,
+    0
+  );
+
+  // 2 3. (2+3)/2 = 2.5 === 2/2+3/2 = 2.5
+
   return average;
 };
 const avg1 = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
 console.log(avg1, avg2);
+*/
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 155. The Magic of Chaining Methods
+///////////////////////////////////////////////////////////////////////////////
+
+const eurToUsd = 1.1;
+console.log(movements);
+
+// PIPELINE
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(totalDepositsUSD);
