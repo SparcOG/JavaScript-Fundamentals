@@ -99,7 +99,6 @@ const calclDisplaySummary = function (movements) {
     .filter(mov => mov > 0)
     .map(deposit => (deposit * 1.2) / 100)
     .filter((int, i, arr) => {
-      console.log(arr);
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
@@ -475,7 +474,7 @@ console.log(avg1, avg2);
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 155. The Magic of Chaining Methods
 ///////////////////////////////////////////////////////////////////////////////
-
+/*
 const eurToUsd = 1.1;
 console.log(movements);
 
@@ -489,3 +488,44 @@ const totalDepositsUSD = movements
 
   .reduce((acc, mov) => acc + mov, 0);
 console.log(totalDepositsUSD);
+*/
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 156. Coding Challenge #3
+///////////////////////////////////////////////////////////////////////////////
+/*
+Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time 
+as an arrow function, and using chaining!
+Test data:
+§ Data 1: [5, 2, 4, 1, 15, 8, 3]
+§ Data 2: [16, 6, 10, 5, 6, 1, 4]
+
+Перепишите функцию 'calcAverageHumanAge' из задания №2, но на этот раз 
+в виде стрелочной функции и с использованием цепочки!
+Тестовые данные:
+§ Данные 1: [5, 2, 4, 1, 15, 8, 3]
+§ Данные 2: [16, 6, 10, 5, 6, 1, 4]
+*/
+/*
+const data1 = [5, 2, 4, 1, 15, 8, 3];
+const data2 = [16, 6, 10, 5, 6, 1, 4];
+
+const calcAverageHumanAge = function (data) {
+  const dogHumanYears = data.map(dogs =>
+    dogs <= 2 ? dogs * 2 : 16 + dogs * 4
+  );
+
+  const excludeDogs = dogHumanYears.filter(oldDogs => oldDogs > 18);
+
+  let result =
+    excludeDogs.reduce((sum, current) => sum + current, 0) / excludeDogs.length;
+  return result;
+};
+
+console.log(calcAverageHumanAge(data1), calcAverageHumanAge(data2));
+*/
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 157. The find Method
+///////////////////////////////////////////////////////////////////////////////
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
