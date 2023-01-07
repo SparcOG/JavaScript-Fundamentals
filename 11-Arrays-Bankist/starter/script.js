@@ -527,5 +527,11 @@ console.log(calcAverageHumanAge(data1), calcAverageHumanAge(data2));
 // Section 11: Working With Arrays - 157. The find Method
 ///////////////////////////////////////////////////////////////////////////////
 const firstWithdrawal = movements.find(mov => mov < 0);
+
 console.log(movements);
 console.log(firstWithdrawal);
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
