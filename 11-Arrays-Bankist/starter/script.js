@@ -117,6 +117,39 @@ const createUsenames = function (accs) {
 };
 createUsenames(accounts);
 
+// Event handler
+let currentAccount;
+
+// Event handler
+btnLogin.addEventListener('click', function (e) {
+  // Prevent form from submitting
+  e.preventDefault();
+
+  currentAccount = accounts.find(acc => {
+    return acc.username === inputLoginUsername.value;
+  });
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Display UI and message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+  }
+  containerApp.style.opacity = 100;
+
+  // Clear input fields
+
+  // Display movements
+  displayMovements(currentAccount.movements);
+
+  // Display balance
+  claclDispleyBalance(currentAccount.movements);
+
+  // Display summary
+  calclDisplaySummary(currentAccount.movements);
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -526,6 +559,7 @@ console.log(calcAverageHumanAge(data1), calcAverageHumanAge(data2));
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 157. The find Method
 ///////////////////////////////////////////////////////////////////////////////
+/*
 const firstWithdrawal = movements.find(mov => mov < 0);
 
 console.log(movements);
@@ -535,3 +569,7 @@ console.log(accounts);
 
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
+*/
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 158. Implementing Login
+//////////////////////////////////////////////////////////////////////////////
