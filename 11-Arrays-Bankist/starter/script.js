@@ -84,27 +84,26 @@ const claclDispleyBalance = function (movements) {
 };
 claclDispleyBalance(account1.movements);
 
-const calclDisplaySummary = function (movements) {
-  const incomes = movements
+const calclDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes} 💶`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)} 💶`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest} 💶`;
 };
-calclDisplaySummary(account1.movements);
 
 const createUsenames = function (accs) {
   accs.forEach(function (acc) {
@@ -139,6 +138,8 @@ btnLogin.addEventListener('click', function (e) {
   containerApp.style.opacity = 100;
 
   // Clear input fields
+  inputLoginUsername.value = inputClosePin.value = '';
+  inputLoginPin.blur();
 
   // Display movements
   displayMovements(currentAccount.movements);
@@ -147,7 +148,7 @@ btnLogin.addEventListener('click', function (e) {
   claclDispleyBalance(currentAccount.movements);
 
   // Display summary
-  calclDisplaySummary(currentAccount.movements);
+  calclDisplaySummary(currentAccount);
 });
 
 /////////////////////////////////////////////////
