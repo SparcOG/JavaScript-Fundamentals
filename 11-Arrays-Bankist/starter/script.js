@@ -78,8 +78,8 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
-const claclDispleyBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+const claclDispleyBalance = function (acc) {
+  const balance = acc.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} EUR`;
 };
 claclDispleyBalance(account1.movements);
@@ -149,6 +149,23 @@ btnLogin.addEventListener('click', function (e) {
 
   // Display summary
   calclDisplaySummary(currentAccount);
+});
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  console.log(amount, receiverAcc);
+
+  if (
+    amount > 0 &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    console.log('Tranfer valid');
+  }
 });
 
 /////////////////////////////////////////////////
@@ -577,8 +594,3 @@ console.log(account);
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 159. Implementing Transfers
 ////////////////////////////////////////////////////////////////////////////////
-btnTransfer.addEventListener('click', function (e) {
-  e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
-  const receiverAcc = accounts.find(acc => acc.username === inputTransferTo);
-});
