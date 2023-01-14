@@ -179,7 +179,23 @@ btnTransfer.addEventListener('click', function (e) {
 
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
-  console.log('Delete');
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    currentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === currentAccount.username
+    );
+    console.log(index);
+    // .index(23)
+
+    // Delete account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
 });
 
 /////////////////////////////////////////////////
@@ -609,5 +625,5 @@ console.log(account);
 // Section 11: Working With Arrays - 159. Implementing Transfers(work was being done on the application)
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-// Section 11: Working With Arrays - 160. The findIndex Method
+// Section 11: Working With Arrays - 160. The findIndex Method(work was being done on the application)
 ////////////////////////////////////////////////////////////////////////////////
