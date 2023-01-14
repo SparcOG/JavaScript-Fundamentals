@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -115,6 +115,17 @@ const createUsenames = function (accs) {
 };
 createUsenames(accounts);
 
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc.movements);
+
+  // Display balance
+  claclDispleyBalance(acc);
+
+  // Display summary
+  calclDisplaySummary(acc);
+};
+
 // Event handler
 let currentAccount;
 
@@ -140,14 +151,8 @@ btnLogin.addEventListener('click', function (e) {
   inputLoginUsername.value = inputClosePin.value = '';
   inputLoginPin.blur();
 
-  // Display movements
-  displayMovements(currentAccount.movements);
-
-  // Display balance
-  claclDispleyBalance(currentAccount);
-
-  // Display summary
-  calclDisplaySummary(currentAccount);
+  // Update UI
+  updateUI(currentAccount);
 });
 
 btnTransfer.addEventListener('click', function (e) {
@@ -156,7 +161,7 @@ btnTransfer.addEventListener('click', function (e) {
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
-  console.log(amount, receiverAcc);
+  inputTransferAmount.value = inputTransferTo.value = '';
 
   if (
     amount > 0 &&
@@ -166,6 +171,9 @@ btnTransfer.addEventListener('click', function (e) {
     // Doing the transfer
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
   }
 });
 
@@ -593,5 +601,5 @@ console.log(account);
 // Section 11: Working With Arrays - 158. Implementing Login(work was being done on the application)
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-// Section 11: Working With Arrays - 159. Implementing Transfers
+// Section 11: Working With Arrays - 159. Implementing Transfers(work was being done on the application)
 ////////////////////////////////////////////////////////////////////////////////
