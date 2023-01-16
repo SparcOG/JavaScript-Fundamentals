@@ -177,6 +177,16 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    console.log();
+  }
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   if (
@@ -627,3 +637,16 @@ console.log(account);
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 160. The findIndex Method(work was being done on the application)
 ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 161. some and every
+////////////////////////////////////////////////////////////////////////////////
+console.log(movements);
+
+// EQUALITY
+console.log(movements.includes(-130));
+
+console.log(movements.some(mov => mov === -130));
+
+// CONDITION
+const anyDeposits = movements.some(mov => mov > 0);
+console.log(anyDeposits);
