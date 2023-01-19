@@ -670,6 +670,7 @@ console.log(movements.filter(deposit));
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 162. flat and flatMap
 ////////////////////////////////////////////////////////////////////////////////
+/*
 const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
 console.log(arr.flat());
 
@@ -697,3 +698,9 @@ const overBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overBalance2);
+*/
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 163. Sorting Arrays
+////////////////////////////////////////////////////////////////////////////////
+const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+console.log(owners.sort());
