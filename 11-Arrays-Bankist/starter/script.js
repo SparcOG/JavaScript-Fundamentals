@@ -742,7 +742,7 @@ console.log(movements);
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 164. More Ways of Creating and Filling Arrays
 ////////////////////////////////////////////////////////////////////////////////
-
+/*
 const arr = [1, 2, 3, 4, 5, 6, 7];
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
@@ -773,3 +773,64 @@ labelBalance.addEventListener('click', function () {
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
   console.log(movementsUI2);
 });
+*/
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 166. Array Methods Practice
+////////////////////////////////////////////////////////////////////////////////
+
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, cur) => sum + cur, 0);
+console.log(bankDepositSum);
+
+// const numDeposits1000 = accounts
+//   .flatMap(acc => acc.movements)
+//   .filter(mov => mov >= 1000).length;
+// console.log(numDeposits1000);
+
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
+// .reduce((count, cur) => (cur >= 1000 ? count + 1 : count), 0);
+console.log(numDeposits1000);
+// const numDeposits1000 = function (acc) {
+//   const acc1 = acc.reduce((acc, sum) => acc + sum, 0);
+//   return acc1;
+// };
+
+// const culck =
+//   numDeposits1000(accounts[0].movements) +
+//   numDeposits1000(accounts[1].movements) +
+//   numDeposits1000(accounts[2].movements) +
+//   numDeposits1000(accounts[3].movements);
+// console.log(culck);
+
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      // cur > 0 ? (sums.deposits += cur) : (sums.withdrawals += cur);
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+console.log(deposits, withdrawals);
+
+// 4.
+// this is a nice title -> This Is a Nice Title
+const converTitleCase = function (title) {
+  const capitzalize = str => str[0].toUpperCase() + str.slice(1);
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitzalize(word)))
+    .join(' ');
+  return capitzalize(titleCase);
+};
+
+console.log(converTitleCase('this is a nice title'));
+console.log(converTitleCase('this is a LONG title but not too long'));
+console.log(converTitleCase('and here is another title with an EXAMPLE'));
