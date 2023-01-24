@@ -777,7 +777,7 @@ labelBalance.addEventListener('click', function () {
 ////////////////////////////////////////////////////////////////////////////////
 // Section 11: Working With Arrays - 166. Array Methods Practice
 ////////////////////////////////////////////////////////////////////////////////
-
+/*
 const bankDepositSum = accounts
   .flatMap(acc => acc.movements)
   .filter(mov => mov > 0)
@@ -834,3 +834,23 @@ const converTitleCase = function (title) {
 console.log(converTitleCase('this is a nice title'));
 console.log(converTitleCase('this is a LONG title but not too long'));
 console.log(converTitleCase('and here is another title with an EXAMPLE'));
+*/
+////////////////////////////////////////////////////////////////////////////////
+// Section 11: Working With Arrays - 167. Coding Challenge #4
+////////////////////////////////////////////////////////////////////////////////
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+console.log(dogs);
+
+dogs.forEach(function (dogs) {
+  const culckDogs = dogs.weight ** 0.75 * 28;
+  dogs.recommendedPortion = culckDogs;
+});
+
+dogs.find(function (dog) {
+  if (dog.owners.includes('Sarah')) console.log(dog.owners.includes('Sarah'));
+});
