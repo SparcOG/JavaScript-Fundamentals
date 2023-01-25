@@ -844,7 +844,12 @@ const dogs = [
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
-console.log(dogs);
+const dogsRecommendedPortion = dogs.map(function (dog) {
+  const maxPortion = dog.curFood * 10;
+  const minPortion = dog.curFood / 0.1;
+  return maxPortion;
+});
+console.log(dogsRecommendedPortion);
 
 dogs.forEach(function (dogs) {
   const culckDogs = dogs.weight ** 0.75 * 28;
@@ -852,5 +857,7 @@ dogs.forEach(function (dogs) {
 });
 
 dogs.find(function (dog) {
-  if (dog.owners.includes('Sarah')) console.log(dog.owners.includes('Sarah'));
+  if (dog.owners.includes('Sarah')) {
+    console.log(dog.recommendedPortion > dog.curFood);
+  }
 });
