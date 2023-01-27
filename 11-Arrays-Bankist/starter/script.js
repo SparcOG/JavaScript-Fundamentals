@@ -844,20 +844,48 @@ const dogs = [
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
-const dogsRecommendedPortion = dogs.map(function (dog) {
-  const maxPortion = dog.curFood * 10;
-  const minPortion = dog.curFood / 0.1;
-  return maxPortion;
+const dogsRecommendedPortion = dogs.flatMap(function work(dog) {
+  let maxPortion = dog.curFood * 0.1;
+  maxPortion = maxPortion + dog.curFood;
+
+  let minPortion = dog.curFood * 0.1;
+  minPortion = dog.curFood - minPortion;
+  return { max: maxPortion, min: minPortion };
 });
-console.log(dogsRecommendedPortion);
+
+for (let value of Object.values(dogsRecommendedPortion)) {
+  const maxPortion = value.max;
+  const minPortion = value.min;
+}
+
+dogs.find(function (dog) {
+  console.log(dog.owners.includes('Sarah'));
+
+  if (dog.owners.includes('Sarah')) {
+    console.log('yes');
+  }
+});
 
 dogs.forEach(function (dogs) {
   const culckDogs = dogs.weight ** 0.75 * 28;
   dogs.recommendedPortion = culckDogs;
 });
 
-dogs.find(function (dog) {
-  if (dog.owners.includes('Sarah')) {
-    console.log(dog.recommendedPortion > dog.curFood);
-  }
-});
+// dogs.find(function (dog) {
+//   console.log(dog.recommendedPortion);
+//   console.log(dogsRecommendedPortion);
+
+//   if (dog.owners.includes('Sarah')) {
+//     console.log(dog.recommendedPortion < dogsRecommendedPortion);
+//   }
+// });
+// function productDetails() {
+//   return {
+//     pdtName: 'Amazon Echo Dot',
+//     pdtPrice: 39.99,
+//     pdtQuantity: 25,
+//   };
+// }
+
+// let { pdtName, pdtQuantity, pdtPrice } = productDetails();
+// console.log(pdtName);
