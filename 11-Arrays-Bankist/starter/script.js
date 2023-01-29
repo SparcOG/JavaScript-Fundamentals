@@ -844,32 +844,82 @@ const dogs = [
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
-const dogsRecommendedPortion = dogs.flatMap(function work(dog) {
-  let maxPortion = dog.curFood * 0.1;
-  maxPortion = maxPortion + dog.curFood;
 
-  let minPortion = dog.curFood * 0.1;
-  minPortion = dog.curFood - minPortion;
-  return { max: maxPortion, min: minPortion };
-});
-
-for (let value of Object.values(dogsRecommendedPortion)) {
-  const maxPortion = value.max;
-  const minPortion = value.min;
-}
-
-dogs.find(function (dog) {
-  console.log(dog.owners.includes('Sarah'));
-
-  if (dog.owners.includes('Sarah')) {
-    console.log('yes');
-  }
-});
-
+// Task 1
 dogs.forEach(function (dogs) {
   const culckDogs = dogs.weight ** 0.75 * 28;
   dogs.recommendedPortion = culckDogs;
 });
+
+function fideRange(dog) {
+  const maxPortion = dog.map(function work(dog) {
+    let maxPortion = dog.recommendedPortion * 0.1 + dog.recommendedPortion;
+    dog.maxPortion = maxPortion;
+    return dog.maxPortion;
+  });
+  const minPortion = dog.map(function work(dog) {
+    let minPortion = dog.recommendedPortion * 0.1 - dog.recommendedPortion;
+    dog.minPortion = Math.abs(minPortion);
+    return dog.minPortion;
+  });
+  return [maxPortion, minPortion];
+}
+fideRange(dogs);
+
+// Task 2
+const sarasDog = dogs.find(function (dog) {
+  return dog.owners.includes('Sarah');
+});
+
+const checkDogPortion = function (dog) {
+  if (dog.curFood > dog.minPortion && dog.curFood > dog.maxPortion) {
+    console.log('Dog eating too mach');
+  } else {
+    console.log('Dog eating too samll');
+  }
+};
+checkDogPortion(sarasDog);
+console.log(dogs);
+
+// Task 3
+const ownersEatTooMuch = dogs.filter(dog => dog.curFood > dog.maxPortion);
+const ownersEatTooLittle = dogs.filter(dog => dog.curFood < dog.maxPortion);
+
+console.log(ownersEatTooMuch);
+console.log(ownersEatTooLittle);
+
+const dispeyOwners = ownersEatTooMuch.map(function (dogs) {
+  console.log(`${dogs.owners[1]}`);
+});
+// console.log(dispeyOwners);
+
+// function user() {
+//   const name = 'Alex';
+//   const age = 22;
+//   return [name, age];
+// }
+// //store the returned array into an array
+// const [name, age] = user();
+// console.log(name, age);
+
+// const checkDogPortion = function (dog) {
+//   console.log(dog.curFood);
+// };
+// checkDogPortion(dogs);
+// console.log(sarasDog);
+
+// const saraDog = dogs.find(function (dog) {
+//   console.log(dog.curFood);
+//   console.log(dog.maxPortion);
+
+//   if (
+//     dog.owners.includes('Sarah') &&
+//     dog.curFood < dog.maxPortion &&
+//     dog.curFood > dog.minPortion
+//   ) {
+//     return console.log('пщщщв');
+//   }
+// });
 
 // dogs.find(function (dog) {
 //   console.log(dog.recommendedPortion);
@@ -889,3 +939,24 @@ dogs.forEach(function (dogs) {
 
 // let { pdtName, pdtQuantity, pdtPrice } = productDetails();
 // console.log(pdtName);
+// JavaScript to illustrate map() method
+
+// function func() {
+//   // Original array
+//   const arr = [10, 64, 121, 23];
+//   const arr2 = [2, 3, 4, 5];
+//   // new mapped array
+//   const new_arr = arr.map(Math.sqrt);
+//   const new_arr2 = arr2.map(Math.sqrt);
+//   return [new_arr, new_arr2];
+// }
+// console.log(func());
+
+// function user() {
+//   const name = 'Alex';
+//   const age = 22;
+//   return [name, age];
+// }
+// //store the returned array into an array
+// const [name, age] = user();
+// console.log(name, age);
