@@ -94,7 +94,7 @@ nav {
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  /* opacity: 0; */
+  opacity: 0;
   transition: all 1s;
 }
 
@@ -205,7 +205,7 @@ nav {
   font-weight: 500;
   cursor: pointer;
 }
-
+opacy
 /* OPERATIONS */
 .operation {
   border-radius: 1rem;
