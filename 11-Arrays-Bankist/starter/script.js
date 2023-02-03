@@ -826,22 +826,24 @@ ownersEatTooLittle[0].owners.splice(1, 1, 'and', `Bob's`);
 
 console.log(`${ownersEatTooLittle[0].owners.join(' ')} dogs eat too much`);
 ////////////////////////////////////////////////////////////////////////////////
-// Task 4
+// Task 5
 const exactlyRecFood = dogs.some(
   dogs => dogs.recommendedPortion == dogs.curFood
 );
 console.log(exactlyRecFood);
 ////////////////////////////////////////////////////////////////////////////////
-// Task 5
-const exactlyOkFood = dogs.some(
-  dogs => dogs.maxPortion == dogs.curFood && dogs.maxPortion == dogs.curFood
-);
-console.log(exactlyOkFood);
-////////////////////////////////////////////////////////////////////////////////
 // Task 6
-console.log(dogs[0].maxPortion);
-const newArray = new Array(dogs);
-console.log(newArray);
+const exactlyOkFood = dogs => {
+  return (
+    dogs.recommendedPortion * 1.1 > dogs.curFood &&
+    dogs.recommendedPortion < dogs.curFood * 0.9
+  );
+};
+console.log(dogs.some(exactlyOkFood));
+////////////////////////////////////////////////////////////////////////////////
+// Task 7
+console.log(dogs.filter(exactlyOkFood));
+
 // console.log(ownersEatTooLittle);
 
 // const dispeyOwners = ownersEatTooMuch.map(function (dogs) {
@@ -852,6 +854,7 @@ console.log(newArray);
 // function user() {
 //   const name = 'Alex';
 //   const age = 22;
+
 //   return [name, age];
 // }
 // //store the returned array into an array
@@ -936,3 +939,27 @@ console.log(newArray);
 // // });
 // movements.sort((a, b) => b - a);
 // console.log(movements);
+// const arr = [1, 2, 3, 4, 5, 6, 7];
+// console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+// const x = new Array(7);
+// console.log(x);
+// console.log(x.map(() => 5));
+// // x.fill(1);
+// x.fill(1, 2, 5);
+// console.log(x);
+// arr.fill(23, 2, 6);
+// console.log(arr);
+// // Array.from
+// const y = Array.from({ length: 7 }, () => 1);
+// console.log(y);
+// const z = Array.from({ length: 7 }, (_, i) => i + 1);
+// console.log(z);
+// labelBalance.addEventListener('click', function () {
+//   const movementsUI = Array.from(
+//     document.querySelectorAll('.movements__value'),
+//     el => Number(el.textContent.replace('-', '+'))
+//   );
+//   console.log(movementsUI);
+//   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+//   console.log(movementsUI2);
+// });
