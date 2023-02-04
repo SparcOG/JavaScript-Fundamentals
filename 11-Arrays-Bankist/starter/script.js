@@ -776,10 +776,9 @@ const dogs = [
 ];
 ////////////////////////////////////////////////////////////////////////////////
 // Task 1
-dogs.forEach(function (dogs) {
-  const culckDogs = dogs.weight ** 0.75 * 28;
-  dogs.recommendedPortion = culckDogs;
-});
+dogs.forEach(
+  dogs => (dogs.recommendedPortion = Math.trunc(dogs.weight ** 0.75 * 28))
+);
 
 function fideRange(dog) {
   const maxPortion = dog.map(function work(dog) {
@@ -833,16 +832,41 @@ const exactlyRecFood = dogs.some(
 console.log(exactlyRecFood);
 ////////////////////////////////////////////////////////////////////////////////
 // Task 6
-const exactlyOkFood = dogs => {
+const exactlyOkFood = dog => {
   return (
-    dogs.recommendedPortion * 1.1 > dogs.curFood &&
-    dogs.recommendedPortion < dogs.curFood * 0.9
+    dog.curFood > dog.recommendedPortion * 0.9 &&
+    dog.curFood < dog.recommendedPortion * 1.1
   );
 };
 console.log(dogs.some(exactlyOkFood));
 ////////////////////////////////////////////////////////////////////////////////
 // Task 7
 console.log(dogs.filter(exactlyOkFood));
+////////////////////////////////////////////////////////////////////////////////
+// Task 8
+dogs.sort(function (a, b) {
+  return a.recommendedPortion - b.recommendedPortion;
+});
+
+// const shallowCopy = dogs.map(function (dog) {
+//   const recommended = dog.recommendedPortion;
+//   dog.recommendedPortion = dog.recommendedPortion;
+//   return recommended;
+
+//   // function (dogs) {
+//   //   dogs.recommendedPortion
+//   // }
+// });
+// shallowCopy.sort((a, b) => b - a);
+
+// console.log(dogs);
+
+// const tryrt = Array.from(dogs, function (a, b) {
+//   return a.recommendedPortion - b.recommendedPortion;
+// });
+// console.log(tryrt.recommendedPortion.sort();
+////////////////////////////////////////////////////////////////////////////////
+// Task 8
 
 // console.log(ownersEatTooLittle);
 
