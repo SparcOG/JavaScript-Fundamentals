@@ -774,216 +774,123 @@ const dogs = [
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
-////////////////////////////////////////////////////////////////////////////////
-// Task 1
-dogs.forEach(
-  dogs => (dogs.recommendedPortion = Math.trunc(dogs.weight ** 0.75 * 28))
-);
+// ////////////////////////////////////////////////////////////////////////////////
+// // Task 1
+// dogs.forEach(
+//   dogs => (dogs.recommendedPortion = Math.trunc(dogs.weight ** 0.75 * 28))
+// );
 
-function fideRange(dog) {
-  const maxPortion = dog.map(function work(dog) {
-    let maxPortion = dog.recommendedPortion * 0.1 + dog.recommendedPortion;
-    dog.maxPortion = maxPortion;
-    return dog.maxPortion;
-  });
-  const minPortion = dog.map(function work(dog) {
-    let minPortion = dog.recommendedPortion * 0.1 - dog.recommendedPortion;
-    dog.minPortion = Math.abs(minPortion);
-    return dog.minPortion;
-  });
-  return [maxPortion, minPortion];
-}
-fideRange(dogs);
-////////////////////////////////////////////////////////////////////////////////
-// Task 2
-const sarasDog = dogs.find(function (dog) {
-  return dog.owners.includes('Sarah');
-});
-
-const checkDogPortion = function (dog) {
-  if (dog.curFood > dog.minPortion && dog.curFood > dog.maxPortion) {
-    console.log('Dog eating too mach');
-  } else {
-    console.log('Dog eating too samll');
-  }
-};
-checkDogPortion(sarasDog);
-////////////////////////////////////////////////////////////////////////////////
-// Task 3
-const ownersEatTooMuch = dogs.filter(dog => dog.curFood > dog.maxPortion);
-const ownersEatTooLittle = dogs.filter(dog => dog.curFood < dog.minPortion);
-////////////////////////////////////////////////////////////////////////////////
-// Task 4
-ownersEatTooMuch[1].owners.splice(1, 0, 'and');
-ownersEatTooMuch[0].owners.splice(0, 1, 'and', `Matilda's`);
-console.log(
-  `${ownersEatTooMuch[1].owners.join(' ')} ${ownersEatTooMuch[0].owners.join(
-    ' '
-  )} dogs eat too much`
-);
-ownersEatTooLittle[0].owners.splice(1, 1, 'and', `Bob's`);
-
-console.log(`${ownersEatTooLittle[0].owners.join(' ')} dogs eat too much`);
-////////////////////////////////////////////////////////////////////////////////
-// Task 5
-const exactlyRecFood = dogs.some(
-  dogs => dogs.recommendedPortion == dogs.curFood
-);
-console.log(exactlyRecFood);
-////////////////////////////////////////////////////////////////////////////////
-// Task 6
-const exactlyOkFood = dog => {
-  return (
-    dog.curFood > dog.recommendedPortion * 0.9 &&
-    dog.curFood < dog.recommendedPortion * 1.1
-  );
-};
-console.log(dogs.some(exactlyOkFood));
-////////////////////////////////////////////////////////////////////////////////
-// Task 7
-console.log(dogs.filter(exactlyOkFood));
-////////////////////////////////////////////////////////////////////////////////
-// Task 8
-dogs.sort(function (a, b) {
-  return a.recommendedPortion - b.recommendedPortion;
-});
-
-// const shallowCopy = dogs.map(function (dog) {
-//   const recommended = dog.recommendedPortion;
-//   dog.recommendedPortion = dog.recommendedPortion;
-//   return recommended;
-
-//   // function (dogs) {
-//   //   dogs.recommendedPortion
-//   // }
-// });
-// shallowCopy.sort((a, b) => b - a);
-
-// console.log(dogs);
-
-// const tryrt = Array.from(dogs, function (a, b) {
-//   return a.recommendedPortion - b.recommendedPortion;
-// });
-// console.log(tryrt.recommendedPortion.sort();
-////////////////////////////////////////////////////////////////////////////////
-// Task 8
-
-// console.log(ownersEatTooLittle);
-
-// const dispeyOwners = ownersEatTooMuch.map(function (dogs) {
-//   console.log(`${dogs.owners[1]}`);
-// });
-// console.log(dispeyOwners);
-
-// function user() {
-//   const name = 'Alex';
-//   const age = 22;
-
-//   return [name, age];
+// function fideRange(dog) {
+//   const maxPortion = dog.map(function work(dog) {
+//     let maxPortion = dog.recommendedPortion * 0.1 + dog.recommendedPortion;
+//     dog.maxPortion = maxPortion;
+//     return dog.maxPortion;
+//   });
+//   const minPortion = dog.map(function work(dog) {
+//     let minPortion = dog.recommendedPortion * 0.1 - dog.recommendedPortion;
+//     dog.minPortion = Math.abs(minPortion);
+//     return dog.minPortion;
+//   });
+//   return [maxPortion, minPortion];
 // }
-// //store the returned array into an array
-// const [name, age] = user();
-// console.log(name, age);
+// fideRange(dogs);
+// ////////////////////////////////////////////////////////////////////////////////
+// // Task 2
+// const sarasDog = dogs.find(function (dog) {
+//   return dog.owners.includes('Sarah');
+// });
 
 // const checkDogPortion = function (dog) {
-//   console.log(dog.curFood);
+//   if (dog.curFood > dog.minPortion && dog.curFood > dog.maxPortion) {
+//     console.log('Dog eating too mach');
+//   } else {
+//     console.log('Dog eating too samll');
+//   }
 // };
-// checkDogPortion(dogs);
-// console.log(sarasDog);
+// checkDogPortion(sarasDog);
+// ////////////////////////////////////////////////////////////////////////////////
+// // Task 3
+// const ownersEatTooMuch = dogs.filter(dog => dog.curFood > dog.maxPortion);
+// const ownersEatTooLittle = dogs.filter(dog => dog.curFood < dog.minPortion);
+// ////////////////////////////////////////////////////////////////////////////////
+// // Task 4
+// ownersEatTooMuch[1].owners.splice(1, 0, 'and');
+// ownersEatTooMuch[0].owners.splice(0, 1, 'and', `Matilda's`);
+// console.log(
+//   `${ownersEatTooMuch[1].owners.join(' ')} ${ownersEatTooMuch[0].owners.join(
+//     ' '
+//   )} dogs eat too much`
+// );
+// ownersEatTooLittle[0].owners.splice(1, 1, 'and', `Bob's`);
 
-// const saraDog = dogs.find(function (dog) {
-//   console.log(dog.curFood);
-//   console.log(dog.maxPortion);
-
-//   if (
-//     dog.owners.includes('Sarah') &&
-//     dog.curFood < dog.maxPortion &&
-//     dog.curFood > dog.minPortion
-//   ) {
-//     return console.log('пщщщв');
-//   }
-// });
-
-// dogs.find(function (dog) {
-//   console.log(dog.recommendedPortion);
-//   console.log(dogsRecommendedPortion);
-
-//   if (dog.owners.includes('Sarah')) {
-//     console.log(dog.recommendedPortion < dogsRecommendedPortion);
-//   }
-// });
-// function productDetails() {
-//   return {
-//     pdtName: 'Amazon Echo Dot',
-//     pdtPrice: 39.99,
-//     pdtQuantity: 25,
-//   };
-// }
-
-// let { pdtName, pdtQuantity, pdtPrice } = productDetails();
-// console.log(pdtName);
-// JavaScript to illustrate map() method
-
-// function func() {
-//   // Original array
-//   const arr = [10, 64, 121, 23];
-//   const arr2 = [2, 3, 4, 5];
-//   // new mapped array
-//   const new_arr = arr.map(Math.sqrt);
-//   const new_arr2 = arr2.map(Math.sqrt);
-//   return [new_arr, new_arr2];
-// }
-// console.log(func());
-
-// function user() {
-//   const name = 'Alex';
-//   const age = 22;
-//   return [name, age];
-// }
-// //store the returned array into an array
-// const [name, age] = user();
-// console.log(name, age);
-// const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
-// console.log(owners.sort());
-// // Numbers
-// console.log(movements);
-// // return < 0, A, B
-// // return > 0, B, A
-// // Ascending
-// // movements.sort((a, b) => {
-// //   if (a > b) return 1;
-// //   if (a < b) return -1;
-// // });
-// movements.sort((a, b) => a - b);
-// console.log(movements);
-// // Descending
-// // movements.sort((a, b) => {
-// //   if (a > b) return -1;
-// //   if (b < a) return 1;
-// // });
-// movements.sort((a, b) => b - a);
-// console.log(movements);
-// const arr = [1, 2, 3, 4, 5, 6, 7];
-// console.log(new Array(1, 2, 3, 4, 5, 6, 7));
-// const x = new Array(7);
-// console.log(x);
-// console.log(x.map(() => 5));
-// // x.fill(1);
-// x.fill(1, 2, 5);
-// console.log(x);
-// arr.fill(23, 2, 6);
-// console.log(arr);
-// // Array.from
-// const y = Array.from({ length: 7 }, () => 1);
-// console.log(y);
-// const z = Array.from({ length: 7 }, (_, i) => i + 1);
-// console.log(z);
-// labelBalance.addEventListener('click', function () {
-//   const movementsUI = Array.from(
-//     document.querySelectorAll('.movements__value'),
-//     el => Number(el.textContent.replace('-', '+'))
+// console.log(`${ownersEatTooLittle[0].owners.join(' ')} dogs eat too much`);
+// ////////////////////////////////////////////////////////////////////////////////
+// // Task 5
+// const exactlyRecFood = dogs.some(
+//   dogs => dogs.recommendedPortion == dogs.curFood
+// );
+// console.log(exactlyRecFood);
+// ////////////////////////////////////////////////////////////////////////////////
+// // Task 6
+// const exactlyOkFood = dog => {
+//   return (
+//     dog.curFood > dog.recommendedPortion * 0.9 &&
+//     dog.curFood < dog.recommendedPortion * 1.1
 //   );
-//   console.log(movementsUI);
-//   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-//   console.log(movementsUI2);
+// };
+// console.log(dogs.some(exactlyOkFood));
+// ////////////////////////////////////////////////////////////////////////////////
+// // Task 7
+// console.log(dogs.filter(exactlyOkFood));
+// ////////////////////////////////////////////////////////////////////////////////
+// // Task 8
+// dogs.sort(function (a, b) {
+//   return a.recommendedPortion - b.recommendedPortion;
 // });
+
+// 1.
+dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+console.log(dogs);
+
+// 2.
+const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
+console.log(dogSarah);
+console.log(
+  `Sarah's dog is eating too ${
+    dogSarah.curFood > dogSarah.recFood ? 'much' : 'little'
+  }`
+);
+
+// 3.
+const ownersEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recFood)
+  .flatMap(dog => dog.owners);
+// .flat();
+console.log(ownersEatTooMuch);
+
+const ownersEatTooLittle = dogs
+  .filter(dog => dog.curFood < dog.recFood)
+  .flatMap(dog => dog.owners);
+// .flat();
+console.log(ownersEatTooLittle);
+
+// 4.
+console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too much!`);
+
+// 5.
+console.log(dogs.some(dog => dog.curFood === dog.recFood));
+
+// 6.
+const exactlyOkFood = dog =>
+  dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+
+console.log(dogs.some(exactlyOkFood));
+
+// 7.
+console.log(dogs.filter(exactlyOkFood));
+
+// 8.
+const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+console.log(dogsSorted);
+``;
