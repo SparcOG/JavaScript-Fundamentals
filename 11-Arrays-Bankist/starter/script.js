@@ -893,4 +893,3 @@ console.log(dogs.filter(exactlyOkFood));
 // 8.
 const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
 console.log(dogsSorted);
-``;
