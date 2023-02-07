@@ -363,6 +363,7 @@ console.log(isEven(514));
 */
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////173. Numeric Separators
+/*
 const diameter = 287_460_000_000;
 console.log(diameter);
 
@@ -377,3 +378,19 @@ console.log(PI);
 
 console.log(Number('230_000'));
 console.log(parseInt('230_000'));
+*/
+///////////////////////////////////////////////////////////////////
+///////////////////////////174. Working with BigInt
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 - 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
+console.log(2 ** 53 + 4);
+
+console.log(3284578273456234523421341253412453154n);
+console.log(BigInt(328457827345));
+
+// Operators
+console.log(1000n + 1000n);
+console.log(93847483283837232837465293764534n * 1000000000000000n);
