@@ -381,6 +381,7 @@ console.log(parseInt('230_000'));
 */
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////174. Working with BigInt
+/*
 console.log(2 ** 53 - 1);
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(2 ** 53 - 1);
@@ -394,3 +395,21 @@ console.log(BigInt(328457827345));
 // Operators
 console.log(1000n + 1000n);
 console.log(93847483283837232837465293764534n * 1000000000000000n);
+*/
+///////////////////////////////////////////////////////////////////
+///////////////////////////175. Creating Dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());
+console.log(future.getTime());
+
+console.log(new Date(2142274980000));
+
+console.log(Date.now());
