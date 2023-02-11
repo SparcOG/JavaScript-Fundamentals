@@ -92,6 +92,10 @@ const displayMovements = function (acc, sort = false) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const date = new Date(acc.movementsDates[i]);
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getDate() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    const displayDate = `${day}/${month}/${year}`;
 
     const html = `
       <div class="movements__row">
@@ -165,14 +169,6 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
-const now = new Date();
-const day = `${now.getDate()}`.padStart(2, 0);
-const month = `${now.getDate() + 1}`.padStart(2, 0);
-const year = now.getFullYear();
-const hour = now.getHours();
-const min = now.getMinutes();
-labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
-
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -188,6 +184,15 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
+
+    // Create current date and time
+    const now = new Date();
+    const day = `${now.getDate()}`.padStart(2, 0);
+    const month = `${now.getDate() + 1}`.padStart(2, 0);
+    const year = now.getFullYear();
+    const hour = `${now.getHours()}`.padStart(2, 0);
+    const min = `${now.getMinutes()}`.padStart(2, 0);
+    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -216,8 +221,17 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
-    // Update UI
-    updateUI(currentAccount);
+    // Doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+
+    // Add transfer
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates
+      .push(amount)
+
+      // Update UI
+      .updateUI(currentAccount);
   }
 });
 
@@ -229,6 +243,9 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
     currentAccount.movements.push(amount);
+
+    // Add loan date
+    currentAccount.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
@@ -434,4 +451,7 @@ console.log(new Date(2142274980000));
 console.log(Date.now());
 */
 ///////////////////////////////////////////////////////////////////
-///////////////////////////176. Adding Dates to "Bankist" App
+///////////////////////////176. Adding Dates to "Bankist" App (Work on app)
+
+///////////////////////////////////////////////////////////////////
+///////////////////////////177. Operations With Dates
