@@ -150,12 +150,12 @@ const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = formatCur(acc.balance, acc.locale, acc.currency);
+  labelSumIn.textContent = formatCur(incomes, acc.locale, acc.currency);
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = formatCur(acc.balance, acc.locale, acc.currency);
+  labelSumOut.textContent = formatCur(Math.abs(out), acc.locale, acc.currency);
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -165,7 +165,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
 };
 
 const createUsernames = function (accs) {
@@ -507,4 +507,4 @@ console.log(Date.now());
 ///////////////////////////178. Internationalizing Dates (Intl) (Work on app)
 
 ///////////////////////////////////////////////////////////////////
-///////////////////////////179. Internationalizing Numbers (Intl)
+///////////////////////////179. Internationalizing Numbers (Intl) (Work on app)
