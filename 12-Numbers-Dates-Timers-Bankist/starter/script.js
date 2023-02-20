@@ -190,9 +190,37 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    // In each call, print the remaing time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // Decrese 1s
+
+    // When 0 seconds, stop timer and log out user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    // Decrese 1s
+    time--;
+  };
+  // Set time to 5 minutes
+  let time = 120;
+
+  tick();
+  // Call the timer every second
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE ALWAYS LOGGED IN
 currentAccount = account1;
@@ -246,6 +274,9 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
@@ -269,16 +300,16 @@ btnTransfer.addEventListener('click', function (e) {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
-    // Doing the transfer
-    currentAccount.movements.push(-amount);
-    receiverAcc.movements.push(amount);
-
-    // Add transfer
+    // Add transfer date
     currentAccount.movementsDates.push(new Date().toISOString());
-    receiverAcc.movementsDates.push(amount);
+    receiverAcc.movementsDates.push(new Date().toISOString());
 
     // Update UI
     updateUI(currentAccount);
+
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -297,6 +328,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // Reset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -509,7 +544,7 @@ console.log(Date.now());
 ///////////////////////////178. Internationalizing Dates (Intl) (Work on app)
 
 ///////////////////////////////////////////////////////////////////
-///////////////////////////179. Internationalizing Numbers (Intl) (Work on app)
+///////////////////////////179. Internationalizing Numbers (Intl) and (Work on app)
 /*
 const num = 3884764.23;
 
@@ -534,7 +569,8 @@ console.log(
 );
 */
 ///////////////////////////////////////////////////////////////////
-///////////////////////////180. Timers: setTimeout and setInterval
+///////////////////////////180. Timers: setTimeout and setInterval and (Work on app)
+/*
 const ingredients = ['olives', 'spinach'];
 const pizzaTimer = setTimeout(
   (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2} 🍕`),
@@ -550,3 +586,6 @@ setInterval(function () {
   const now = new Date(5);
   console.log(now.getHours(), now.getMinutes(), now.getSeconds());
 }, 1000);
+*/
+///////////////////////////////////////////////////////////////////
+///////////////////////////181. Implementing a Countdown Timer (Work on app)
