@@ -253,6 +253,7 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 */
 //////////////////////////////////////////////////////////////////
 // 193. DOM Traversing
+/*
 const h1 = document.querySelector('h1');
 
 console.log(h1.querySelectorAll('.highlight'));
@@ -276,3 +277,13 @@ console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(function (el) {
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
+*/
+//////////////////////////////////////////////////////////////////
+// 194. Building a Tabbed Component
+const tabs = document.querySelectorAll('.oparation__tab');
+const tabsContainer = document.querySelector('.oparation__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked
+})
