@@ -305,6 +305,7 @@ tabsContainer.addEventListener('click', function (e) {
 */
 //////////////////////////////////////////////////////////////////
 // 194. Building a Tabbed Component
+/*
 const handleHover = function (e) {
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
@@ -321,3 +322,14 @@ const handleHover = function (e) {
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 
 nav.addEventListener('mouseout', handleHover.bind(1));
+*/
+//////////////////////////////////////////////////////////////////
+// 196. Implementing a Sticky Navigation: The Scroll Event
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function () {
+  console.log(window.scrollY);
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
