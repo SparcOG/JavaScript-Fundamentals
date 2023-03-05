@@ -337,6 +337,7 @@ window.addEventListener('scroll', function () {
 */
 //////////////////////////////////////////////////////////////////
 // 197. A Better Way: The Intersection Observer API
+/*
 const header = document.querySelector('.header');
 const navHeight = nav.getBoundingClientRect().height;
 console.log(navHeight);
@@ -355,3 +356,26 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 headerObserver.observe(header);
+*/
+//////////////////////////////////////////////////////////////////
+// 198. Revealing Elements on Scroll
+const allSections = document.querySelectorAll('.section');
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  thershold: 0.15,
+});
+
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
