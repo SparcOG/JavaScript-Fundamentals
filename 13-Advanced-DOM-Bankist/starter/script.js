@@ -337,16 +337,21 @@ window.addEventListener('scroll', function () {
 */
 //////////////////////////////////////////////////////////////////
 // 197. A Better Way: The Intersection Observer API
-const obsCallback = function (entries, observer) {
-  entries.forEach(entry => {
-    console.log(entry);
-  });
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+console.log(navHeight);
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  // console.log(entries);
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
 };
 
-const obsOptions = {
+const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
-  threshold: [0, 0.2],
-};
+  thershold: 0,
+  rootMargin: `-${navHeight}px`,
+});
 
-const observer = new IntersectionObserver(obsCallback, obsOptions);
-observer.observe(section1);
+headerObserver.observe(header);
