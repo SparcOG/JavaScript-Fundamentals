@@ -410,7 +410,7 @@ imgTargets.forEach(img => imgObserver.observe(img));
 */
 //////////////////////////////////////////////////////////////////
 // 200. Building a Slider Component: Part 1
-
+/*
 // Slider
 const slider = function () {
   const slides = document.querySelectorAll('.slide');
@@ -482,6 +482,7 @@ const slider = function () {
 
   //////////////////////////////////////////////////////////////////
   //  201. Building a Slider Component: Part 2
+  
   document.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') prevSlide();
     e.key === 'ArrowRight' && nextSlide();
@@ -496,3 +497,27 @@ const slider = function () {
   });
 };
 slider();
+*/
+//////////////////////////////////////////////////////////////////
+//  202. Lifecycle DOM Events
+/*
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('HTML parsed and DOM tree built', e);
+});
+
+window.addEventListener('load', function (e) {
+  console.log('Page fully loaded', e);
+});
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log(e);
+  e.returnValue = '';
+});
+*/
+//////////////////////////////////////////////////////////////////
+//  203. Efficient Script Loading: defer and async
+
+<script src src="script.js"></script>
+<script async src="script.js"></script>
+<script defer src="script.js"></script>
