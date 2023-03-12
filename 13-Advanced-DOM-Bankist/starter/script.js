@@ -518,6 +518,6 @@ window.addEventListener('beforeunload', function (e) {
 //////////////////////////////////////////////////////////////////
 //  203. Efficient Script Loading: defer and async
 
-<script src src="script.js"></script>
+/* <script src src="script.js"></script>
 <script async src="script.js"></script>
-<script defer src="script.js"></script>
+<script defer src="script.js"></script> */
