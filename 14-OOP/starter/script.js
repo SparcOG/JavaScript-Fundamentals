@@ -1,6 +1,7 @@
 'use strict';
 //////////////////////////////////////////////////////////////////
 //  203. Efficient Script Loading: defer and async
+/*
 const Person = function (firstName, birthYear) {
   // Instance properties
   this.firstName = firstName;
@@ -50,3 +51,56 @@ console.log(jonas.species, matilda.species);
 
 console.log(jonas.hasOwnProperty('firstName'));
 console.log(jonas.hasOwnProperty('species'));
+//////////////////////////////////////////////////////////////////
+//  210. Prototypal Inheritance and The Prototype Chain (only video)
+//////////////////////////////////////////////////////////////////
+//  210. Prototypal Inheritance and The Prototype Chain (only video)
+console.log(jonas.__proto__);
+// Object.prototype (top of prototype chain)
+console.log(jonas.__proto__.__proto__);
+console.log(jonas.__proto__.__proto__.__proto__);
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 6, 4, 5, 6, 9, 3]; // new Array === []
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+console.log(arr.__proto__.__proto__);
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1);
+*/
+//////////////////////////////////////////////////////////////////
+//  212. Coding Challenge #1
+
+// 1.
+const car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+  console.log(make, speed);
+};
+
+const bmw = new car('BMW', 120);
+const mercedes = new car('mercedes', 95);
+
+// 2.
+car.prototype.accelerate = function () {
+  console.log(this.speed + 10);
+};
+bmw.accelerate();
+
+// 3.
+car.prototype.brake = function () {
+  console.log(this.speed - 5);
+};
+mercedes.brake();
+
+// 4. Create 2 'Car' objects and experiment with calling 'accelerate' and
+// 'brake' multiple times on each of them.
