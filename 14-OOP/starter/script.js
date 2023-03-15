@@ -104,3 +104,11 @@ mercedes.brake();
 
 // 4. Create 2 'Car' objects and experiment with calling 'accelerate' and
 // 'brake' multiple times on each of them.
+
+const lada = new car('Lada', 100);
+const honda = new car('honda', 240);
+
+honda.accelerate();
+honda.brake();
+lada.accelerate();
+lada.brake();
