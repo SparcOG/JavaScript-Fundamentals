@@ -92,13 +92,13 @@ const mercedes = new car('mercedes', 95);
 
 // 2.
 car.prototype.accelerate = function () {
-  console.log(this.speed + 10);
+  console.log((this.speed += 10));
 };
 bmw.accelerate();
 
 // 3.
 car.prototype.brake = function () {
-  console.log(this.speed - 5);
+  console.log((this.speed -= 5));
 };
 mercedes.brake();
 
@@ -109,6 +109,10 @@ const lada = new car('Lada', 100);
 const honda = new car('honda', 240);
 
 honda.accelerate();
+honda.accelerate();
+honda.brake();
 honda.brake();
 lada.accelerate();
+lada.accelerate();
+lada.brake();
 lada.brake();
