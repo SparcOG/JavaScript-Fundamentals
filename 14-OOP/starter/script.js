@@ -205,7 +205,7 @@ console.log(account.movements);
 */
 //////////////////////////////////////////////////////////////////
 //  216. Object.create
-
+/*
 const PersonProto = {
   caclcAge() {
     console.log(2037 - this.birthYear);
@@ -229,6 +229,62 @@ const sarah = Object.create(PersonProto);
 
 sarah.unit('Sarah', 1979);
 sarah.caclcAge();
-
+*/
 //////////////////////////////////////////////////////////////////
-//  216. Object.create
+//  217. Coding Challenge #2
+/*
+Your tasks:
+1. Re-create Challenge #1, but this time using an ES6 class (call it 'CarCl')
+2. Add a getter called 'speedUS' which returns the current speed in mi/h (divide
+by 1.6)
+3. Add a setter called 'speedUS' which sets the current speed in mi/h (but
+converts it to km/h before storing the value, by multiplying the input by 1.6)
+4. Create a new car and experiment with the 'accelerate' and 'brake'
+methods, and with the getter and setter.
+Test data:
+§ Data car 1: 'Ford' going at 120 km/h
+GOOD LUCK
+Ваши задачи:
+1. Повторите задачу №1, но на этот раз используя класс ES6 (назовите его 'CarCl').
+2. Добавьте геттер под названием 'speedUS', который возвращает текущую скорость в милях в час (разделите
+на 1.6)
+3. Добавьте сеттер с именем 'speedUS', который устанавливает текущую скорость в милях в час (но
+конвертирует ее в км/ч перед сохранением значения, умножая входное значение на 1,6)
+4. Создайте новый автомобиль и поэкспериментируйте с методами 'accelerate' и 'brake'.
+методами "ускорение" и "торможение", а также с getter и setter.
+Тестовые данные:
+§ Данные Автомобиль 1: 'Ford', движущийся со скоростью 120 км/ч.
+УДАЧИ
+
+Переведено с помощью www.DeepL.com/Translator (бесплатная версия)
+*/
+
+class carCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed * 1.6;
+  }
+  accelerate() {
+    return (this.speed += 100);
+  }
+
+  brake() {
+    return (this.speed -= 100);
+  }
+}
+
+const ford = new carCl('ford', 120);
+
+const bnw = new carCl('bnw', 200);
+
+console.log(bnw.accelerate());
+console.log(bnw.brake());
+console.log(bnw.speedUS);
