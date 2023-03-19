@@ -26,8 +26,16 @@ const jack = new Person('Jeck', 1975);
 console.log(matilda, jack);
 
 console.log(jonas instanceof Person);
+
+Person.hey = function () {
+  console.log('Hey there 👋');
+  console.log(this);
+};
+Person.hey();
+*/
 //////////////////////////////////////////////////////////////////
 //  209. Prototypes
+/*
 console.log(Person.prototype);
 
 Person.prototype.calcAge = function () {
@@ -120,13 +128,14 @@ lada.brake();
 //////////////////////////////////////////////////////////////////
 //  213. ES6 Classes
 // class declaration
-
+/*
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
+  // Instance methods
   // Methods will be added to .prototype property
   cllcAge() {
     console.log(2037 - this.birthYear);
@@ -149,6 +158,12 @@ class PersonCl {
   get fullName() {
     return this._fullName;
   }
+
+  // Static method
+  static hey() {
+    console.log('Hey there 👋');
+    console.log(this);
+  }
 }
 
 const jessica = new PersonCl('Jessica Davis', 1996);
@@ -162,10 +177,13 @@ console.log(jessica.__proto__ === PersonCl.prototype);
 //   console.log(`Hey ${this.firstName}`);
 // }
 jessica.greet();
-
+/*
 //////////////////////////////////////////////////////////////////
 //  214. Setters and Getters
+/*
 const walter = new PersonCl('Walter White', 1965);
+
+PersonCl.hey();
 
 const account = {
   owner: 'Jonas',
@@ -184,3 +202,33 @@ console.log(account.latest);
 
 account.latest = 50;
 console.log(account.movements);
+*/
+//////////////////////////////////////////////////////////////////
+//  216. Object.create
+
+const PersonProto = {
+  caclcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  unit(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 2002;
+steven.caclcAge();
+
+console.log(steven.__proto__ === PersonProto);
+
+const sarah = Object.create(PersonProto);
+
+sarah.unit('Sarah', 1979);
+sarah.caclcAge();
+
+//////////////////////////////////////////////////////////////////
+//  216. Object.create
