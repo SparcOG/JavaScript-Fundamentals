@@ -258,7 +258,7 @@ GOOD LUCK
 
 Переведено с помощью www.DeepL.com/Translator (бесплатная версия)
 */
-
+/*
 class carCl {
   constructor(make, speed) {
     this.make = make;
@@ -270,7 +270,7 @@ class carCl {
   }
 
   set speedUS(speed) {
-    this.speed * 1.6;
+    this.speed = speed * 1.6;
   }
   accelerate() {
     return (this.speed += 100);
@@ -286,5 +286,45 @@ const ford = new carCl('ford', 120);
 const bnw = new carCl('bnw', 200);
 
 console.log(bnw.accelerate());
+console.log(bnw.accelerate());
 console.log(bnw.brake());
 console.log(bnw.speedUS);
+bnw.speedUS = 50;
+console.log(bnw);
+*/
+//////////////////////////////////////////////////////////////////
+//  218. Inheritance Between "Classes": Constructor Functions
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// Linking prototypes
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student('Nike', 2020, 'Computer Science');
+mike.introduce();
+mike.calcAge();
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+console.log(mike instanceof Object);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
