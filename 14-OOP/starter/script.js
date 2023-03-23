@@ -294,6 +294,7 @@ console.log(bnw);
 */
 //////////////////////////////////////////////////////////////////
 //  218. Inheritance Between "Classes": Constructor Functions
+/*
 const Person = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -328,3 +329,70 @@ console.log(mike instanceof Object);
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
+*/
+//////////////////////////////////////////////////////////////////
+//  219. Coding Challenge #3
+/*
+Coding Challenge #3
+Your tasks:
+1. Use a constructor function to implement an Electric Car (called 'EV') as a child
+"class" of 'Car'. Besides a make and current speed, the 'EV' also has the
+current battery charge in % ('charge' property)
+2. Implement a 'chargeBattery' method which takes an argument
+'chargeTo' and sets the battery charge to 'chargeTo'
+3. Implement an 'accelerate' method that will increase the car's speed by 20,
+and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140
+km/h, with a charge of 22%'
+4. Create an electric car object and experiment with calling 'accelerate',
+'brake' and 'chargeBattery' (charge to 90%). Notice what happens when
+you 'accelerate'! Hint: Review the definiton of polymorphism 
+Test data:
+§ Data car 1: 'Tesla' going at 120 km/h, with a charge of 23%
+
+Задача по кодированию №3
+Ваши задачи:
+1. Используйте функцию конструктора для реализации электромобиля (названного 'EV') в качестве дочернего
+"класса 'Car'. Помимо марки и текущей скорости, 'EV' также имеет
+текущий заряд батареи в % (свойство 'charge').
+2. Реализуйте метод 'chargeBattery', который принимает аргумент
+'chargeTo' и устанавливает заряд батареи в значение 'chargeTo'.
+3. Реализуйте метод 'accelerate', который увеличит скорость автомобиля на 20,
+и уменьшит заряд на 1%. Затем выведите в лог сообщение следующего вида: 'Tesla едет со скоростью 140
+км/ч, с зарядом 22%".
+4. Создайте объект электромобиля и поэкспериментируйте с вызовами 'accelerate',
+'brake' и 'chargeBattery' (зарядить аккумулятор до 90%). Обратите внимание, что происходит, когда
+вы "ускоряетесь"! Подсказка: изучите определение полиморфизма. 
+Тестовые данные:
+§ Данные автомобиля 1: "Тесла", движущийся со скоростью 120 км/ч, с зарядом батареи 23%.
+*/
+
+const car = function (make, currentSpeed, charge) {
+  this.make = make;
+  this.currentSpeed = currentSpeed;
+  this.charge = charge;
+};
+
+const EV = function (make, currentSpeed, charge) {
+  car.call(this, make, currentSpeed);
+  this.charge = charge;
+};
+
+EV.prototype = Object.create(car.prototype);
+
+const tesla = new EV('Tesla', 120, 23);
+// tesla.charge = chargeTo;
+// console.log(tesla.charge);
+
+// set fullName(name) {
+//   console.log(name);
+//   if (name.includes(' ')) this._fullName = name;
+//   else alert(`${name} is not a full name!`);
+// }
+// Object.defineProperty(this, 'charge', {
+//   get: function () {
+//     return this.charge;
+//   },
+//   set: function (chargeTo) {
+//     this.charge = chargeTo;
+//   },
+// });
