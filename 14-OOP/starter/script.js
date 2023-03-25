@@ -366,6 +366,7 @@ Test data:
 § Данные автомобиля 1: "Тесла", движущийся со скоростью 120 км/ч, с зарядом батареи 23%.
 */
 
+// 1.
 const car = function (make, currentSpeed, charge) {
   this.make = make;
   this.currentSpeed = currentSpeed;
@@ -377,22 +378,28 @@ const EV = function (make, currentSpeed, charge) {
   this.charge = charge;
 };
 
+// 2.
 EV.prototype = Object.create(car.prototype);
 
-const tesla = new EV('Tesla', 120, 23);
-// tesla.charge = chargeTo;
-// console.log(tesla.charge);
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
 
-// set fullName(name) {
-//   console.log(name);
-//   if (name.includes(' ')) this._fullName = name;
-//   else alert(`${name} is not a full name!`);
-// }
-// Object.defineProperty(this, 'charge', {
-//   get: function () {
-//     return this.charge;
-//   },
-//   set: function (chargeTo) {
-//     this.charge = chargeTo;
-//   },
-// });
+const tesla = new EV('Tesla', 120, 23);
+
+// 3.
+EV.prototype.accelerate = function (currentSpeed, charge) {
+  this.currentSpeed += currentSpeed;
+  this.charge -= charge;
+  console.log(`${this.make} going at ${this.currentSpeed}
+  km/h, with a charge of ${this.charge}%`);
+};
+tesla.accelerate(20, 1);
+console.log(tesla);
+
+// 4.
+const electricCar = new EV('BNW', 160, 10);
+electricCar.chargeBattery(90);
+electricCar.accelerate(10, 2);
+electricCar.accelerate(15, 3);
+console.log(electricCar);
