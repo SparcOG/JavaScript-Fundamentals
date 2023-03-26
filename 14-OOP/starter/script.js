@@ -128,7 +128,7 @@ lada.brake();
 //////////////////////////////////////////////////////////////////
 //  213. ES6 Classes
 // class declaration
-/*
+
 class PersonCl {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -177,7 +177,7 @@ console.log(jessica.__proto__ === PersonCl.prototype);
 //   console.log(`Hey ${this.firstName}`);
 // }
 jessica.greet();
-/*
+
 //////////////////////////////////////////////////////////////////
 //  214. Setters and Getters
 /*
@@ -202,7 +202,7 @@ console.log(account.latest);
 
 account.latest = 50;
 console.log(account.movements);
-*/
+
 //////////////////////////////////////////////////////////////////
 //  216. Object.create
 /*
@@ -365,7 +365,7 @@ Test data:
 Тестовые данные:
 § Данные автомобиля 1: "Тесла", движущийся со скоростью 120 км/ч, с зарядом батареи 23%.
 */
-
+/*
 // 1.
 const car = function (make, currentSpeed, charge) {
   this.make = make;
@@ -403,3 +403,32 @@ electricCar.chargeBattery(90);
 electricCar.accelerate(10, 2);
 electricCar.accelerate(15, 3);
 console.log(electricCar);
+*/
+//////////////////////////////////////////////////////////////////
+//  220. Inheritance Between "Classes": ES6 Classes
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // A;ways needs to happen first!
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  cllcAge() {
+    console.log(
+      `I'm ${
+        2037 - this.birthYear
+      } years old, but as student I feel more like ${
+        2037 - this.birthYear + 10
+      }`
+    );
+  }
+}
+
+const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+
+martha.introduce();
+martha.cllcAge();
