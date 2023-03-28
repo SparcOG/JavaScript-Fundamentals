@@ -469,32 +469,44 @@ jay.cllcAge();
 //  222. Another Class Example
 //////////////////////////////////////////////////////////////////
 //  223. Encapsulation: Protected Properties and Methods
+//////////////////////////////////////////////////////////////////
+//  224. Encapsulation: Private Class Fields and Methods
+
+// 1. Public fields
+// 2. Private fields
+// 3. Public methods
+// 4. Private methods
+// (there is also the static version)
 
 class Account {
+  // 1. Public fields
+  locale = navigator.language;
+
+  // 2. Private fields (only istances has ecses)
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
-    this._movements = [];
-    this.locale = navigator.language;
+    // Protected property
+    this.#pin = pin;
+    // this._movements = [];
+    // this.locale = navigator.language;
 
     console.log(`Thanks for opening an account, ${owner}`);
   }
 
   getMovements() {
-    return this._movements;
+    return this.#movements;
   }
 
   deposit(val) {
-    this._movements.push(val);
+    this.#movements.push(val);
   }
 
   withdraw(val) {
     this.deposit(-val);
-  }
-
-  _approveLoan(val) {
-    return true;
   }
 
   requestLoan(val) {
@@ -502,6 +514,14 @@ class Account {
       this.deposit(val);
       console.log(`Loan approved`);
     }
+  }
+
+  static helper() {
+    console.log('Helper');
+  }
+
+  _approveLoan(val) {
+    return true;
   }
 }
 
@@ -513,8 +533,12 @@ const acc1 = new Account('Jonas', 'EUR', 11111);
 acc1.deposit(250);
 acc1.withdraw(250);
 acc1.requestLoan(1000);
-acc1.approveLoan(1000);
 console.log(acc1.getMovements());
 
 console.log(acc1);
 console.log(acc1.pin);
+
+// console.log(acc1.#movements);
+// console.log(acc1.#pin);
+
+Account.helper();
