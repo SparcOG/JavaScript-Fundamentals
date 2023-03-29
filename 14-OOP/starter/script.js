@@ -550,3 +550,4 @@ Account.helper();
 //  225. Chaining Methods
 
 acc1.deposit(300).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc1.getMovements());
