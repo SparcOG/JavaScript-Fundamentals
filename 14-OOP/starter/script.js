@@ -478,76 +478,133 @@ jay.cllcAge();
 // 4. Private methods
 // (there is also the static version)
 
-class Account {
-  // 1. Public fields
-  locale = navigator.language;
+// class Account {
+//   // 1. Public fields
+//   locale = navigator.language;
 
-  // 2. Private fields (only istances has ecses)
-  #movements = [];
-  #pin;
+//   // 2. Private fields (only istances has ecses)
+//   #movements = [];
+//   #pin;
 
-  constructor(owner, currency, pin) {
-    this.owner = owner;
-    this.currency = currency;
-    // Protected property
-    this.#pin = pin;
-    // this._movements = [];
-    // this.locale = navigator.language;
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     // Protected property
+//     this.#pin = pin;
+//     // this._movements = [];
+//     // this.locale = navigator.language;
 
-    console.log(`Thanks for opening an account, ${owner}`);
-  }
+//     console.log(`Thanks for opening an account, ${owner}`);
+//   }
 
-  getMovements() {
-    return this.#movements;
-  }
+//   getMovements() {
+//     return this.#movements;
+//   }
 
-  deposit(val) {
-    this.#movements.push(val);
-    return this;
-  }
+//   deposit(val) {
+//     this.#movements.push(val);
+//     return this;
+//   }
 
-  withdraw(val) {
-    this.deposit(-val);
-    return this;
-  }
+//   withdraw(val) {
+//     this.deposit(-val);
+//     return this;
+//   }
 
-  requestLoan(val) {
-    if (this._approveLoan(val)) {
-      this.deposit(val);
-      console.log(`Loan approved`);
-      return this;
-    }
-  }
+//   requestLoan(val) {
+//     if (this._approveLoan(val)) {
+//       this.deposit(val);
+//       console.log(`Loan approved`);
+//       return this;
+//     }
+//   }
 
-  static helper() {
-    console.log('Helper');
-  }
+//   static helper() {
+//     console.log('Helper');
+//   }
 
-  _approveLoan(val) {
-    return true;
-  }
-}
+//   _approveLoan(val) {
+//     return true;
+//   }
+// }
 
-const acc1 = new Account('Jonas', 'EUR', 11111);
+// const acc1 = new Account('Jonas', 'EUR', 11111);
 
-// acc1.movements.push(250);
-// acc1.movements.push(-140);
+// // acc1.movements.push(250);
+// // acc1.movements.push(-140);
 
-acc1.deposit(250);
-acc1.withdraw(250);
-acc1.requestLoan(1000);
-console.log(acc1.getMovements());
+// acc1.deposit(250);
+// acc1.withdraw(250);
+// acc1.requestLoan(1000);
+// console.log(acc1.getMovements());
 
-console.log(acc1);
-console.log(acc1.pin);
+// console.log(acc1);
+// console.log(acc1.pin);
 
-// console.log(acc1.#movements);
-// console.log(acc1.#pin);
+// // console.log(acc1.#movements);
+// // console.log(acc1.#pin);
 
-Account.helper();
+// Account.helper();
 
 //////////////////////////////////////////////////////////////////
 //  225. Chaining Methods
 
-acc1.deposit(300).withdraw(35).requestLoan(25000).withdraw(4000);
-console.log(acc1.getMovements());
+// acc1.deposit(300).withdraw(35).requestLoan(25000).withdraw(4000);
+// console.log(acc1.getMovements());
+
+//////////////////////////////////////////////////////////////////
+//  226. ES6 Classes Summary
+//////////////////////////////////////////////////////////////////
+//  227. Coding Challenge #4
+/*
+Your tasks:
+1. Re-create Challenge #3, but this time using ES6 classes: create an 'EVCl'
+child class of the 'CarCl' class
+2. Make the 'charge' property private
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery'
+methods of this class, and also update the 'brake' method in the 'CarCl'
+class. Then experiment with chaining!
+Test data:
+§ Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
+*/
+// 1.
+class EVCl extends CarCl {
+  constructor(make, currentSpeed, charge) {
+    this.make = make;
+    this.currentSpeed = currentSpeed;
+    this.charge = charge;
+    super(this, make, currentSpeed);
+    this.course = course;
+  }
+}
+
+// const EVCl = function (make, currentSpeed, charge) {
+//   CarCl.call(this, make, currentSpeed);
+//   this.charge = charge;
+// };
+
+// 2.
+EVCl.prototype = Object.create(CarCl.prototype);
+
+EVCl.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+
+const tesla = new EVCl('Tesla', 120, 23);
+
+// 3.
+EVCl.prototype.accelerate = function (currentSpeed, charge) {
+  this.currentSpeed += currentSpeed;
+  this.charge -= charge;
+  console.log(`${this.make} going at ${this.currentSpeed}
+  km/h, with a charge of ${this.charge}%`);
+};
+tesla.accelerate(20, 1);
+console.log(tesla);
+
+// 4.
+const electricCar = new EVCl('BNW', 160, 10);
+electricCar.chargeBattery(90);
+electricCar.accelerate(10, 2);
+electricCar.accelerate(15, 3);
+console.log(electricCar);
