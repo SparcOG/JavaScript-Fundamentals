@@ -567,44 +567,42 @@ class. Then experiment with chaining!
 Test data:
 § Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
 */
-// 1.
-class EVCl extends CarCl {
-  constructor(make, currentSpeed, charge) {
+
+class CarCl {
+  constructor(make, currentSpeed) {
     this.make = make;
     this.currentSpeed = currentSpeed;
-    this.charge = charge;
-    super(this, make, currentSpeed);
-    this.course = course;
   }
 }
 
-// const EVCl = function (make, currentSpeed, charge) {
-//   CarCl.call(this, make, currentSpeed);
-//   this.charge = charge;
-// };
+class EVCl extends CarCl {
+  #charge;
+  constructor(make, currentSpeed, charge) {
+    super(make, currentSpeed);
+    this.make = make;
+    this.currentSpeed = currentSpeed;
+    this.#charge = charge;
+  }
 
-// 2.
-EVCl.prototype = Object.create(CarCl.prototype);
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
 
-EVCl.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo;
-};
+  accelerate(currentSpeed, charge) {
+    this.currentSpeed += currentSpeed;
+    this.#charge -= charge;
+    console.log(`${this.make} going at ${this.currentSpeed}
+  km/h, with a charge of ${this.#charge}%`);
+    return this;
+  }
+}
 
 const tesla = new EVCl('Tesla', 120, 23);
 
-// 3.
-EVCl.prototype.accelerate = function (currentSpeed, charge) {
-  this.currentSpeed += currentSpeed;
-  this.charge -= charge;
-  console.log(`${this.make} going at ${this.currentSpeed}
-  km/h, with a charge of ${this.charge}%`);
-};
 tesla.accelerate(20, 1);
 console.log(tesla);
 
-// 4.
 const electricCar = new EVCl('BNW', 160, 10);
-electricCar.chargeBattery(90);
-electricCar.accelerate(10, 2);
-electricCar.accelerate(15, 3);
+electricCar.chargeBattery(90).accelerate(10, 2).accelerate(15, 3);
 console.log(electricCar);
