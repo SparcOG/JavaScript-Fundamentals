@@ -567,7 +567,7 @@ class. Then experiment with chaining!
 Test data:
 § Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
 */
-
+/*
 class CarCl {
   constructor(make, currentSpeed) {
     this.make = make;
@@ -606,3 +606,65 @@ console.log(tesla);
 const electricCar = new EVCl('BNW', 160, 10);
 electricCar.chargeBattery(90).accelerate(10, 2).accelerate(15, 3);
 console.log(electricCar);
+*/
+
+class carCl {
+  constructor(make, currentSpeed) {
+    this.make = make;
+    this.currentSpeed = currentSpeed;
+  }
+
+  get speedUS() {
+    return this.currentSpeed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = currentSpeed * 1.6;
+  }
+  accelerate() {
+    this.currentSpeed + 10;
+    console.log(`${this.make} is going at ${this.speed}`);
+  }
+
+  brake() {
+    this.currentSpeed -= 5;
+    console.log(`${this.make} is going at ${this.currentSpeed} km/h`);
+    return this;
+  }
+}
+
+class EVCl extends carCl {
+  #charge;
+  constructor(make, currentSpeed, charge) {
+    super(make, currentSpeed);
+    // this.make = make;
+    // this.currentSpeed = currentSpeed;
+    this.#charge = charge;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+
+  accelerate() {
+    this.currentSpeed += 20;
+    this.#charge--;
+    console.log(`${this.make} going at ${this.currentSpeed}
+  km/h, with a charge of ${this.#charge}%`);
+    return this;
+  }
+}
+
+const rivian = new EVCl('Rivian', 120, 23);
+console.log(rivian);
+// console.log(rivian.#charge);
+rivian
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .chargeBattery(50)
+  .accelerate();
+
+console.log(rivian.speedUS);
