@@ -607,7 +607,7 @@ const electricCar = new EVCl('BNW', 160, 10);
 electricCar.chargeBattery(90).accelerate(10, 2).accelerate(15, 3);
 console.log(electricCar);
 */
-
+/*
 class carCl {
   constructor(make, currentSpeed) {
     this.make = make;
@@ -668,3 +668,4 @@ rivian
   .accelerate();
 
 console.log(rivian.speedUS);
+*/
