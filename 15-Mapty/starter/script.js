@@ -131,6 +131,19 @@ class App {
     inputDistance.focus();
   }
 
+  _hideForm() {
+    // Empty inputs
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        '';
+
+    form.style.display = 'none';
+    form.classList.add('hidden');
+    setTimeout(() => (form.style.display = 'grid'), 1000);
+  }
+
   _toggleElevationField() {
     inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
@@ -149,7 +162,6 @@ class App {
     const duration = +inputDuration.value;
     const { lat, lng } = this.#mapEvent.latlng;
     let workout;
-    console.log(type);
 
     // Check if data valid
 
@@ -173,13 +185,10 @@ class App {
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
 
-      if (
-        !validInputs(distance, duration, cadence) ||
-        !allPositive(distance, duration)
-      )
+      if (!allPositive(distance, duration, elevation))
         return alert('Inputs have to be positive numbers!');
 
-      workout = new Cycling([lat, lng], distance, duration, cadence);
+      workout = new Cycling([lat, lng], distance, duration, elevation);
     }
 
     // Add new object to workout array
@@ -192,15 +201,7 @@ class App {
     this._renderWorkout(workout);
 
     // Hide form + clear input fields
-    _hideForm();
-    // Empty inputs
-    inputDistance.value =
-      inputDuration.value =
-      inputCadence.value =
-      inputElevation.value =
-        '';
-
-    form.classList.add('hidden');
+    this._hideForm();
   }
 
   _renderWorkoutMarker(workout) {
@@ -215,7 +216,9 @@ class App {
           className: `${workout.type}-popup`,
         })
       )
-      .setPopupContent('workout')
+      .setPopupContent(
+        `${workout.type === 'running' ? '🏃‍♂️' : '🚴'} ${workout.description}`
+      )
       .openPopup();
   }
 
@@ -254,7 +257,7 @@ class App {
       html += `
          <div class="workout__details">
             <span class="workout__icon">⚡️</span>
-            <span class="workout__value">${workout.pace.toFixed(1)}</span>
+            <span class="workout__value">${workout.speed.toFixed(1)}</span>
             <span class="workout__unit">km/h</span>
           </div>
           <div class="workout__details">
@@ -269,3 +272,4 @@ class App {
 }
 
 const app = new App();
+console.log('Нужно завтра продолжить анализировать код');
