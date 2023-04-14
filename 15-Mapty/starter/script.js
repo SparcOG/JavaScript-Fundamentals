@@ -273,3 +273,21 @@ class App {
 
 const app = new App();
 console.log('Нужно завтра продолжить анализировать код');
+
+const jonas = [
+  'Jonas',
+  'Shemedtmann',
+  2037 - 1991,
+  'teacher',
+  ['Michael', 'Peter', 'Steven'],
+  true,
+];
+const types = [];
+
+for (let i = 0; i < 5; i++) {
+  console.log(jonas[i], typeof jonas[i]);
+
+  types[i] = typeof jonas[i];
+}
+
+types[0] = 'string';
