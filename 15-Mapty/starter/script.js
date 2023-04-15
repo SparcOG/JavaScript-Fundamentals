@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 class Workout {
   date = new Date();
   id = (Date.now() + '').slice(-10);
@@ -272,8 +272,7 @@ class App {
 }
 
 const app = new App();
-console.log('Нужно завтра продолжить анализировать код');
-
+*/
 const jonas = [
   'Jonas',
   'Shemedtmann',
@@ -285,9 +284,33 @@ const jonas = [
 const types = [];
 
 for (let i = 0; i < 5; i++) {
+  // Reading from jonas array
   console.log(jonas[i], typeof jonas[i]);
 
-  types[i] = typeof jonas[i];
+  // Filling types array
+  // types[i] = typeof jonas[i]
+  types.push(typeof jonas[i]);
 }
 
-types[0] = 'string';
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continue and break
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] !== 'string') continue;
+
+  console.log(jonas[i], typeof jonas[i]);
+}
+
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] === 'number') break;
+
+  console.log(jonas[i], typeof jonas[i]);
+}
