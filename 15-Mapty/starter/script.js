@@ -1,8 +1,8 @@
 'use strict';
-/*
 class Workout {
   date = new Date();
   id = (Date.now() + '').slice(-10);
+  clicks = 0;
 
   constructor(coords, distance, duration) {
     // this.date = ...
@@ -31,6 +31,10 @@ class Workout {
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
       months[this.date.getMonth()]
     } ${this.date.getDate()}`;
+  }
+
+  click() {
+    this.clicks++;
   }
 }
 
@@ -86,13 +90,13 @@ class App {
   #map;
   #mapEvent;
   #workouts = [];
+  #mapZoomLevel = 13;
 
   constructor() {
     this._getPosition();
-
     form.addEventListener('submit', this._newWorkout.bind(this));
-
     inputType.addEventListener('change', this._toggleElevationField);
+    containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
   }
 
   _getPosition() {
@@ -113,7 +117,7 @@ class App {
     const coords = [latitude, longitude];
 
     console.log(this);
-    this.#map = L.map('map').setView(coords, 13);
+    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
@@ -269,48 +273,28 @@ class App {
 
     form.insertAdjacentHTML('afterend', html);
   }
+
+  _moveToPopup(e) {
+    const workoutEl = e.target.closest('.workout');
+    console.log(workoutEl);
+
+    if (!workoutEl) return;
+
+    const workout = this.#workouts.find(
+      work => work.id === workoutEl.dataset.id
+    );
+    console.log(workout);
+
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
+
+    // using the public interface
+    workout.click();
+  }
 }
 
 const app = new App();
-*/
-const jonas = [
-  'Jonas',
-  'Shemedtmann',
-  2037 - 1991,
-  'teacher',
-  ['Michael', 'Peter', 'Steven'],
-  true,
-];
-const types = [];
-
-for (let i = 0; i < 5; i++) {
-  // Reading from jonas array
-  console.log(jonas[i], typeof jonas[i]);
-
-  // Filling types array
-  // types[i] = typeof jonas[i]
-  types.push(typeof jonas[i]);
-}
-
-console.log(types);
-
-const years = [1991, 2007, 1969, 2020];
-const ages = [];
-
-for (let i = 0; i < years.length; i++) {
-  ages.push(2037 - years[i]);
-}
-console.log(ages);
-
-// continue and break
-for (let i = 0; i < jonas.length; i++) {
-  if (typeof jonas[i] !== 'string') continue;
-
-  console.log(jonas[i], typeof jonas[i]);
-}
-
-for (let i = 0; i < jonas.length; i++) {
-  if (typeof jonas[i] === 'number') break;
-
-  console.log(jonas[i], typeof jonas[i]);
-}
