@@ -238,6 +238,8 @@ class App {
   }
 
   _renderWorkout(workout) {
+    console.log(workout);
+
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
      <h2 class="workout__title">${workout.description}</h2>
@@ -288,7 +290,8 @@ class App {
   _moveToPopup(e) {
     const workoutEl = e.target.closest('.workout');
     console.log(workoutEl);
-    containerWorkouts.textContent = '1';
+
+    // containerWorkouts.textContent = '1';
 
     if (!workoutEl) return;
 
@@ -302,6 +305,15 @@ class App {
         duration: 1,
       },
     });
+
+    const newDistance = prompt('Введите новое расстояние:');
+    workout.distance = Number(newDistance);
+
+    // Обновляем значение расстояния в пользовательском интерфейсе
+    document.querySelector('.workout__value').textContent = workout.distance;
+
+    // Устанавливаем локальное хранилище для всех тренировок
+    this._setLocalStorage();
 
     // using the public interface
     // workout.click();
@@ -331,7 +343,11 @@ class App {
 
 const app = new App();
 
-console.log(
-  'Пока нет идей как реализовать редактирование, на думанье уходит много времени и почти не кему не пришел, нужно интесивней смотреть интернет, примеры искать'
-);
-// containerWorkouts.textContent = 'New text';
+console.log('Пока придумал как изменить дистанцию');
+
+// const newDistance = new Object(prompt('Введите новое расстояние:'));
+// this._renderWorkout(newDistance);
+// const newDistance = workout.distance;
+// workout.distance = newDistance;
+// console.log(newDistance);
+// console.log(workout.distance);
