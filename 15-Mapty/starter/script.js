@@ -322,15 +322,36 @@ class App {
     if (!workoutElement) {
       return;
     }
-
+    console.log(workout.type);
+    console.log(workout);
     // Запросить у пользователя новое значение
     const newDistance = prompt('Введите новое расстояние:');
     if (!newDistance) {
       return;
     }
 
+    const newDuration = prompt('Введите новую продолжительность:');
+    if (!newDuration) {
+      return;
+    }
+    if (workout.type === 'running') {
+      const newCadence = prompt('Введите новую каденцию:');
+      if (!newCadence) {
+        return;
+      }
+    }
+
+    if (workout.type === 'cycling') {
+      const newElevGain = prompt('Введите новое усиление высоты:');
+      if (!newElevGain) {
+        return;
+      }
+    }
     // Обновить объект тренировки
     workout.distance = Number(newDistance);
+    workout.cadence = Number(newDuration);
+    workout.duration = Number(newCadence);
+    workout.elevation = Number(newElevGain);
 
     // Обновить элемент тренировки в DOM
     workoutElement.querySelector('.workout__value').textContent =
@@ -364,9 +385,7 @@ class App {
 
 const app = new App();
 
-console.log(
-  `Пока удалось изменить растояние, дальше нужно подумать как изменить и продолжительность, нужно еще подумать над workout как лучше ее передать чтобы не было ошибки когда приближаемся к тренировки, возможно лучше тренировку передать с другого места`
-);
+console.log(`пока думаю над обновлением данных`);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
