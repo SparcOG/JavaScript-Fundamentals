@@ -101,9 +101,15 @@ class App {
     // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
-    containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+    containerWorkouts.addEventListener(
+      'click',
+      function (e) {
+        this._editpopap(e);
+        this._moveToPopup(e);
+      }.bind(this)
+    );
   }
-
+  // this._moveToPopup.bind(this)
   _getPosition() {
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
@@ -287,9 +293,8 @@ class App {
     form.insertAdjacentHTML('afterend', html);
   }
 
-  _moveToPopup(e) {
-    const workoutEl = e.target.closest('.workout');
-    console.log(workoutEl);
+  _moveToPopup(event) {
+    const workoutEl = event.target.closest('.workout');
 
     // containerWorkouts.textContent = '1';
 
@@ -305,18 +310,34 @@ class App {
         duration: 1,
       },
     });
-
-    const newDistance = prompt('Введите новое расстояние:');
-    workout.distance = Number(newDistance);
-
-    // Обновляем значение расстояния в пользовательском интерфейсе
-    document.querySelector('.workout__value').textContent = workout.distance;
-
-    // Устанавливаем локальное хранилище для всех тренировок
-    this._setLocalStorage();
-
+    this._editpopap(workout);
     // using the public interface
     // workout.click();
+  }
+
+  _editpopap(workout) {
+    // Получить элемент тренировки из DOM
+    const workoutElement = document.querySelector(`[data-id="${workout.id}"]`);
+
+    if (!workoutElement) {
+      return;
+    }
+
+    // Запросить у пользователя новое значение
+    const newDistance = prompt('Введите новое расстояние:');
+    if (!newDistance) {
+      return;
+    }
+
+    // Обновить объект тренировки
+    workout.distance = Number(newDistance);
+
+    // Обновить элемент тренировки в DOM
+    workoutElement.querySelector('.workout__value').textContent =
+      workout.distance;
+
+    // Обновить локальное хранилище
+    this._setLocalStorage();
   }
 
   _setLocalStorage() {
@@ -343,7 +364,9 @@ class App {
 
 const app = new App();
 
-console.log('Пока придумал как изменить дистанцию');
+console.log(
+  `Пока удалось изменить растояние, дальше нужно подумать как изменить и продолжительность, нужно еще подумать над workout как лучше ее передать чтобы не было ошибки когда приближаемся к тренировки, возможно лучше тренировку передать с другого места`
+);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
