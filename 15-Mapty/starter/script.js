@@ -318,6 +318,7 @@ class App {
   _editpopap(workout) {
     // Получить элемент тренировки из DOM
     const workoutElement = document.querySelector(`[data-id="${workout.id}"]`);
+    console.log(workoutElement);
 
     if (!workoutElement) {
       return;
@@ -334,26 +335,31 @@ class App {
     if (!newDuration) {
       return;
     }
-    if (workout.type === 'running') {
-      const newCadence = prompt('Введите новую каденцию:');
-      if (!newCadence) {
-        return;
-      }
-    }
+    // if (workout.type === 'running') {
+    //   const newCadence = prompt('Введите новую каденцию:');
+    //   if (!newCadence) {
+    //     return;
+    //   }
+    // }
 
-    if (workout.type === 'cycling') {
-      const newElevGain = prompt('Введите новое усиление высоты:');
-      if (!newElevGain) {
-        return;
-      }
-    }
+    // if (workout.type === 'cycling') {
+    //   const newElevGain = prompt('Введите новое усиление высоты:');
+    //   if (!newElevGain) {
+    //     return;
+    //   }
+    // }
     // Обновить объект тренировки
     workout.distance = Number(newDistance);
-    workout.cadence = Number(newDuration);
-    workout.duration = Number(newCadence);
-    workout.elevation = Number(newElevGain);
+    // workout.cadence = Number(newCadence);
+    workout.duration = Number(newDuration);
+    // workout.elevation = Number(newElevGain);
 
     // Обновить элемент тренировки в DOM
+    // workoutElement.querySelector('.workout__value').textContent =
+    //   workout.distance;
+    workoutElement.querySelector('.workout__value').textContent =
+      workout.duration;
+
     workoutElement.querySelector('.workout__value').textContent =
       workout.distance;
 
@@ -385,7 +391,9 @@ class App {
 
 const app = new App();
 
-console.log(`пока думаю над обновлением данных`);
+console.log(
+  `Перепробовал наверно все способы как то сделать это, не получается это сделать, нужно перезагружать страницу, нужно как то поробовать это сделать через укзание антрибутов`
+);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
