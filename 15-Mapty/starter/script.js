@@ -84,6 +84,9 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+// const editButton = document.querySelector('#editt');
+
+console.log(containerWorkouts);
 
 class App {
   #map;
@@ -101,7 +104,8 @@ class App {
     // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
-    containerWorkouts.addEventListener(
+
+    myEditButton.addEventListener(
       'click',
       function (e) {
         this._editpopap(e);
@@ -244,21 +248,23 @@ class App {
   }
 
   _renderWorkout(workout) {
-    console.log(workout);
-
+    const editButton = document.querySelector('.edit__button');
+    // другой код
+    window.myEditButton = editButton;
     let html = `
+    <button class="edit__button">Редактировать</button>
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
      <h2 class="workout__title">${workout.description}</h2>
        <div class="workout__details">
          <span class="workout__icon">${
            workout.type === 'running' ? '🏃‍♂️' : '🚴'
          }</span>
-          <span class="workout__value">${workout.distance}</span>
+          <span class="workout__value data-unit="km"">${workout.distance}</span>
          <span class="workout__unit">km</span>
        </div>
        <div class="workout__details">
          <span class="workout__icon">⏱</span>
-         <span class="workout__value">${workout.duration}</span>
+         <span class="workout__value data-unit="min"">${workout.duration}</span>
          <span class="workout__unit">min</span>
        </div>`;
 
@@ -291,6 +297,12 @@ class App {
           </li> -->`;
 
     form.insertAdjacentHTML('afterend', html);
+
+    // for (let span of document.querySelectorAll('[data-unit]')) {
+    //   // вставить соответствующую информацию в поле
+    //   let field = span.getAttribute('data-unit');
+    //   console.log(field);
+    // }
   }
 
   _moveToPopup(event) {
@@ -319,12 +331,12 @@ class App {
     // Получить элемент тренировки из DOM
     const workoutElement = document.querySelector(`[data-id="${workout.id}"]`);
     console.log(workoutElement);
+    console.log(workout);
 
     if (!workoutElement) {
       return;
     }
-    console.log(workout.type);
-    console.log(workout);
+
     // Запросить у пользователя новое значение
     const newDistance = prompt('Введите новое расстояние:');
     if (!newDistance) {
@@ -335,36 +347,42 @@ class App {
     if (!newDuration) {
       return;
     }
-    // if (workout.type === 'running') {
-    //   const newCadence = prompt('Введите новую каденцию:');
-    //   if (!newCadence) {
-    //     return;
-    //   }
-    // }
+    let newCadence;
+    if (workout.type === 'running') {
+      newCadence = prompt('Введите новую каденцию:');
+      if (!newCadence) {
+        return;
+      }
+    }
 
-    // if (workout.type === 'cycling') {
-    //   const newElevGain = prompt('Введите новое усиление высоты:');
-    //   if (!newElevGain) {
-    //     return;
-    //   }
-    // }
-    // Обновить объект тренировки
-    workout.distance = Number(newDistance);
-    // workout.cadence = Number(newCadence);
-    workout.duration = Number(newDuration);
-    // workout.elevation = Number(newElevGain);
+    let newElevGain;
+    if (workout.type === 'cycling') {
+      newElevGain = prompt('Введите новое усиление высоты:');
+      if (!newElevGain) {
+        return;
+      }
+    }
 
-    // Обновить элемент тренировки в DOM
-    // workoutElement.querySelector('.workout__value').textContent =
-    //   workout.distance;
-    workoutElement.querySelector('.workout__value').textContent =
-      workout.duration;
+    // Get all the elements with class workout__value
+    const workoutValues = workoutElement.querySelectorAll('.workout__value');
 
-    workoutElement.querySelector('.workout__value').textContent =
-      workout.distance;
+    for (let i = 0; i < workoutValues.length; i++) {
+      // The first element is for distance
+      if (i == 0) {
+        workoutValues[i].textContent = newDistance;
+      }
 
-    // Обновить локальное хранилище
-    this._setLocalStorage();
+      // The second element is for duration
+      else if (i == 1) {
+        workoutValues[i].textContent = newDuration;
+      } else if (i == 2 && workout.type === 'running') {
+        workoutValues[i].textContent = newCadence;
+      } else if (i == 3 && workout.type === 'cycling') {
+        workoutValues[i].textContent = newElevGain;
+      }
+
+      // Обновить локальное хранилище
+    }
   }
 
   _setLocalStorage() {
@@ -392,7 +410,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Перепробовал наверно все способы как то сделать это, не получается это сделать, нужно перезагружать страницу, нужно как то поробовать это сделать через укзание антрибутов`
+  `Думаю как прикрепить правильно слушатель события, он работает не коректно скорее всего из за разметки, то как он передает события, это как то связано с событием наверное`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
