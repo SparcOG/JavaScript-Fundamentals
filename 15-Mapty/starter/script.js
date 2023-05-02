@@ -86,8 +86,6 @@ const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 // const editButton = document.querySelector('#editt');
 
-console.log(containerWorkouts);
-
 class App {
   #map;
   #mapEvent;
@@ -104,15 +102,21 @@ class App {
     // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
-
-    myEditButton.addEventListener(
+    containerWorkouts.addEventListener(
       'click',
       function (e) {
         this._editpopap(e);
         this._moveToPopup(e);
       }.bind(this)
     );
+    // myEditButton.forEach(button => {
+    //   button.addEventListener('click', e => {
+    //     // Call the _editpopap method from the App class
+    //     this._editpopap(e);
+    //   });
+    // });
   }
+
   // this._moveToPopup.bind(this)
   _getPosition() {
     if (navigator.geolocation)
@@ -184,6 +188,7 @@ class App {
     const duration = +inputDuration.value;
     const { lat, lng } = this.#mapEvent.latlng;
     let workout;
+    console.log(workout);
 
     // Check if data valid
 
@@ -248,11 +253,13 @@ class App {
   }
 
   _renderWorkout(workout) {
-    const editButton = document.querySelector('.edit__button');
+    const editButton = document.querySelectorAll('.edit__button');
     // другой код
     window.myEditButton = editButton;
     let html = `
-    <button class="edit__button">Редактировать</button>
+    <button class="edit__button workout--${workout.type} data-numberWorkout="${
+      workout.numberWorkout
+    }">Редактировать</button>
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
      <h2 class="workout__title">${workout.description}</h2>
        <div class="workout__details">
@@ -306,32 +313,44 @@ class App {
   }
 
   _moveToPopup(event) {
-    const workoutEl = event.target.closest('.workout');
+    // const workoutEl = event.target.closest('.workout');
+    // console.log(workoutEl);
+    const btn = event.target.closest('.edit__button');
+    console.log(btn);
 
-    // containerWorkouts.textContent = '1';
+    if (!btn) return;
 
-    if (!workoutEl) return;
+    // if (!workoutEl) return;
 
-    const workout = this.#workouts.find(
-      work => work.id === workoutEl.dataset.id
+    // const workouttss = this.#workouts.find(
+    //   work => work.id === workoutEl.dataset.id
+    // );
+
+    const workoutButton = this.#workouts.find(
+      work => work.numberWorkout === btn.dataset.numberWorkout
     );
 
-    this.#map.setView(workout.coords, this.#mapZoomLevel, {
-      animate: true,
-      pan: {
-        duration: 1,
-      },
-    });
-    this._editpopap(workout);
+    // this.#map.setView(workout.coords, this.#mapZoomLevel, {
+    //   animate: true,
+    //   pan: {
+    //     duration: 1,
+    //   },
+    // });
+    // console.log(workouttss);
+    console.log(workoutButton);
+    // console.log(workoutButton)
+    this._editpopap(workoutButton);
     // using the public interface
     // workout.click();
   }
 
-  _editpopap(workout) {
+  _editpopap(workoutButton) {
+    console.log(workoutButton.id);
     // Получить элемент тренировки из DOM
-    const workoutElement = document.querySelector(`[data-id="${workout.id}"]`);
+    const workoutElement = document.querySelector(
+      `[data-numberWorkout="${workoutButton.id}"]`
+    );
     console.log(workoutElement);
-    console.log(workout);
 
     if (!workoutElement) {
       return;
@@ -348,7 +367,7 @@ class App {
       return;
     }
     let newCadence;
-    if (workout.type === 'running') {
+    if (workoutButton.type === 'running') {
       newCadence = prompt('Введите новую каденцию:');
       if (!newCadence) {
         return;
@@ -356,7 +375,7 @@ class App {
     }
 
     let newElevGain;
-    if (workout.type === 'cycling') {
+    if (workoutButton.type === 'cycling') {
       newElevGain = prompt('Введите новое усиление высоты:');
       if (!newElevGain) {
         return;
@@ -375,9 +394,9 @@ class App {
       // The second element is for duration
       else if (i == 1) {
         workoutValues[i].textContent = newDuration;
-      } else if (i == 2 && workout.type === 'running') {
+      } else if (i == 2 && workoutButton.type === 'running') {
         workoutValues[i].textContent = newCadence;
-      } else if (i == 3 && workout.type === 'cycling') {
+      } else if (i == 3 && workoutButton.type === 'cycling') {
         workoutValues[i].textContent = newElevGain;
       }
 
@@ -410,7 +429,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Думаю как прикрепить правильно слушатель события, он работает не коректно скорее всего из за разметки, то как он передает события, это как то связано с событием наверное`
+  `Проблема с получением идетификатора тренировки он неизвестный, не получается обратится по id, нужно подумать как его получить`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
