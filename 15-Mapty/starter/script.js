@@ -105,16 +105,35 @@ class App {
     containerWorkouts.addEventListener(
       'click',
       function (e) {
-        this._editpopap(e);
         this._moveToPopup(e);
+        this._editpopap(e);
       }.bind(this)
     );
+
     // myEditButton.forEach(button => {
-    //   button.addEventListener('click', e => {
-    //     // Call the _editpopap method from the App class
-    //     this._editpopap(e);
-    //   });
+    //   button.addEventListener(
+    //     'click',
+    //     function (event) {
+    //       // Call the _editpopap method from the App class
+    //       this._editpopap(event);
+    //     }.bind(this)
+    //   );
     // });
+    // myEditButton.addEventListener(
+    //   'click',
+    //   function (event) {
+    //     // Call the _editpopap method from the App class
+    //     this._editpopap(event);
+    //   }.bind(this)
+    // );
+
+    // myEditButton
+    //   .forEach(button => {
+    //     button.addEventListener('click', event => {
+    //       // Call the _editpopap method from the App class
+    //       this._editpopap(event);
+    //     });
+    //   })
   }
 
   // this._moveToPopup.bind(this)
@@ -257,10 +276,10 @@ class App {
     // другой код
     window.myEditButton = editButton;
     let html = `
-    <button class="edit__button workout--${workout.type} data-numberWorkout="${
-      workout.numberWorkout
-    }">Редактировать</button>
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
+      <button class="edit__button workout--${
+        workout.type
+      } data-numberWorkout="${workout.id}">Редактировать</button>
      <h2 class="workout__title">${workout.description}</h2>
        <div class="workout__details">
          <span class="workout__icon">${
@@ -301,7 +320,7 @@ class App {
             <span class="workout__value">${workout.elevationGain}</span>
             <span class="workout__unit">m</span>
           </div>
-          </li> -->`;
+          </li>`;
 
     form.insertAdjacentHTML('afterend', html);
 
@@ -315,21 +334,16 @@ class App {
   _moveToPopup(event) {
     // const workoutEl = event.target.closest('.workout');
     // console.log(workoutEl);
-    const btn = event.target.closest('.edit__button');
-    console.log(btn);
-
-    if (!btn) return;
-
+    // const btn = event.target.closest('.edit__button');
+    // console.log(btn);
+    // if (!btn) return;
     // if (!workoutEl) return;
-
     // const workouttss = this.#workouts.find(
     //   work => work.id === workoutEl.dataset.id
     // );
-
-    const workoutButton = this.#workouts.find(
-      work => work.numberWorkout === btn.dataset.numberWorkout
-    );
-
+    // const workoutButton = this.#workouts.find(
+    //   work => work.numberWorkout === btn.dataset.numberWorkout
+    // );
     // this.#map.setView(workout.coords, this.#mapZoomLevel, {
     //   animate: true,
     //   pan: {
@@ -337,20 +351,28 @@ class App {
     //   },
     // });
     // console.log(workouttss);
-    console.log(workoutButton);
     // console.log(workoutButton)
-    this._editpopap(workoutButton);
+    // this._editpopap(workoutButton);
     // using the public interface
     // workout.click();
   }
 
-  _editpopap(workoutButton) {
-    console.log(workoutButton.id);
+  _editpopap(event) {
+    const btn = event.target.closest('.edit__button');
+    console.log(btn);
+
+    if (!btn) return;
+
+    const workoutButton = this.#workouts.find(
+      work => work.numberWorkout === btn.dataset.numberWorkout
+    );
+    console.log(workoutButton);
+
     // Получить элемент тренировки из DOM
     const workoutElement = document.querySelector(
       `[data-numberWorkout="${workoutButton.id}"]`
     );
-    console.log(workoutElement);
+    // console.log(workoutElement);
 
     if (!workoutElement) {
       return;
@@ -366,6 +388,7 @@ class App {
     if (!newDuration) {
       return;
     }
+
     let newCadence;
     if (workoutButton.type === 'running') {
       newCadence = prompt('Введите новую каденцию:');
@@ -429,7 +452,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Проблема с получением идетификатора тренировки он неизвестный, не получается обратится по id, нужно подумать как его получить`
+  `Проблема с кнопкой серьезная, я переделал код, но он все равно не работает проблема не изместна пока, это как то связано с передачей события, возможно метод клосет нужно поставить на тренировку, а не на кнопку, нужно будет перебирвать варианты`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
