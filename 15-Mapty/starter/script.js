@@ -361,7 +361,8 @@ class App {
     const btn = event.target.closest('.edit__button');
     console.log(btn);
 
-    if (!btn) return;
+    // Может потом убрать
+    // if (!btn) return;
 
     const workoutButton = this.#workouts.find(
       work => work.numberWorkout === btn.dataset.numberWorkout
@@ -370,13 +371,19 @@ class App {
 
     // Получить элемент тренировки из DOM
     const workoutElement = document.querySelector(
-      `[data-numberWorkout="${workoutButton.id}"]`
+      `[data-id="${workoutButton.id}"]`
     );
-    // console.log(workoutElement);
+    // if (workoutElement !== null) {
+    //   // Здесь можно обращаться к свойствам workoutElement
+    //   console.log(workoutElement);
+    // } else {
+    //   // Обработка случая, когда workoutElement равен null
+    //   console.log('Элемент не найден.');
+    // }
 
-    if (!workoutElement) {
-      return;
-    }
+    // if (!workoutElement) {
+    //   return;
+    // }
 
     // Запросить у пользователя новое значение
     const newDistance = prompt('Введите новое расстояние:');
@@ -407,6 +414,7 @@ class App {
 
     // Get all the elements with class workout__value
     const workoutValues = workoutElement.querySelectorAll('.workout__value');
+    console.log(workoutValues);
 
     for (let i = 0; i < workoutValues.length; i++) {
       // The first element is for distance
@@ -452,7 +460,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Проблема с кнопкой серьезная, я переделал код, но он все равно не работает проблема не изместна пока, это как то связано с передачей события, возможно метод клосет нужно поставить на тренировку, а не на кнопку, нужно будет перебирвать варианты`
+  `Проблема хорошо сдвинулась с места, значения изменяются, осталось только решить почему, неизменяется текущий елемент`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
