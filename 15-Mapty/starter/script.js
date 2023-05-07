@@ -106,34 +106,9 @@ class App {
       'click',
       function (e) {
         this._moveToPopup(e);
-        this._editpopap(e);
+        this._editPopap(e);
       }.bind(this)
     );
-
-    // myEditButton.forEach(button => {
-    //   button.addEventListener(
-    //     'click',
-    //     function (event) {
-    //       // Call the _editpopap method from the App class
-    //       this._editpopap(event);
-    //     }.bind(this)
-    //   );
-    // });
-    // myEditButton.addEventListener(
-    //   'click',
-    //   function (event) {
-    //     // Call the _editpopap method from the App class
-    //     this._editpopap(event);
-    //   }.bind(this)
-    // );
-
-    // myEditButton
-    //   .forEach(button => {
-    //     button.addEventListener('click', event => {
-    //       // Call the _editpopap method from the App class
-    //       this._editpopap(event);
-    //     });
-    //   })
   }
 
   // this._moveToPopup.bind(this)
@@ -207,9 +182,6 @@ class App {
     const duration = +inputDuration.value;
     const { lat, lng } = this.#mapEvent.latlng;
     let workout;
-    console.log(workout);
-
-    // Check if data valid
 
     // If workout running, create ranning object
     if (type === 'running') {
@@ -250,7 +222,6 @@ class App {
     this._hideForm();
 
     // Set local storage to all workouts
-    this._setLocalStorage();
   }
 
   _renderWorkoutMarker(workout) {
@@ -272,9 +243,6 @@ class App {
   }
 
   _renderWorkout(workout) {
-    const editButton = document.querySelectorAll('.edit__button');
-    // другой код
-    window.myEditButton = editButton;
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
       <button class="edit__button workout--${workout.type}" data-id="${
@@ -336,7 +304,6 @@ class App {
 
   _moveToPopup(event) {
     const workoutEl = event.target.closest('.workout');
-
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
@@ -349,63 +316,34 @@ class App {
     });
   }
 
-  _editpopap(event) {
+  _editPopap(event) {
     const btn = event.target.closest('.edit__button');
-    console.log(btn);
+    const workoutId = btn.dataset.id;
+    const workout = this.#workouts.find(workout => workout.id === workoutId);
 
-    const workoutButton = this.#workouts.find(
-      work => work.id === btn.dataset.id
-    );
-
-    // Запросить у пользователя новое значение
-    const newDistance = prompt('Введите новое расстояние:');
-    if (!newDistance) {
-      return;
+    const newDistance = parseFloat(prompt('Введите новое расстояние:'));
+    if (!isNaN(newDistance)) {
+      workout.distance = newDistance;
     }
 
-    const newDuration = prompt('Введите новую продолжительность:');
-    if (!newDuration) {
-      return;
+    const newDuration = parseFloat(prompt('Введите новую продолжительность:'));
+    if (!isNaN(newDuration)) {
+      workout.duration = newDuration;
     }
-    console.log(workoutButton.type);
-    let newCadence;
-    if (workoutButton.type === 'running') {
-      newCadence = prompt('Введите новую каденцию:');
-      if (!newCadence) {
-        return;
+
+    if (workout instanceof Running) {
+      const newCadence = parseInt(prompt('Введите новую каденцию:'));
+      if (!isNaN(newCadence)) {
+        workout.cadence = newCadence;
+      }
+    } else if (workout instanceof Cycling) {
+      const newElevation = parseInt(prompt('Введите новое усиление высоты:'));
+      if (!isNaN(newElevation)) {
+        workout.elevationGain = newElevation;
       }
     }
 
-    let newElevGain;
-    if (workoutButton.type === 'cycling') {
-      newElevGain = prompt('Введите новое усиление высоты:');
-      if (!newElevGain) {
-        return;
-      }
-    }
-
-    const workoutElement = event.target.closest('.workout');
-    console.log(workoutElement);
-
-    // Get all the elements with class workout__value
-    const workoutValues = workoutElement.querySelectorAll('.workout__value');
-    console.log(workoutValues);
-
-    for (let i = 0; i < workoutValues.length; i++) {
-      // The first element is for distance
-      if (i == 0) {
-        workoutValues[i].textContent = newDistance;
-      }
-
-      // The second element is for duration
-      else if (i == 1) {
-        workoutValues[i].textContent = newDuration;
-      } else if (i == 2 && workoutButton.type === 'running') {
-        workoutValues[i].textContent = newCadence;
-      } else if (i == 3 && workoutButton.type === 'cycling') {
-        workoutValues[i].textContent = newElevGain;
-      }
-    }
+    this._setLocalStorage();
   }
 
   _setLocalStorage() {
@@ -432,7 +370,7 @@ class App {
 
 const app = new App();
 
-console.log(`Пока закончил дальше нужно удалить тренировку`);
+console.log(`Пока закончил дальше нужно удалить тренировку, есть примеры`);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);

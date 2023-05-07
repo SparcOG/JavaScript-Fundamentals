@@ -40,6 +40,10 @@ a:visited {
   color: var(--color-brand--1);
 }
 
+.hidden__workout {
+  display: none;
+}
+
 /* SIDEBAR */
 .sidebar {
   flex-basis: 50rem;
