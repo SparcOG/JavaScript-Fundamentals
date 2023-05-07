@@ -277,9 +277,12 @@ class App {
     window.myEditButton = editButton;
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
-      <button class="edit__button workout--${
-        workout.type
-      } data-numberWorkout="${workout.id}">Редактировать</button>
+      <button class="edit__button workout--${workout.type}" data-id="${
+      workout.id
+    }">Edit wrout</button>
+    <button class="delete__button workout--${workout.type}" data-id="${
+      workout.id
+    }">Delete wrout</button>
      <h2 class="workout__title">${workout.description}</h2>
        <div class="workout__details">
          <span class="workout__icon">${
@@ -332,58 +335,27 @@ class App {
   }
 
   _moveToPopup(event) {
-    // const workoutEl = event.target.closest('.workout');
-    // console.log(workoutEl);
-    // const btn = event.target.closest('.edit__button');
-    // console.log(btn);
-    // if (!btn) return;
-    // if (!workoutEl) return;
-    // const workouttss = this.#workouts.find(
-    //   work => work.id === workoutEl.dataset.id
-    // );
-    // const workoutButton = this.#workouts.find(
-    //   work => work.numberWorkout === btn.dataset.numberWorkout
-    // );
-    // this.#map.setView(workout.coords, this.#mapZoomLevel, {
-    //   animate: true,
-    //   pan: {
-    //     duration: 1,
-    //   },
-    // });
-    // console.log(workouttss);
-    // console.log(workoutButton)
-    // this._editpopap(workoutButton);
-    // using the public interface
-    // workout.click();
+    const workoutEl = event.target.closest('.workout');
+
+    const workout = this.#workouts.find(
+      work => work.id === workoutEl.dataset.id
+    );
+
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
   }
 
   _editpopap(event) {
     const btn = event.target.closest('.edit__button');
     console.log(btn);
 
-    // Может потом убрать
-    // if (!btn) return;
-
     const workoutButton = this.#workouts.find(
-      work => work.numberWorkout === btn.dataset.numberWorkout
+      work => work.id === btn.dataset.id
     );
-    console.log(workoutButton);
-
-    // Получить элемент тренировки из DOM
-    const workoutElement = document.querySelector(
-      `[data-id="${workoutButton.id}"]`
-    );
-    // if (workoutElement !== null) {
-    //   // Здесь можно обращаться к свойствам workoutElement
-    //   console.log(workoutElement);
-    // } else {
-    //   // Обработка случая, когда workoutElement равен null
-    //   console.log('Элемент не найден.');
-    // }
-
-    // if (!workoutElement) {
-    //   return;
-    // }
 
     // Запросить у пользователя новое значение
     const newDistance = prompt('Введите новое расстояние:');
@@ -395,7 +367,7 @@ class App {
     if (!newDuration) {
       return;
     }
-
+    console.log(workoutButton.type);
     let newCadence;
     if (workoutButton.type === 'running') {
       newCadence = prompt('Введите новую каденцию:');
@@ -411,6 +383,9 @@ class App {
         return;
       }
     }
+
+    const workoutElement = event.target.closest('.workout');
+    console.log(workoutElement);
 
     // Get all the elements with class workout__value
     const workoutValues = workoutElement.querySelectorAll('.workout__value');
@@ -430,8 +405,6 @@ class App {
       } else if (i == 3 && workoutButton.type === 'cycling') {
         workoutValues[i].textContent = newElevGain;
       }
-
-      // Обновить локальное хранилище
     }
   }
 
@@ -459,9 +432,7 @@ class App {
 
 const app = new App();
 
-console.log(
-  `Проблема хорошо сдвинулась с места, значения изменяются, осталось только решить почему, неизменяется текущий елемент`
-);
+console.log(`Пока закончил дальше нужно удалить тренировку`);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
