@@ -318,31 +318,60 @@ class App {
 
   _editPopap(event) {
     const btn = event.target.closest('.edit__button');
-    const workoutId = btn.dataset.id;
-    const workout = this.#workouts.find(workout => workout.id === workoutId);
 
-    const newDistance = parseFloat(prompt('Введите новое расстояние:'));
-    if (!isNaN(newDistance)) {
-      workout.distance = newDistance;
+    const workoutButton = this.#workouts.find(
+      work => work.id === btn.dataset.id
+    );
+
+    // Запросить у пользователя новое значение
+    const newDistance = prompt('Введите новое расстояние:');
+    if (!newDistance) {
+      return;
     }
 
-    const newDuration = parseFloat(prompt('Введите новую продолжительность:'));
-    if (!isNaN(newDuration)) {
-      workout.duration = newDuration;
+    const newDuration = prompt('Введите новую продолжительность:');
+    if (!newDuration) {
+      return;
     }
-
-    if (workout instanceof Running) {
-      const newCadence = parseInt(prompt('Введите новую каденцию:'));
-      if (!isNaN(newCadence)) {
-        workout.cadence = newCadence;
+    console.log(workoutButton.type);
+    let newCadence;
+    if (workoutButton.type === 'running') {
+      newCadence = prompt('Введите новую каденцию:');
+      if (!newCadence) {
+        return;
       }
-    } else if (workout instanceof Cycling) {
-      const newElevation = parseInt(prompt('Введите новое усиление высоты:'));
-      if (!isNaN(newElevation)) {
-        workout.elevationGain = newElevation;
+    }
+
+    let newElevGain;
+    if (workoutButton.type === 'cycling') {
+      newElevGain = prompt('Введите новое усиление высоты:');
+      if (!newElevGain) {
+        return;
       }
     }
 
+    const workoutElement = event.target.closest('.workout');
+    console.log(workoutElement);
+
+    // Get all the elements with class workout__value
+    const workoutValues = workoutElement.querySelectorAll('.workout__value');
+    console.log(workoutValues);
+
+    for (let i = 0; i < workoutValues.length; i++) {
+      // The first element is for distance
+      if (i == 0) {
+        workoutValues[i].textContent = newDistance;
+      }
+
+      // The second element is for duration
+      else if (i == 1) {
+        workoutValues[i].textContent = newDuration;
+      } else if (i == 2 && workoutButton.type === 'running') {
+        workoutValues[i].textContent = newCadence;
+      } else if (i == 3 && workoutButton.type === 'cycling') {
+        workoutValues[i].textContent = newElevGain;
+      }
+    }
     this._setLocalStorage();
   }
 
@@ -370,7 +399,7 @@ class App {
 
 const app = new App();
 
-console.log(`Пока закончил дальше нужно удалить тренировку, есть примеры`);
+console.log(`Нашел ошибку с коденцией, она не правильно изменяется`);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
