@@ -107,6 +107,7 @@ class App {
       function (e) {
         this._moveToPopup(e);
         this._editPopap(e);
+        this._deleteWorkout(e);
       }.bind(this)
     );
   }
@@ -317,37 +318,30 @@ class App {
   }
 
   _editPopap(event) {
-    const btn = event.target.closest('.edit__button');
+    const btn = event.target.closest('.workout');
 
     const workoutButton = this.#workouts.find(
       work => work.id === btn.dataset.id
     );
 
     // Запросить у пользователя новое значение
-    const newDistance = prompt('Введите новое расстояние:');
-    if (!newDistance) {
-      return;
-    }
+    const newDistance = parseFloat(prompt('Введите новое расстояние:'));
+    workoutButton.distance = newDistance;
 
-    const newDuration = prompt('Введите новую продолжительность:');
-    if (!newDuration) {
-      return;
-    }
+    const newDuration = parseFloat(prompt('Введите новую продолжительность:'));
+    workoutButton.duration = newDuration;
+
     console.log(workoutButton.type);
     let newCadence;
     if (workoutButton.type === 'running') {
-      newCadence = prompt('Введите новую каденцию:');
-      if (!newCadence) {
-        return;
-      }
+      newCadence = parseInt(prompt('Введите новую каденцию:'));
+      workoutButton.cadence = newCadence;
     }
 
     let newElevGain;
     if (workoutButton.type === 'cycling') {
-      newElevGain = prompt('Введите новое усиление высоты:');
-      if (!newElevGain) {
-        return;
-      }
+      newElevGain = parseInt(prompt('Введите новое усиление высоты:'));
+      workoutButton.elevationGain = newElevGain;
     }
 
     const workoutElement = event.target.closest('.workout');
@@ -366,13 +360,20 @@ class App {
       // The second element is for duration
       else if (i == 1) {
         workoutValues[i].textContent = newDuration;
-      } else if (i == 2 && workoutButton.type === 'running') {
+      } else if (i == 3 && workoutButton.type === 'running') {
         workoutValues[i].textContent = newCadence;
       } else if (i == 3 && workoutButton.type === 'cycling') {
         workoutValues[i].textContent = newElevGain;
       }
     }
     this._setLocalStorage();
+  }
+
+  _deleteWorkout(event) {
+    const workoutElement = event.target.closest('.workout');
+    console.log(workoutElement);
+
+    workoutElement.classList.add('hidden__workout');
   }
 
   _setLocalStorage() {
@@ -399,7 +400,9 @@ class App {
 
 const app = new App();
 
-console.log(`Нашел ошибку с коденцией, она не правильно изменяется`);
+console.log(
+  `Перешел к удалению тренировки, пока плохо понимаю как это сделать, начал писать код, скорее всего это получится сделать через скрытие елемента`
+);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
