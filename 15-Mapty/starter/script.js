@@ -105,9 +105,11 @@ class App {
     containerWorkouts.addEventListener(
       'click',
       function (e) {
+        if (e.target.classList.contains('delete__button')) {
+          this._deleteWorkout(e);
+        }
         this._moveToPopup(e);
         this._editPopap(e);
-        this._deleteWorkout(e);
       }.bind(this)
     );
   }
@@ -142,6 +144,7 @@ class App {
     this.#map.on('click', this._showForm.bind(this));
 
     this.#workouts.forEach(work => {
+      console.log(work);
       this._renderWorkoutMarker(work);
     });
   }
@@ -223,9 +226,12 @@ class App {
     this._hideForm();
 
     // Set local storage to all workouts
+    this._setLocalStorage();
   }
 
   _renderWorkoutMarker(workout) {
+    console.log(workout);
+    console.log(workout.coords);
     L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
@@ -244,6 +250,8 @@ class App {
   }
 
   _renderWorkout(workout) {
+    console.log(workout);
+    console.log(workout.id);
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
       <button class="edit__button workout--${workout.type}" data-id="${
@@ -305,6 +313,9 @@ class App {
 
   _moveToPopup(event) {
     const workoutEl = event.target.closest('.workout');
+
+    if (!workoutEl) return;
+
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
@@ -315,10 +326,14 @@ class App {
         duration: 1,
       },
     });
+
+    this._setLocalStorage();
   }
 
   _editPopap(event) {
     const btn = event.target.closest('.workout');
+
+    if (!btn) return;
 
     const workoutButton = this.#workouts.find(
       work => work.id === btn.dataset.id
@@ -331,7 +346,6 @@ class App {
     const newDuration = parseFloat(prompt('Введите новую продолжительность:'));
     workoutButton.duration = newDuration;
 
-    console.log(workoutButton.type);
     let newCadence;
     if (workoutButton.type === 'running') {
       newCadence = parseInt(prompt('Введите новую каденцию:'));
@@ -371,9 +385,27 @@ class App {
 
   _deleteWorkout(event) {
     const workoutElement = event.target.closest('.workout');
-    console.log(workoutElement);
 
-    workoutElement.classList.add('hidden__workout');
+    if (!workoutElement) return;
+
+    const workoutId = workoutElement.dataset.id;
+    // Но тогда тренировка не удалится из массива и появится после перезагрузки
+    // workoutElement.classList.add('hidden__workout');
+    // workoutElement.classList.remove('workout');
+
+    // const workoutIndex = this.#workouts.findIndex(
+    //   workout => workout.id === workoutId
+    // );
+    // this.#workouts.splice(workoutIndex, 1);
+    const filteredWorkouts = this.#workouts.filter(
+      workout => workout.id !== workoutId
+    );
+    // console.log(filteredWorkouts);
+    this.#workouts = filteredWorkouts;
+    // this.#workouts.splice(0, 1);
+
+    workoutElement.remove();
+    this._setLocalStorage();
   }
 
   _setLocalStorage() {
@@ -401,7 +433,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Перешел к удалению тренировки, пока плохо понимаю как это сделать, начал писать код, скорее всего это получится сделать через скрытие елемента`
+  `метод splice не сработал, получилось даже хуже чем прежде, тренировка удаляется но страницу нужно перезагрузить, это думаю из за координат оставшихся после удаления тренировки, нужно будет с этим поработать`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
@@ -410,3 +442,5 @@ console.log(
 // workout.distance = newDistance;
 // console.log(newDistance);
 // console.log(workout.distance);
+// const workout = new Running([39, -12], 5.2, 24, 178);
+// if (!'coords' in workout) return;
