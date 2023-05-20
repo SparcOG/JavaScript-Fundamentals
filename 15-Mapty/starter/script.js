@@ -232,7 +232,7 @@ class App {
   _renderWorkoutMarker(workout) {
     console.log(workout);
     console.log(workout.coords);
-    L.marker(workout.coords)
+    workout.marker = L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -409,7 +409,9 @@ class App {
   }
 
   _setLocalStorage() {
-    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+    const workoutWithoutMarker = Object.assign({}, this.workout);
+    delete workoutWithoutMarker.marker;
+    localStorage.setItem('workouts', JSON.stringify(workoutWithoutMarker));
   }
 
   _getLocalStorage() {
@@ -417,7 +419,10 @@ class App {
 
     if (!data) return;
 
-    this.#workouts = data;
+    this.#workouts = data.map(workoutData => {
+      const workout = new Running(...workoutData);
+      workout.marker = L.marker(workout.coords);
+    });
 
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
@@ -433,8 +438,17 @@ class App {
 const app = new App();
 
 console.log(
-  `метод splice не сработал, получилось даже хуже чем прежде, тренировка удаляется но страницу нужно перезагрузить, это думаю из за координат оставшихся после удаления тренировки, нужно будет с этим поработать`
+  `Проблема при сохранении в формате jason, маркер нужно сохранять в другом формате поэтому нужно переделать сам метод`
 );
+
+// const newDistance = new Object(prompt('Введите новое расстояние:'));
+// this._renderWorkout(newDistance);
+// const newDistance = workout.distance;
+// workout.distance = newDistance;
+// console.log(newDistance);
+// console.log(workout.distance);
+// const workout = new Running([39, -12], 5.2, 24, 178);
+// if (!'coords' in workout) return;
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
