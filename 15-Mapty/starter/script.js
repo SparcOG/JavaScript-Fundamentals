@@ -102,16 +102,13 @@ class App {
     // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
-    containerWorkouts.addEventListener(
-      'click',
-      function (e) {
-        if (e.target.classList.contains('delete__button')) {
-          this._deleteWorkout(e);
-        }
-        this._moveToPopup(e);
-        this._editPopap(e);
-      }.bind(this)
-    );
+    containerWorkouts.addEventListener('click', e => {
+      if (e.target.classList.contains('delete__button')) {
+        this._deleteWorkout(e);
+      }
+      this._moveToPopup(e);
+      this._editPopap(e);
+    });
   }
 
   // this._moveToPopup.bind(this)
@@ -320,6 +317,8 @@ class App {
       work => work.id === workoutEl.dataset.id
     );
 
+    if (!workout || !workout.coords) return;
+
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
       pan: {
@@ -389,29 +388,76 @@ class App {
     if (!workoutElement) return;
 
     const workoutId = workoutElement.dataset.id;
-    // Но тогда тренировка не удалится из массива и появится после перезагрузки
-    // workoutElement.classList.add('hidden__workout');
-    // workoutElement.classList.remove('workout');
-
-    // const workoutIndex = this.#workouts.findIndex(
-    //   workout => workout.id === workoutId
-    // );
-    // this.#workouts.splice(workoutIndex, 1);
-    const filteredWorkouts = this.#workouts.filter(
-      workout => workout.id !== workoutId
+    const workoutIndex = this.#workouts.findIndex(
+      workout => workout.id === workoutId
     );
-    // console.log(filteredWorkouts);
-    // this.#workouts = filteredWorkouts;
 
-    const workout = this.#workouts[filteredWorkouts];
+    // Удалить тренировку из массива
+    const workout = this.#workouts.splice(workoutIndex, 1)[0];
 
-    if ('marker' in workout) {
-      workout.marker.removeFrom(this.#map);
+    // Если есть маркер, удалить его с карты
+    if (workout.marker) {
+      workout.marker.remove();
     }
 
+    // Удалить элемент тренировки из DOM
     workoutElement.remove();
+
+    // Обновить локальное хранилище
     this._setLocalStorage();
   }
+
+  // _deleteWorkout(event) {
+  //   const workoutElement = event.target.closest('.workout');
+
+  //   if (!workoutElement) return;
+
+  //   const workoutId = workoutElement.dataset.id;
+  //   // Но тогда тренировка не удалится из массива и появится после перезагрузки
+  //   // workoutElement.classList.add('hidden__workout');
+  //   // workoutElement.classList.remove('workout');
+
+  //   // const workoutIndex = this.#workouts.findIndex(
+  //   //   workout => workout.id === workoutId
+  //   // );
+  //   // this.#workouts.splice(workoutIndex, 1);
+  //   const filteredWorkouts = this.#workouts.filter(
+  //     workout => workout.id !== workoutId
+  //   );
+  //   // console.log(filteredWorkouts);
+  //   // this.#workouts = filteredWorkouts;
+
+  //   const workout = this.#workouts[filteredWorkouts];
+
+  //   if ('marker' in workout) {
+  //     workout.marker.removeFrom(this.#map);
+  //   }
+
+  //   workoutElement.remove();
+  //   this._setLocalStorage();
+  // }
+  // _deleteWorkout(event) {
+  //   const workoutElement = event.target.closest('.workout');
+
+  //   if (!workoutElement) return;
+
+  //   const workoutId = workoutElement.dataset.id;
+
+  //   // Получение объекта тренировки и его маркера
+  //   const workout = this.#workouts.find(workout => workout.id === workoutId);
+  //   const marker = workout.marker;
+
+  //   // Удаление элемента тренировки из списка и тренировки из массива
+  //   workoutElement.remove();
+  //   this.#workouts = this.#workouts.filter(workout => workout.id !== workoutId);
+
+  //   // Удаление маркера с карты и установка его в null в объекте тренировки
+  //   marker.remove();
+  //   workout.marker = null;
+
+  //   // Обновление локального хранилища
+  //   this._setLocalStorage();
+  // }
 
   _setLocalStorage() {
     const workoutsWithoutMarker = this.#workouts.map(workout => {
@@ -422,14 +468,37 @@ class App {
     localStorage.setItem('workouts', JSON.stringify(workoutsWithoutMarker));
   }
 
+  // _getLocalStorage() {
+  //   let workout;
+  //   const data = JSON.parse(localStorage.getItem('workouts'));
+
+  //   if (!data) return;
+
+  //   const workouts = data.map(workoutData => {
+  //     const workout = new Cycling(...Object.values(workoutData));
+  //     console.log(workout);
+  //     workout.marker = L.marker(workout.coords);
+  //     return workout;
+  //   });
+
+  //   this.#workouts = workouts;
+
+  //   this.#workouts.forEach(work => {
+  //     this._renderWorkout(work);
+  //   });
+  // }
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
 
     const workouts = data.map(workoutData => {
-      const workout = new Cycling(...Object.values(workoutData));
-      console.log(workout);
+      let workout;
+      if (workoutData.type === 'running') {
+        workout = new Running(...Object.values(workoutData));
+      } else if (workoutData.type === 'cycling') {
+        workout = new Cycling(...Object.values(workoutData));
+      }
       workout.marker = L.marker(workout.coords);
       return workout;
     });
@@ -439,8 +508,6 @@ class App {
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
     });
-
-    return workouts;
   }
 
   reset() {
@@ -452,7 +519,8 @@ class App {
 const app = new App();
 
 console.log(
-  `Что то я делаю конкретно не правильно, метод сохранениня изменил но криво, причем очень чтобы мочь сохранить стороние координат, теперь нужно все же посмотреть будет ли ошибка сохранятся с этим методом или нет, после удаления координат, может вообще не нужно создавать это свойство marker.`
+  `Времени на решение уходит много, я бывает отколяюсь и делаю лишнюю работу, а проблема в другом,даже удалив координаты с карты ошибка все еще есть, метод который ее исправляет нарущает работу всплытия события
+  Тшательно проследи проблему, лучше сознательно вникнуть чем делать лишнюю работу, перепроверяя то что не нужно`
 );
 
 // _setLocalStorage() {
