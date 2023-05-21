@@ -401,17 +401,25 @@ class App {
       workout => workout.id !== workoutId
     );
     // console.log(filteredWorkouts);
-    this.#workouts = filteredWorkouts;
-    // this.#workouts.splice(0, 1);
+    // this.#workouts = filteredWorkouts;
+
+    const workout = this.#workouts[filteredWorkouts];
+
+    if ('marker' in workout) {
+      workout.marker.removeFrom(this.#map);
+    }
 
     workoutElement.remove();
     this._setLocalStorage();
   }
 
   _setLocalStorage() {
-    const workoutWithoutMarker = Object.assign({}, this.workout);
-    delete workoutWithoutMarker.marker;
-    localStorage.setItem('workouts', JSON.stringify(workoutWithoutMarker));
+    const workoutsWithoutMarker = this.#workouts.map(workout => {
+      const workoutWithoutMarker = { ...workout };
+      delete workoutWithoutMarker.marker;
+      return workoutWithoutMarker;
+    });
+    localStorage.setItem('workouts', JSON.stringify(workoutsWithoutMarker));
   }
 
   _getLocalStorage() {
@@ -419,14 +427,20 @@ class App {
 
     if (!data) return;
 
-    this.#workouts = data.map(workoutData => {
-      const workout = new Running(...workoutData);
+    const workouts = data.map(workoutData => {
+      const workout = new Cycling(...Object.values(workoutData));
+      console.log(workout);
       workout.marker = L.marker(workout.coords);
+      return workout;
     });
+
+    this.#workouts = workouts;
 
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
     });
+
+    return workouts;
   }
 
   reset() {
@@ -438,8 +452,49 @@ class App {
 const app = new App();
 
 console.log(
-  `Проблема при сохранении в формате jason, маркер нужно сохранять в другом формате поэтому нужно переделать сам метод`
+  `Что то я делаю конкретно не правильно, метод сохранениня изменил но криво, причем очень чтобы мочь сохранить стороние координат, теперь нужно все же посмотреть будет ли ошибка сохранятся с этим методом или нет, после удаления координат, может вообще не нужно создавать это свойство marker.`
 );
+
+// _setLocalStorage() {
+//   const workoutWithoutMarker = Object.assign({}, this.#workouts);
+//   delete workoutWithoutMarker.marker;
+//   localStorage.setItem('workouts', JSON.stringify(workoutWithoutMarker));
+// }
+
+// _getLocalStorage() {
+//   const data = JSON.parse(localStorage.getItem('workouts'));
+
+//   if (!data) return;
+
+//   this.#workouts = data.map(workoutData => {
+//     const workout = new Running(...Object.values(workoutData));
+//     workout.marker = L.marker(workout.coords);
+//   });
+
+//   this.#workouts.forEach(work => {
+//     this._renderWorkout(work);
+//   });
+// }
+// _getLocalStorage() {
+//   const data = JSON.parse(localStorage.getItem('workouts'));
+
+//   if (!data) return;
+
+//   this.#workouts = data.map(workoutData => {
+//     let workout;
+//     if (workoutData.type === 'running') {
+//       workout = new Running(...Object.values(workoutData));
+//     } else if (workoutData.type === 'cycling') {
+//       workout = new Cycling(...Object.values(workoutData));
+//     }
+//     workout.marker = L.marker(workout.coords);
+//     return workout;
+//   });
+
+//   this.#workouts.forEach(work => {
+//     this._renderWorkout(work);
+//   });
+// }
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
