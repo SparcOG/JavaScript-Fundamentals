@@ -102,13 +102,18 @@ class App {
     // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
-    containerWorkouts.addEventListener('click', e => {
-      if (e.target.classList.contains('delete__button')) {
-        this._deleteWorkout(e);
-      }
-      this._moveToPopup(e);
-      this._editPopap(e);
-    });
+    containerWorkouts.addEventListener(
+      'click',
+      function (e) {
+        if (e.target.classList.contains('delete__button')) {
+          this._deleteWorkout(e);
+        }
+        if (e.target.classList.contains('edit__button')) {
+          this._editPopa(e);
+        }
+        this._moveToPopup(e);
+      }.bind(this)
+    );
   }
 
   // this._moveToPopup.bind(this)
@@ -229,7 +234,7 @@ class App {
   _renderWorkoutMarker(workout) {
     console.log(workout);
     console.log(workout.coords);
-    workout.marker = L.marker(workout.coords)
+    L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -388,122 +393,35 @@ class App {
     if (!workoutElement) return;
 
     const workoutId = workoutElement.dataset.id;
-    const workoutIndex = this.#workouts.findIndex(
-      workout => workout.id === workoutId
+    // Но тогда тренировка не удалится из массива и появится после перезагрузки
+    // workoutElement.classList.add('hidden__workout');
+    // workoutElement.classList.remove('workout');
+
+    // const workoutIndex = this.#workouts.findIndex(
+    //   workout => workout.id === workoutId
+    // );
+    // this.#workouts.splice(workoutIndex, 1);
+    const filteredWorkouts = this.#workouts.filter(
+      workout => workout.id !== workoutId
     );
+    // console.log(filteredWorkouts);
+    this.#workouts = filteredWorkouts;
+    // this.#workouts.splice(0, 1);
 
-    // Удалить тренировку из массива
-    const workout = this.#workouts.splice(workoutIndex, 1)[0];
-
-    // Если есть маркер, удалить его с карты
-    if (workout.marker) {
-      workout.marker.remove();
-    }
-
-    // Удалить элемент тренировки из DOM
     workoutElement.remove();
-
-    // Обновить локальное хранилище
     this._setLocalStorage();
   }
 
-  // _deleteWorkout(event) {
-  //   const workoutElement = event.target.closest('.workout');
-
-  //   if (!workoutElement) return;
-
-  //   const workoutId = workoutElement.dataset.id;
-  //   // Но тогда тренировка не удалится из массива и появится после перезагрузки
-  //   // workoutElement.classList.add('hidden__workout');
-  //   // workoutElement.classList.remove('workout');
-
-  //   // const workoutIndex = this.#workouts.findIndex(
-  //   //   workout => workout.id === workoutId
-  //   // );
-  //   // this.#workouts.splice(workoutIndex, 1);
-  //   const filteredWorkouts = this.#workouts.filter(
-  //     workout => workout.id !== workoutId
-  //   );
-  //   // console.log(filteredWorkouts);
-  //   // this.#workouts = filteredWorkouts;
-
-  //   const workout = this.#workouts[filteredWorkouts];
-
-  //   if ('marker' in workout) {
-  //     workout.marker.removeFrom(this.#map);
-  //   }
-
-  //   workoutElement.remove();
-  //   this._setLocalStorage();
-  // }
-  // _deleteWorkout(event) {
-  //   const workoutElement = event.target.closest('.workout');
-
-  //   if (!workoutElement) return;
-
-  //   const workoutId = workoutElement.dataset.id;
-
-  //   // Получение объекта тренировки и его маркера
-  //   const workout = this.#workouts.find(workout => workout.id === workoutId);
-  //   const marker = workout.marker;
-
-  //   // Удаление элемента тренировки из списка и тренировки из массива
-  //   workoutElement.remove();
-  //   this.#workouts = this.#workouts.filter(workout => workout.id !== workoutId);
-
-  //   // Удаление маркера с карты и установка его в null в объекте тренировки
-  //   marker.remove();
-  //   workout.marker = null;
-
-  //   // Обновление локального хранилища
-  //   this._setLocalStorage();
-  // }
-
   _setLocalStorage() {
-    const workoutsWithoutMarker = this.#workouts.map(workout => {
-      const workoutWithoutMarker = { ...workout };
-      delete workoutWithoutMarker.marker;
-      return workoutWithoutMarker;
-    });
-    localStorage.setItem('workouts', JSON.stringify(workoutsWithoutMarker));
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
   }
 
-  // _getLocalStorage() {
-  //   let workout;
-  //   const data = JSON.parse(localStorage.getItem('workouts'));
-
-  //   if (!data) return;
-
-  //   const workouts = data.map(workoutData => {
-  //     const workout = new Cycling(...Object.values(workoutData));
-  //     console.log(workout);
-  //     workout.marker = L.marker(workout.coords);
-  //     return workout;
-  //   });
-
-  //   this.#workouts = workouts;
-
-  //   this.#workouts.forEach(work => {
-  //     this._renderWorkout(work);
-  //   });
-  // }
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
 
-    const workouts = data.map(workoutData => {
-      let workout;
-      if (workoutData.type === 'running') {
-        workout = new Running(...Object.values(workoutData));
-      } else if (workoutData.type === 'cycling') {
-        workout = new Cycling(...Object.values(workoutData));
-      }
-      workout.marker = L.marker(workout.coords);
-      return workout;
-    });
-
-    this.#workouts = workouts;
+    this.#workouts = data;
 
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
@@ -519,59 +437,8 @@ class App {
 const app = new App();
 
 console.log(
-  `Времени на решение уходит много, я бывает отколяюсь и делаю лишнюю работу, а проблема в другом,даже удалив координаты с карты ошибка все еще есть, метод который ее исправляет нарущает работу всплытия события
-  Тшательно проследи проблему, лучше сознательно вникнуть чем делать лишнюю работу, перепроверяя то что не нужно`
+  `Нконец то проблему с координатами я решил наконец то, а теперь уже стоит перейти к удалению маркера окуратно чтобы не затратить 100500 часов`
 );
-
-// _setLocalStorage() {
-//   const workoutWithoutMarker = Object.assign({}, this.#workouts);
-//   delete workoutWithoutMarker.marker;
-//   localStorage.setItem('workouts', JSON.stringify(workoutWithoutMarker));
-// }
-
-// _getLocalStorage() {
-//   const data = JSON.parse(localStorage.getItem('workouts'));
-
-//   if (!data) return;
-
-//   this.#workouts = data.map(workoutData => {
-//     const workout = new Running(...Object.values(workoutData));
-//     workout.marker = L.marker(workout.coords);
-//   });
-
-//   this.#workouts.forEach(work => {
-//     this._renderWorkout(work);
-//   });
-// }
-// _getLocalStorage() {
-//   const data = JSON.parse(localStorage.getItem('workouts'));
-
-//   if (!data) return;
-
-//   this.#workouts = data.map(workoutData => {
-//     let workout;
-//     if (workoutData.type === 'running') {
-//       workout = new Running(...Object.values(workoutData));
-//     } else if (workoutData.type === 'cycling') {
-//       workout = new Cycling(...Object.values(workoutData));
-//     }
-//     workout.marker = L.marker(workout.coords);
-//     return workout;
-//   });
-
-//   this.#workouts.forEach(work => {
-//     this._renderWorkout(work);
-//   });
-// }
-
-// const newDistance = new Object(prompt('Введите новое расстояние:'));
-// this._renderWorkout(newDistance);
-// const newDistance = workout.distance;
-// workout.distance = newDistance;
-// console.log(newDistance);
-// console.log(workout.distance);
-// const workout = new Running([39, -12], 5.2, 24, 178);
-// if (!'coords' in workout) return;
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
