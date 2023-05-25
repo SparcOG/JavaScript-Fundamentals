@@ -91,6 +91,7 @@ class App {
   #mapEvent;
   #workouts = [];
   #mapZoomLevel = 13;
+  newStoreWorkouts = [];
 
   constructor() {
     // Get user's posotion
@@ -109,7 +110,7 @@ class App {
           this._deleteWorkout(e);
         }
         if (e.target.classList.contains('edit__button')) {
-          this._editPopa(e);
+          this._editPopap(e);
         }
         this._moveToPopup(e);
       }.bind(this)
@@ -232,9 +233,7 @@ class App {
   }
 
   _renderWorkoutMarker(workout) {
-    console.log(workout);
-    console.log(workout.coords);
-    L.marker(workout.coords)
+    const marker = L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -249,6 +248,8 @@ class App {
         `${workout.type === 'running' ? '🏃‍♂️' : '🚴'} ${workout.description}`
       )
       .openPopup();
+
+    workout.marker = marker;
   }
 
   _renderWorkout(workout) {
@@ -384,6 +385,7 @@ class App {
         workoutValues[i].textContent = newElevGain;
       }
     }
+
     this._setLocalStorage();
   }
 
@@ -393,27 +395,31 @@ class App {
     if (!workoutElement) return;
 
     const workoutId = workoutElement.dataset.id;
-    // Но тогда тренировка не удалится из массива и появится после перезагрузки
-    // workoutElement.classList.add('hidden__workout');
-    // workoutElement.classList.remove('workout');
+    const workout = this.#workouts.find(workout => workout.id === workoutId);
 
-    // const workoutIndex = this.#workouts.findIndex(
-    //   workout => workout.id === workoutId
-    // );
-    // this.#workouts.splice(workoutIndex, 1);
-    const filteredWorkouts = this.#workouts.filter(
-      workout => workout.id !== workoutId
-    );
-    // console.log(filteredWorkouts);
-    this.#workouts = filteredWorkouts;
-    // this.#workouts.splice(0, 1);
+    if (!workout) return;
+
+    this.#workouts = this.#workouts.filter(workout => workout.id !== workoutId);
+
+    if (workout.marker) {
+      this.#map.removeLayer(workout.marker);
+    }
 
     workoutElement.remove();
-    this._setLocalStorage();
   }
 
   _setLocalStorage() {
-    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+    const replacer = (key, value) => {
+      if (typeof value === 'object' && value !== null) {
+        if (this.newStoreWorkouts.includes(value)) {
+          return '[Circular]';
+        }
+        this.newStoreWorkouts.push(value);
+      }
+      return value;
+    };
+
+    JSON.stringify(this.#workouts, replacer);
   }
 
   _getLocalStorage() {
@@ -436,9 +442,7 @@ class App {
 
 const app = new App();
 
-console.log(
-  `Нконец то проблему с координатами я решил наконец то, а теперь уже стоит перейти к удалению маркера окуратно чтобы не затратить 100500 часов`
-);
+console.log(`Проблема решена, дальше нужно переходить к следующей задачи`);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
