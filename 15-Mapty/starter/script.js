@@ -100,6 +100,9 @@ class App {
     //Get data from local storage
     this._getLocalStorage();
 
+    // Render workout delete all button
+    this._renderDeleteAllWorkoutButton();
+
     // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
@@ -253,8 +256,6 @@ class App {
   }
 
   _renderWorkout(workout) {
-    console.log(workout);
-    console.log(workout.id);
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
       <button class="edit__button workout--${workout.type}" data-id="${
@@ -312,6 +313,14 @@ class App {
     //   let field = span.getAttribute('data-unit');
     //   console.log(field);
     // }
+  }
+
+  _renderDeleteAllWorkoutButton() {
+    let htmlDeleteAll = `<button class="delete-all-workout-button">
+    Удалить все тренировки
+  </button>`;
+
+    containerWorkouts.insertAdjacentHTML('beforebegin', htmlDeleteAll);
   }
 
   _moveToPopup(event) {
@@ -442,7 +451,9 @@ class App {
 
 const app = new App();
 
-console.log(`Проблема решена, дальше нужно переходить к следующей задачи`);
+console.log(
+  `Пока сделал html решил лучше через js, дальше думаю нужно будет написать отдельную функцию для удаления`
+);
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
 // this._renderWorkout(newDistance);
