@@ -94,6 +94,9 @@ class App {
   newStoreWorkouts = [];
 
   constructor() {
+    this._renderDeleteAllWorkoutButton();
+    const deleteAllBtn = document.querySelector('.delete-all-btn');
+
     // Get user's posotion
     this._getPosition();
 
@@ -101,7 +104,6 @@ class App {
     this._getLocalStorage();
 
     // Render workout delete all button
-    this._renderDeleteAllWorkoutButton();
 
     // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this));
@@ -118,6 +120,7 @@ class App {
         this._moveToPopup(e);
       }.bind(this)
     );
+    deleteAllBtn.addEventListener('click', this.reset.bind(this));
   }
 
   // this._moveToPopup.bind(this)
@@ -316,7 +319,7 @@ class App {
   }
 
   _renderDeleteAllWorkoutButton() {
-    let htmlDeleteAll = `<button class="delete-all-workout-button">
+    let htmlDeleteAll = `<button class="delete-all-btn">
     Удалить все тренировки
   </button>`;
 
@@ -427,8 +430,9 @@ class App {
       }
       return value;
     };
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
 
-    JSON.stringify(this.#workouts, replacer);
+    // JSON.stringify(this.#workouts, replacer);
   }
 
   _getLocalStorage() {
@@ -452,7 +456,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Пока сделал html решил лучше через js, дальше думаю нужно будет написать отдельную функцию для удаления`
+  `Обнаружена серьезная ошибка, после перезагрузки тренировки не сохраняются, думаю это связано с тем как я переделал локальное хранилише, ваничале это было не заметно, обнаружилось после удаления локального хранилишя, новые данные уже не сохраняются и это серьезно, нужно это решить, а потом будет кнопка`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
