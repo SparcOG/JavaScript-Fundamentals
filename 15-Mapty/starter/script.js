@@ -94,6 +94,7 @@ class App {
   newStoreWorkouts = [];
 
   constructor() {
+    // this.#workouts = [];
     this._renderDeleteAllWorkoutButton();
     const deleteAllBtn = document.querySelector('.delete-all-btn');
 
@@ -430,9 +431,16 @@ class App {
       }
       return value;
     };
-    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
 
-    // JSON.stringify(this.#workouts, replacer);
+    if (Array.isArray(this.#workouts)) {
+      this.#workouts.forEach(workout => {
+        JSON.stringify(workout, replacer);
+      });
+    } else {
+      console.error('this.#workouts не является массивом');
+    }
+
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts, replacer));
   }
 
   _getLocalStorage() {
@@ -445,6 +453,9 @@ class App {
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
     });
+    // for (const work of this._workouts) {
+    //   this._renderWorkout(work);
+    // }
   }
 
   reset() {
@@ -456,7 +467,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Обнаружена серьезная ошибка, после перезагрузки тренировки не сохраняются, думаю это связано с тем как я переделал локальное хранилише, ваничале это было не заметно, обнаружилось после удаления локального хранилишя, новые данные уже не сохраняются и это серьезно, нужно это решить, а потом будет кнопка`
+  `Обнаружена серьезная ошибка, после перезагрузки тренировки не сохраняются, думаю это связано с тем как я переделал локальное хранилише, ваничале это было не заметно, обнаружилось после удаления локального хранилишя, так же что то с самим методом когда я удаляю replacer тренировки добавляются но не сохраняся из за ошибки формата который я хочу сохранить из стороней библиотеки, кругом колова, как это соеденить`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
