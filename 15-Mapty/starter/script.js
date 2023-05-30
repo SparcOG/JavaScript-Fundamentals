@@ -94,6 +94,7 @@ class App {
   newStoreWorkouts = [];
 
   constructor() {
+    // this.reset();
     // this.#workouts = [];
     this._renderDeleteAllWorkoutButton();
     const deleteAllBtn = document.querySelector('.delete-all-btn');
@@ -121,7 +122,7 @@ class App {
         this._moveToPopup(e);
       }.bind(this)
     );
-    deleteAllBtn.addEventListener('click', this.reset.bind(this));
+    // deleteAllBtn.addEventListener('click', this.reset.bind(this));
   }
 
   // this._moveToPopup.bind(this)
@@ -432,14 +433,6 @@ class App {
       return value;
     };
 
-    if (Array.isArray(this.#workouts)) {
-      this.#workouts.forEach(workout => {
-        JSON.stringify(workout, replacer);
-      });
-    } else {
-      console.error('this.#workouts не является массивом');
-    }
-
     localStorage.setItem('workouts', JSON.stringify(this.#workouts, replacer));
   }
 
@@ -456,6 +449,23 @@ class App {
     // for (const work of this._workouts) {
     //   this._renderWorkout(work);
     // }
+
+    // const data = JSON.parse(localStorage.getItem('workouts'));
+
+    // if (data) {
+    //   data.forEach(workoutData => {
+    //     let workout;
+    //     if (workoutData.type === 'running') {
+    //       workout = new Running(...Object.values(workoutData));
+    //     } else if (workoutData.type === 'cycling') {
+    //       workout = new Cycling(...Object.values(workoutData));
+    //     }
+    //     // Добавьте новую тренировку в массив тренировок приложения и отобразите ее на карте и в списке
+    //     this.#workouts.push(workout);
+    //     this._renderWorkoutMarker(workout);
+    //     this._renderWorkout(workout);
+    //   });
+    // }
   }
 
   reset() {
@@ -467,7 +477,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Обнаружена серьезная ошибка, после перезагрузки тренировки не сохраняются, думаю это связано с тем как я переделал локальное хранилише, ваничале это было не заметно, обнаружилось после удаления локального хранилишя, так же что то с самим методом когда я удаляю replacer тренировки добавляются но не сохраняся из за ошибки формата который я хочу сохранить из стороней библиотеки, кругом колова, как это соеденить`
+  `Проблема явно в replacer, пока еще до конца не понял, но она изменяет на другой тип массив, с этим нужно разобраться, я не понимаю почему`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
