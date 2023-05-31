@@ -241,7 +241,7 @@ class App {
   }
 
   _renderWorkoutMarker(workout) {
-    const marker = L.marker(workout.coords)
+    workout.marker = L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -422,20 +422,52 @@ class App {
     workoutElement.remove();
   }
 
-  _setLocalStorage() {
-    const replacer = (key, value) => {
-      if (typeof value === 'object' && value !== null) {
-        if (this.newStoreWorkouts.includes(value)) {
-          return '[Circular]';
-        }
-        this.newStoreWorkouts.push(value);
-      }
-      return value;
-    };
+  // _setLocalStorage() {
+  //   const replacer = (key, value) => {
+  //     if (typeof value === 'array' && value !== null) {
+  //       if (this.newStoreWorkouts.includes(value)) {
+  //         return '[Circular]';
+  //       }
+  //       this.newStoreWorkouts.push(value);
+  //     }
+  //     return value;
+  //   };
 
-    localStorage.setItem('workouts', JSON.stringify(this.#workouts, replacer));
+  //   localStorage.setItem('workouts', JSON.stringify(this.#workouts, replacer));
+  // }
+  // _setLocalStorage() {
+  //   const newStoreWorkouts = [];
+  //   const replacer = (key, value) => {
+  //     if (Array.isArray(value) && value !== null) {
+  //       if (newStoreWorkouts.includes(value)) {
+  //         return '[Circular]';
+  //       }
+  //       newStoreWorkouts.push(value);
+  //     }
+  //     return value;
+  //   };
+
+  //   localStorage.setItem(
+  //     'workouts',
+  //     JSON.stringify(newStoreWorkouts, replacer)
+  //   );
+  // }
+  _setLocalStorage() {
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
   }
 
+  // _getLocalStorage() {
+  //   const data = JSON.parse(localStorage.getItem('workouts'));
+  //   console.log(typeof this.#workouts);
+
+  //   if (!data) return;
+
+  //   this.#workouts = data;
+
+  //   this.#workouts.forEach(work => {
+  //     this._renderWorkout(work);
+  //   });
+  // }
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('workouts'));
 
@@ -446,27 +478,39 @@ class App {
     this.#workouts.forEach(work => {
       this._renderWorkout(work);
     });
-    // for (const work of this._workouts) {
-    //   this._renderWorkout(work);
-    // }
-
-    // const data = JSON.parse(localStorage.getItem('workouts'));
-
-    // if (data) {
-    //   data.forEach(workoutData => {
-    //     let workout;
-    //     if (workoutData.type === 'running') {
-    //       workout = new Running(...Object.values(workoutData));
-    //     } else if (workoutData.type === 'cycling') {
-    //       workout = new Cycling(...Object.values(workoutData));
-    //     }
-    //     // Добавьте новую тренировку в массив тренировок приложения и отобразите ее на карте и в списке
-    //     this.#workouts.push(workout);
-    //     this._renderWorkoutMarker(workout);
-    //     this._renderWorkout(workout);
-    //   });
-    // }
   }
+  // _getLocalStorage() {
+  //   const workoutsArray = [...this.#workouts];
+  //   const data = JSON.parse(localStorage.getItem('workoutsArray'));
+  //   console.log(typeof this.#workouts);
+  //   console.log(typeof workoutsArray);
+
+  //   if (Array.isArray(data)) {
+  //     // Проверяем, является ли data массивом
+  //     this.#workouts = data;
+
+  //     this.#workouts.forEach(work => {
+  //       this._renderWorkout(work);
+  //     });
+  //   } else {
+  //     console.log('Данные в localStorage не являются массивом');
+  //   }
+  // }
+
+  // if (data) {
+  //   data.forEach(workoutData => {
+  //     let workout;
+  //     if (workoutData.type === 'running') {
+  //       workout = new Running(...Object.values(workoutData));
+  //     } else if (workoutData.type === 'cycling') {
+  //       workout = new Cycling(...Object.values(workoutData));
+  //     }
+  //     // Добавьте новую тренировку в массив тренировок приложения и отобразите ее на карте и в списке
+  //     this.#workouts.push(workout);
+  //     this._renderWorkoutMarker(workout);
+  //     this._renderWorkout(workout);
+  //   });
+  // }
 
   reset() {
     localStorage.removeItem('workouts');
@@ -477,7 +521,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Проблема явно в replacer, пока еще до конца не понял, но она изменяет на другой тип массив, с этим нужно разобраться, я не понимаю почему`
+  `Немного разобрался, причина ошибки в циклических ссылках нужно читать дальше`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
