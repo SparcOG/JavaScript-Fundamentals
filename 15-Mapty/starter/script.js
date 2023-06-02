@@ -241,7 +241,7 @@ class App {
   }
 
   _renderWorkoutMarker(workout) {
-    L.marker(workout.coords)
+    workout.marker = L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -259,6 +259,7 @@ class App {
   }
 
   _renderWorkout(workout) {
+    console.log(workout);
     let html = `
     <li class="workout workout--${workout.type}" data-id="${workout.id}">
       <button class="edit__button workout--${workout.type}" data-id="${
@@ -519,7 +520,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Тема большая пришлось много читать и проверять, нужно написать код без круговых ссылок и не создавать отдельное свойство приводит постоянно к ошибкам, нужно прояверять дальше...`
+  `Пока у меня конкретная незадача, я нашел методы которые решают мои проблемы, но они приводят к другим более сложним, переработать методы вретли уже получится, нужно какое то промежуточное действие, нужно подумать о другом подходе...`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
