@@ -1,4 +1,5 @@
 'use strict';
+import flatted from 'flatted';
 class Workout {
   date = new Date();
   id = (Date.now() + '').slice(-10);
@@ -77,6 +78,7 @@ class Cycling extends Workout {
 
 /////////////////////////////////////////////////
 ///// APPLICATION ARCHITECTURE
+
 const form = document.querySelector('.form');
 const containerWorkouts = document.querySelector('.workouts');
 const inputType = document.querySelector('.form__input--type');
@@ -256,7 +258,6 @@ class App {
         `${workout.type === 'running' ? '🏃‍♂️' : '🚴'} ${workout.description}`
       )
       .openPopup();
-    workout.marker.id = workout.id;
   }
 
   _renderWorkout(workout) {
@@ -312,12 +313,6 @@ class App {
           </li>`;
 
     form.insertAdjacentHTML('afterend', html);
-
-    // for (let span of document.querySelectorAll('[data-unit]')) {
-    //   // вставить соответствующую информацию в поле
-    //   let field = span.getAttribute('data-unit');
-    //   console.log(field);
-    // }
   }
 
   _renderDeleteAllWorkoutButton() {
@@ -413,69 +408,26 @@ class App {
 
     if (!workout) return;
 
-    // this.#workouts = this.#workouts.filter(workout => workout.id !== workoutId);
+    this.#workouts = this.#workouts.filter(workout => workout.id !== workoutId);
 
-    // if (marker) {
-    //   this.#map.removeLayer(marker);
-    // }
-    // Удалить маркер тренировки с карты
-    this.#map.eachLayer(layer => {
-      if (layer instanceof L.Marker && layer.options.id === workoutId) {
-        layer.remove();
-      }
-    });
+    if (workout.marker) {
+      this.#map.removeLayer(workout.marker);
+    }
 
     workoutElement.remove();
   }
 
   // _setLocalStorage() {
-  //   const replacer = (key, value) => {
-  //     if (typeof value === 'array' && value !== null) {
-  //       if (this.newStoreWorkouts.includes(value)) {
-  //         return '[Circular]';
-  //       }
-  //       this.newStoreWorkouts.push(value);
-  //     }
-  //     return value;
-  //   };
-
-  //   localStorage.setItem('workouts', JSON.stringify(this.#workouts, replacer));
-  // }
-  // _setLocalStorage() {
-  //   const newStoreWorkouts = [];
-  //   const replacer = (key, value) => {
-  //     if (Array.isArray(value) && value !== null) {
-  //       if (newStoreWorkouts.includes(value)) {
-  //         return '[Circular]';
-  //       }
-  //       newStoreWorkouts.push(value);
-  //     }
-  //     return value;
-  //   };
-
-  //   localStorage.setItem(
-  //     'workouts',
-  //     JSON.stringify(newStoreWorkouts, replacer)
-  //   );
+  //   localStorage.setItem('workouts', JSON.stringify(this.#workouts));
   // }
   _setLocalStorage() {
-    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+    // localStorage.setItem('workouts', CircularJSON.stringify(this.#workouts));
+    localStorage.setItem('workouts', flatted.stringify(this.workouts));
   }
 
-  // _getLocalStorage() {
-  //   const data = JSON.parse(localStorage.getItem('workouts'));
-  //   console.log(typeof this.#workouts);
-
-  //   if (!data) return;
-
-  //   this.#workouts = data;
-
-  //   this.#workouts.forEach(work => {
-  //     this._renderWorkout(work);
-  //   });
-  // }
   _getLocalStorage() {
-    const data = JSON.parse(localStorage.getItem('workouts'));
+    // const data = JSON.parse(localStorage.getItem('workouts'));
+    const data = JSON.parse(flatted.parse(localStorage.getItem('workouts')));
 
     if (!data) return;
 
@@ -485,38 +437,6 @@ class App {
       this._renderWorkout(work);
     });
   }
-  // _getLocalStorage() {
-  //   const workoutsArray = [...this.#workouts];
-  //   const data = JSON.parse(localStorage.getItem('workoutsArray'));
-  //   console.log(typeof this.#workouts);
-  //   console.log(typeof workoutsArray);
-
-  //   if (Array.isArray(data)) {
-  //     // Проверяем, является ли data массивом
-  //     this.#workouts = data;
-
-  //     this.#workouts.forEach(work => {
-  //       this._renderWorkout(work);
-  //     });
-  //   } else {
-  //     console.log('Данные в localStorage не являются массивом');
-  //   }
-  // }
-
-  // if (data) {
-  //   data.forEach(workoutData => {
-  //     let workout;
-  //     if (workoutData.type === 'running') {
-  //       workout = new Running(...Object.values(workoutData));
-  //     } else if (workoutData.type === 'cycling') {
-  //       workout = new Cycling(...Object.values(workoutData));
-  //     }
-  //     // Добавьте новую тренировку в массив тренировок приложения и отобразите ее на карте и в списке
-  //     this.#workouts.push(workout);
-  //     this._renderWorkoutMarker(workout);
-  //     this._renderWorkout(workout);
-  //   });
-  // }
 
   reset() {
     localStorage.removeItem('workouts');
@@ -527,7 +447,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Проблема циклических ссылок серьезная, перепробовал много методов, я думаю почти приблизился, проверять осталось не много, нужно свойстов оствить как есть и поработать над сохранением в локал`
+  `В общем перебирая код так не к чему особо и не пришел, сечас буду пробовать сделать это через сторонюю библиотеку flatten`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
