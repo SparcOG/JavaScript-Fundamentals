@@ -256,6 +256,7 @@ class App {
         `${workout.type === 'running' ? '🏃‍♂️' : '🚴'} ${workout.description}`
       )
       .openPopup();
+    workout.marker.id = workout.id;
   }
 
   _renderWorkout(workout) {
@@ -412,11 +413,17 @@ class App {
 
     if (!workout) return;
 
-    this.#workouts = this.#workouts.filter(workout => workout.id !== workoutId);
+    // this.#workouts = this.#workouts.filter(workout => workout.id !== workoutId);
 
-    if (workout.marker) {
-      this.#map.removeLayer(workout.marker);
-    }
+    // if (marker) {
+    //   this.#map.removeLayer(marker);
+    // }
+    // Удалить маркер тренировки с карты
+    this.#map.eachLayer(layer => {
+      if (layer instanceof L.Marker && layer.options.id === workoutId) {
+        layer.remove();
+      }
+    });
 
     workoutElement.remove();
   }
@@ -520,7 +527,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Пока у меня конкретная незадача, я нашел методы которые решают мои проблемы, но они приводят к другим более сложним, переработать методы вретли уже получится, нужно какое то промежуточное действие, нужно подумать о другом подходе...`
+  `Проблема циклических ссылок серьезная, перепробовал много методов, я думаю почти приблизился, проверять осталось не много, нужно свойстов оствить как есть и поработать над сохранением в локал`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
