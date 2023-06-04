@@ -1,4 +1,5 @@
-import flatted from 'flatted';
+'use strict';
+import CircularJSON from 'circular-json';
 
 class Workout {
   date = new Date();
@@ -420,14 +421,13 @@ class App {
   // _setLocalStorage() {
   //   localStorage.setItem('workouts', JSON.stringify(this.#workouts));
   // }
+
   _setLocalStorage() {
-    // localStorage.setItem('workouts', CircularJSON.stringify(this.#workouts));
-    localStorage.setItem('workouts', flatted.stringify(this.workouts));
+    localStorage.setItem('workouts', CircularJSON.stringify(this.#workouts));
   }
 
   _getLocalStorage() {
-    // const data = JSON.parse(localStorage.getItem('workouts'));
-    const data = JSON.parse(flatted.parse(localStorage.getItem('workouts')));
+    const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
 
@@ -447,7 +447,7 @@ class App {
 const app = new App();
 
 console.log(
-  `Не получается указать правильный путь к файлу, чтобы он работал. Потратил много времени и так не к чему особо не пришел одни ошибки за ошибками`
+  `Ошибки с этими библиотеками ппц, я понять не могу делаю как ИИ говорит и одни блин ошибки за ошибками, рекомендации не работают вообще, я по кругу с ИИ бредом занимаюсь`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
