@@ -1,5 +1,5 @@
-'use strict';
 import flatted from 'flatted';
+
 class Workout {
   date = new Date();
   id = (Date.now() + '').slice(-10);
@@ -447,7 +447,7 @@ class App {
 const app = new App();
 
 console.log(
-  `В общем перебирая код так не к чему особо и не пришел, сечас буду пробовать сделать это через сторонюю библиотеку flatten`
+  `Не получается указать правильный путь к файлу, чтобы он работал. Потратил много времени и так не к чему особо не пришел одни ошибки за ошибками`
 );
 
 // const newDistance = new Object(prompt('Введите новое расстояние:'));
@@ -458,3 +458,5 @@ console.log(
 // console.log(workout.distance);
 // const workout = new Running([39, -12], 5.2, 24, 178);
 // if (!'coords' in workout) return;
+
+// what problem whis localStorage? how to fix it?
