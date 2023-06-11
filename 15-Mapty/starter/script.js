@@ -1,5 +1,4 @@
 'use strict';
-import CircularJSON from 'circular-json';
 
 class Workout {
   date = new Date();
@@ -423,7 +422,7 @@ class App {
   // }
 
   _setLocalStorage() {
-    localStorage.setItem('workouts', CircularJSON.stringify(this.#workouts));
+    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
   }
 
   _getLocalStorage() {
@@ -447,16 +446,5 @@ class App {
 const app = new App();
 
 console.log(
-  `Ошибки с этими библиотеками ппц, я понять не могу делаю как ИИ говорит и одни блин ошибки за ошибками, рекомендации не работают вообще, я по кругу с ИИ бредом занимаюсь`
+  `Нужно еще поиграться с путями, может получится подключить, попробуй еще немного`
 );
-
-// const newDistance = new Object(prompt('Введите новое расстояние:'));
-// this._renderWorkout(newDistance);
-// const newDistance = workout.distance;
-// workout.distance = newDistance;
-// console.log(newDistance);
-// console.log(workout.distance);
-// const workout = new Running([39, -12], 5.2, 24, 178);
-// if (!'coords' in workout) return;
-
-// what problem whis localStorage? how to fix it?
