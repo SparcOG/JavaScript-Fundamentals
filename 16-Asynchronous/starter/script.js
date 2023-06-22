@@ -125,7 +125,7 @@ const getCountryData = function (country) {
     })
     .then(data => renderCountry(data[0], 'neighbour'))
     .catch(err => {
-      console.error(`${err} 💥💥💥`); // this is not working
+      console.error(`${err} 💥💥💥`);
       renderError(`Something went wrong 💥💥💥💥 ${err.message}. Try again!`);
     })
     .finally(() => {
@@ -177,23 +177,27 @@ btn.addEventListener('click', function () {
 // Задача по кодировани. Перевести координаты в название города
 
 const whereAmI = function (lat, lng) {
-  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+  return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
     .then(response => {
       console.log(response);
 
-      if (!response.ok)
+      if (!response.ok || response.status === 403)
         throw new Error(`Country not found (${response.status})`);
 
       return response.json();
     })
     .then(data => {
       console.log(data);
-      console.log(`You are in ${data.city}, ${data.country}`);
+      const [city, country] = [data.city, data.country];
+      getCountryData(country);
+      console.log(`You are in ${city}, ${country}`);
     })
     .catch(err => {
-      console.error(`${err.message} 💥💥💥💥`);
+      console.error(`${err.message} 💥💥💥💥)`);
     });
 };
 
 const coordinates1 = whereAmI(52.508, 13.381);
-console.log('Переходим к 5 пункту задачи');
+// const coordinates2 = whereAmI(19.037, 72.873);
+// const coordinates3 = whereAmI(-33.933, 18.474);
+getCountryData(coordinates1);
