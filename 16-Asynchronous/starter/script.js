@@ -239,15 +239,129 @@ btn.addEventListener('click', function () {
 // });
 
 //259. Building a Simple Promise
-const lotteryPromise = new Promise(function (resolve, reject) {
-  console.log('Lottery draw is happening 🔮');
-  setTimeout(function () {
-    if (Math.random() >= 0.5) {
-      resolve('You WIN 💰');
-    } else {
-      reject(new Error('You lost your money 💩'));
-    }
-  }, 2000);
-});
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log('Lottery draw is happening 🔮');
+//   setTimeout(function () {
+//     if (Math.random() >= 0.5) {
+//       resolve('You WIN 💰');
+//     } else {
+//       reject(new Error('You lost your money 💩'));
+//     }
+//   }, 2000);
+// });
 
-lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+// //Promisifying setTimeout
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
+
+// wait(2)
+//   .then(() => {
+//     console.log('1 seconds');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('2 seconds');
+//     return wait(1);
+//   })
+//   .then(() => {
+//     console.log('3 seconds');
+//     return wait(1);
+//   })
+//   .then(() => console.log('4 seconds'));
+
+// Promise.resolve('abc').then(x => console.log(x));
+// Promise.reject(new Error('Problem!')).catch(x => console.error(x));
+
+// 260. Promisifying the Geolocation API
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
+
+// getPosition().then(pos => console.log(pos));
+
+// const whereAmI = function () {
+//   getPosition()
+//     .then(pos => {
+//       const { latitude: lat, longitude: lng } = pos.coords;
+//       console.log(lat, lng);
+
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     })
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+//       return res.json();
+//     })
+//     .then(data => {
+//       console.log(data);
+//       console.log(`You are in ${data.city}, ${data.country}`);
+
+//       return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+//     })
+//     .then(res => {
+//       if (!res.ok) throw new Error(`Country not found ${res.status}`);
+
+//       return res.json();
+//     })
+//     .then(data => renderCountry(data[0]))
+//     .catch(err => console.error(`${err.message} 💥)`));
+// };
+
+// btn.addEventListener('click', whereAmI);
+
+// 261. Coding Challenge #2
+
+const imgContainer = document.querySelector('.images');
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement('img');
+    img.src = imgPath;
+
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
+
+    img.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+};
+const imagePath1 = 'img/img-1.jpg';
+const imagePath2 = 'img/img-2.jpg';
+const imagePath3 = 'img/img-3.jpg';
+
+createImage(imagePath1)
+  .then(img => console.log('Изображение успешно загружено', img))
+  .then(() => wait(2))
+  .then(img => (img.style.display = 'none'))
+  .catch(err => console.error(err));
+
+// return new Promise(function (resolve, reject) {
+//   const newImage = document.createElement('img');
+//   newImage.loading = function () {
+//     document.querySelector('images').appendChild(img);
+//     resolve();
+//   };
+//   newImage.error = reject;
+//   newImage.src = imgPath;
+// })
+// createImage('img/img-1.jpg')
+
+console.log(
+  'Проблема пока с путями к картинкам, не совсем понимаю как их отбразить в html'
+);
+// createImage('img/img-1.jpg');
