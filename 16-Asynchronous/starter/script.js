@@ -356,10 +356,11 @@ createImage(imagePath1)
   })
   .then(img => {
     console.log('2 зображение успешно загружено', img);
+    currentImg = img;
   })
   .then(() => wait(2))
   .then(() => {
-    imgContainer.style.display = 'none';
+    currentImg.style.display = 'none';
   })
   .catch(err => console.error(err));
 
