@@ -318,6 +318,7 @@ btn.addEventListener('click', function () {
 // 261. Coding Challenge #2
 
 const imgContainer = document.querySelector('.images');
+let currentImg;
 
 const wait = function (seconds) {
   return new Promise(function (resolve) {
@@ -342,12 +343,24 @@ const createImage = function (imgPath) {
 };
 const imagePath1 = 'img/img-1.jpg';
 const imagePath2 = 'img/img-2.jpg';
-const imagePath3 = 'img/img-3.jpg';
 
 createImage(imagePath1)
-  .then(img => console.log('Изображение успешно загружено', img))
+  .then(img => {
+    console.log('Изображение успешно загружено', img);
+    currentImg = img;
+  })
   .then(() => wait(2))
-  .then(img => (img.style.display = 'none'))
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage(imagePath2);
+  })
+  .then(img => {
+    console.log('2 зображение успешно загружено', img);
+  })
+  .then(() => wait(2))
+  .then(() => {
+    imgContainer.style.display = 'none';
+  })
   .catch(err => console.error(err));
 
 // return new Promise(function (resolve, reject) {
@@ -362,6 +375,6 @@ createImage(imagePath1)
 // createImage('img/img-1.jpg')
 
 console.log(
-  'Проблема пока с путями к картинкам, не совсем понимаю как их отбразить в html'
+  'Задание 2. Создать функцию которая будет загружать изображения последовательно, через 2 секунды после загрузки первого изображения.'
 );
 // createImage('img/img-1.jpg');
