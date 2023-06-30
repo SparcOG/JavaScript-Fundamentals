@@ -277,6 +277,7 @@ btn.addEventListener('click', function () {
 // Promise.resolve('abc').then(x => console.log(x));
 // Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 
+//////////////////////////////////////////////////
 // 260. Promisifying the Geolocation API
 // const getPosition = function () {
 //   return new Promise(function (resolve, reject) {
@@ -315,67 +316,99 @@ btn.addEventListener('click', function () {
 
 // btn.addEventListener('click', whereAmI);
 
-// 261. Coding Challenge #2
+// // 261. Coding Challenge #2
+// const imgContainer = document.querySelector('.images');
+// let currentImg;
 
-const imgContainer = document.querySelector('.images');
-let currentImg;
+// const wait = function (seconds) {
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, seconds * 1000);
+//   });
+// };
 
-const wait = function (seconds) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, seconds * 1000);
-  });
-};
+// const createImage = function (imgPath) {
+//   return new Promise(function (resolve, reject) {
+//     const img = document.createElement('img');
+//     img.src = imgPath;
 
-const createImage = function (imgPath) {
+//     img.addEventListener('load', function () {
+//       imgContainer.append(img);
+//       resolve(img);
+//     });
+
+//     img.addEventListener('error', function () {
+//       reject(new Error('Image not found'));
+//     });
+//   });
+// };
+// const imagePath1 = 'img/img-1.jpg';
+// const imagePath2 = 'img/img-2.jpg';
+
+// createImage(imagePath1)
+//   .then(img => {
+//     console.log('Изображение успешно загружено', img);
+//     currentImg = img;
+//   })
+//   .then(() => wait(2))
+//   .then(() => {
+//     currentImg.style.display = 'none';
+//     return createImage(imagePath2);
+//   })
+//   .then(img => {
+//     console.log('2 зображение успешно загружено', img);
+//     currentImg = img;
+//   })
+//   .then(() => wait(2))
+//   .then(() => {
+//     currentImg.style.display = 'none';
+//   })
+//   .catch(err => console.error(err));
+
+// // return new Promise(function (resolve, reject) {
+// //   const newImage = document.createElement('img');
+// //   newImage.loading = function () {
+// //     document.querySelector('images').appendChild(img);
+// //     resolve();
+// //   };
+// //   newImage.error = reject;
+// //   newImage.src = imgPath;
+// // })
+// // createImage('img/img-1.jpg')
+
+// console.log(
+//   'Задание 2. Создать функцию которая будет загружать изображения последовательно, через 2 секунды после загрузки первого изображения.'
+// );
+// // createImage('img/img-1.jpg');
+////////////////////////////////////////////////////////
+// // 262. Consuming Promises with Async/Await
+const getPosition = function () {
   return new Promise(function (resolve, reject) {
-    const img = document.createElement('img');
-    img.src = imgPath;
-
-    img.addEventListener('load', function () {
-      imgContainer.append(img);
-      resolve(img);
-    });
-
-    img.addEventListener('error', function () {
-      reject(new Error('Image not found'));
-    });
+    navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
-const imagePath1 = 'img/img-1.jpg';
-const imagePath2 = 'img/img-2.jpg';
 
-createImage(imagePath1)
-  .then(img => {
-    console.log('Изображение успешно загружено', img);
-    currentImg = img;
-  })
-  .then(() => wait(2))
-  .then(() => {
-    currentImg.style.display = 'none';
-    return createImage(imagePath2);
-  })
-  .then(img => {
-    console.log('2 зображение успешно загружено', img);
-    currentImg = img;
-  })
-  .then(() => wait(2))
-  .then(() => {
-    currentImg.style.display = 'none';
-  })
-  .catch(err => console.error(err));
+const whereAmI = async function () {
+  // Geolocation
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
 
-// return new Promise(function (resolve, reject) {
-//   const newImage = document.createElement('img');
-//   newImage.loading = function () {
-//     document.querySelector('images').appendChild(img);
-//     resolve();
-//   };
-//   newImage.error = reject;
-//   newImage.src = imgPath;
-// })
-// createImage('img/img-1.jpg')
+  // Reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
 
-console.log(
-  'Задание 2. Создать функцию которая будет загружать изображения последовательно, через 2 секунды после загрузки первого изображения.'
-);
-// createImage('img/img-1.jpg');
+  // Country data
+
+  //  fetch(`https://restcountries.com/v3.1/name/${country}`).then(res => {
+  //   console.log(res);
+  // });
+  const res = await fetch(
+    `https://restcountries.com/v3.1/name/${dataGeo.country}`
+  );
+  const data = await res.json();
+  console.log(data);
+  renderCountry(data[0]);
+};
+
+whereAmI();
+console.log('FIRST');
