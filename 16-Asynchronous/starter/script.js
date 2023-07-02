@@ -381,6 +381,10 @@ btn.addEventListener('click', function () {
 // // createImage('img/img-1.jpg');
 ////////////////////////////////////////////////////////
 // // 262. Consuming Promises with Async/Await
+////////////////////////////////////////////////////////
+// // 263. Error Handling With try...catch
+////////////////////////////////////////////////////////
+// // 264. Returning Values from Async Functions
 const getPosition = function () {
   return new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -396,7 +400,6 @@ const whereAmI = async function () {
     // Reverse geocoding
     const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
     const dataGeo = await resGeo.json();
-    console.log(dataGeo);
 
     // Country data
 
@@ -406,20 +409,37 @@ const whereAmI = async function () {
     const res = await fetch(
       `https://restcountries.com/v3.1/name/${dataGeo.country}`
     );
-    if (!res.ok) throw new Error('Problem getting country');
+    if (!resGeo.ok) throw new Error('Problem getting country');
 
     const data = await res.json();
     console.log(data);
     renderCountry(data[0]);
+
+    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
   } catch (err) {
     console.error(`${err} 💥`);
     renderError(`💥 ${err.message}`);
+
     // Reject promise returned from async function
     throw err;
   }
 };
 
-whereAmI();
-console.log('FIRST');
-////////////////////////////////////////////////////////
-// // 263. Error Handling With try...catch
+console.log('1: Will get location');
+// const city = whereAmI();
+// console.log('FIRST');
+// console.log(city);
+// whereAmI()
+//   .then(city => console.log(`2: ${city}`))
+//   .catch(err => console.error(`2: ${err.message} 💥`));
+// console.log('3: Finished getting location');
+
+(async function () {
+  try {
+    const city = await whereAmI();
+    console.log(`2: ${city}`);
+  } catch (err) {
+    console.error(`2: ${err.message} 💥`);
+  }
+  console.log('3: Finished getting location');
+})();
