@@ -317,32 +317,32 @@ btn.addEventListener('click', function () {
 // btn.addEventListener('click', whereAmI);
 
 // // 261. Coding Challenge #2
-// const imgContainer = document.querySelector('.images');
-// let currentImg;
+const imgContainer = document.querySelector('.images');
+let currentImg;
 
-// const wait = function (seconds) {
-//   return new Promise(function (resolve) {
-//     setTimeout(resolve, seconds * 1000);
-//   });
-// };
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
 
-// const createImage = function (imgPath) {
-//   return new Promise(function (resolve, reject) {
-//     const img = document.createElement('img');
-//     img.src = imgPath;
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const img = document.createElement('img');
+    img.src = imgPath;
 
-//     img.addEventListener('load', function () {
-//       imgContainer.append(img);
-//       resolve(img);
-//     });
+    img.addEventListener('load', function () {
+      imgContainer.append(img);
+      resolve(img);
+    });
 
-//     img.addEventListener('error', function () {
-//       reject(new Error('Image not found'));
-//     });
-//   });
-// };
-// const imagePath1 = 'img/img-1.jpg';
-// const imagePath2 = 'img/img-2.jpg';
+    img.addEventListener('error', function () {
+      reject(new Error('Image not found'));
+    });
+  });
+};
+const imagePath1 = 'img/img-1.jpg';
+const imagePath2 = 'img/img-2.jpg';
 
 // createImage(imagePath1)
 //   .then(img => {
@@ -385,6 +385,7 @@ btn.addEventListener('click', function () {
 // // 263. Error Handling With try...catch
 ////////////////////////////////////////////////////////
 // // 264. Returning Values from Async Functions
+/*
 const getPosition = function () {
   return new Promise(function (resolve, reject) {
     navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -443,3 +444,138 @@ console.log('1: Will get location');
   }
   console.log('3: Finished getting location');
 })();
+*/
+////////////////////////////////////////////////////////
+// 265. Running Promises in Parallel
+/*
+const get3Countries = async function (c1, c2, c3) {
+  try {
+    // const [data1] = await getJSON(`https://restcountries.com/v3.1/name/${c1}`);
+    // const [data2] = await getJSON(`https://restcountries.com/v3.1/name/${c2}`);
+    // const [data3] = await getJSON(`https://restcountries.com/v3.1/name/${c3}`);
+    // console.log([data1.capital[0], data2.capital[0], data3.capital[0]]);
+
+    Promise.all([
+      getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+    ]);
+    console.log(data.map(d => d[0].capital[0]));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+get3Countries('ukraine', 'usa', 'germany');
+*/
+////////////////////////////////////////////////////////
+//266. Other Promise Combinators: race, allSettled and any
+/*
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.com/v3.1/name/ukraine`),
+    getJSON(`https://restcountries.com/v3.1/name/usa`),
+    getJSON(`https://restcountries.com/v3.1/name/germany`),
+  ]);
+  console.log(res[0]);
+})();
+
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error('Request took too long!'));
+    }, sec * 1000);
+  });
+};
+
+Promise.race([
+  getJSON(`https://restcountries.com/v3.1/name/ukraine`),
+  timeout(1),
+])
+  .then(res => console.log(res[0]))
+  .catch(err => console.error(err));
+
+// Promise.allSettled
+Promise.allSettled([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success'),
+]).then(res => console.log(res));
+
+Promise.all([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+
+// Promise.any
+Promise.any([
+  Promise.resolve('Success'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another success'),
+])
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
+*/
+////////////////////////////////////////////////////////
+// 267. Coding Challenge #3
+// old version
+// createImage(imagePath1)
+//   .then(img => {
+//     console.log('Изображение успешно загружено', img);
+//     currentImg = img;
+//   })
+//   .then(() => wait(2))
+//   .then(() => {
+//     currentImg.style.display = 'none';
+//     return createImage(imagePath2);
+//   })
+//   .then(img => {
+//     console.log('2 зображение успешно загружено', img);
+//     currentImg = img;
+//   })
+//   .then(() => wait(2))
+//   .then(() => {
+//     currentImg.style.display = 'none';
+//   })
+//   .catch(err => console.error(err));
+
+// const loadNPause = async function () {
+//   try {
+//     // Load image 1
+//     let img = await createImage(imagePath1);
+//     console.log('Image 1 loaded', img);
+//     await wait(2);
+//     img.style.display = 'none';
+
+//     // Load image 2
+//     img = await createImage(imagePath2);
+//     console.log('Image 2 loaded', img);
+//     await wait(2);
+//     img.style.display = 'none';
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
+
+// loadNPause();
+
+const imgArr = ['img/img-1.jpg', 'img/img-2.jpg', 'img/img3.jpg'];
+
+const loadAll = async function (imgArr) {
+  try {
+    const imgs = await Promise.all(imgArr.map(imgPath => createImage(imgPath)));
+    console.log(imgs);
+    console.log('All images loaded');
+    await wait(2);
+    imgs.forEach(img => (img.style.display = 'none'));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+loadAll(imgArr);
+
+console.log('C последней функцией что то не так, картинки не находит.');
