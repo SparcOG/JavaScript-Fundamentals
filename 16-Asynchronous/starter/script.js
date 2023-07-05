@@ -100,41 +100,41 @@ setTimeout(() => {
 //       renderCountry(data[0]);
 //     });
 // };
-const getJSON = function (url, errorMsg = 'Something went wrong') {
-  return fetch(url).then(response => {
-    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
+// const getJSON = function (url, errorMsg = 'Something went wrong') {
+//   return fetch(url).then(response => {
+//     if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
 
-    return response.json();
-  });
-};
+//     return response.json();
+//   });
+// };
 
-const getCountryData = function (country) {
-  // Country 1
-  getJSON(`https://restcountries.com/v3.1/name/${country}`, 'Country not found')
-    .then(data => {
-      renderCountry(data[0]);
-      const neighbour = data[0].borders;
-      console.log(data);
+// const getCountryData = function (country) {
+//   // Country 1
+//   getJSON(`https://restcountries.com/v3.1/name/${country}`, 'Country not found')
+//     .then(data => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders;
+//       console.log(data);
 
-      if (!neighbour && undefined) throw new Error('No neighbour found!');
-      // Country 2
-      return getJSON(
-        `https://restcountries.com/v3.1/alpha/${neighbour} `,
-        'Country not found'
-      );
-    })
-    .then(data => renderCountry(data[0], 'neighbour'))
-    .catch(err => {
-      console.error(`${err} 💥💥💥`);
-      renderError(`Something went wrong 💥💥💥💥 ${err.message}. Try again!`);
-    })
-    .finally(() => {
-      countriesContainer.style.opacity = 1;
-    });
-};
-btn.addEventListener('click', function () {
-  getCountryData('australia');
-});
+//       if (!neighbour && undefined) throw new Error('No neighbour found!');
+//       // Country 2
+//       return getJSON(
+//         `https://restcountries.com/v3.1/alpha/${neighbour} `,
+//         'Country not found'
+//       );
+//     })
+//     .then(data => renderCountry(data[0], 'neighbour'))
+//     .catch(err => {
+//       console.error(`${err} 💥💥💥`);
+//       renderError(`Something went wrong 💥💥💥💥 ${err.message}. Try again!`);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+// btn.addEventListener('click', function () {
+//   getCountryData('australia');
+// });
 
 // const getCountryData = function (country) {
 //   // Country 1
@@ -327,9 +327,11 @@ const wait = function (seconds) {
 };
 
 const createImage = function (imgPath) {
+  console.log(imgPath);
   return new Promise(function (resolve, reject) {
     const img = document.createElement('img');
     img.src = imgPath;
+    img.classList.add('parallel');
 
     img.addEventListener('load', function () {
       imgContainer.append(img);
@@ -341,8 +343,6 @@ const createImage = function (imgPath) {
     });
   });
 };
-const imagePath1 = 'img/img-1.jpg';
-const imagePath2 = 'img/img-2.jpg';
 
 // createImage(imagePath1)
 //   .then(img => {
@@ -542,6 +542,8 @@ Promise.any([
 //   })
 //   .catch(err => console.error(err));
 
+// const imagePath1 = 'img/img-1.jpg';
+// const imagePath2 = 'img/img-2.jpg';
 // const loadNPause = async function () {
 //   try {
 //     // Load image 1
@@ -562,20 +564,20 @@ Promise.any([
 
 // loadNPause();
 
-const imgArr = ['img/img-1.jpg', 'img/img-2.jpg', 'img/img3.jpg'];
+// Part two
 
 const loadAll = async function (imgArr) {
   try {
     const imgs = await Promise.all(imgArr.map(imgPath => createImage(imgPath)));
     console.log(imgs);
-    console.log('All images loaded');
-    await wait(2);
-    imgs.forEach(img => (img.style.display = 'none'));
+    console.log('All images loaded successfully!');
+    return imgs;
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
-loadAll(imgArr);
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
 
 console.log('C последней функцией что то не так, картинки не находит.');
