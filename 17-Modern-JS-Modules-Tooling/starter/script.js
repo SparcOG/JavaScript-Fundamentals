@@ -72,3 +72,5 @@ export.addToCart = function (product, quantity) {
 }
 
 const { addToCart } = require('./shoppingCart.js');
+
+console.log("Учеба работы с терминалом");
