@@ -119,6 +119,7 @@ import 'core-js/stable';
 
 // Polyfilling async functions
 import 'regenerator-runtime/runtime';
+
 console.log(
   'Пришлось прейти на 2 версию из за проблем с зависимостями, команды не запускались и добавить устаревший пакет модуля в windwos 11 чтобы заработало'
 );
