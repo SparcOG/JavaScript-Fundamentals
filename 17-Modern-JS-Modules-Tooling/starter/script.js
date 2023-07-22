@@ -1,3 +1,4 @@
+
 // // import { addToCart, totalPrice as price, tq } from './shoppingCart.js';
 // // console.log('Importing module');
 // // addToCart('bread', 5);
@@ -121,5 +122,5 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 console.log(
-  'Пришлось прейти на 2 версию из за проблем с зависимостями, команды не запускались и добавить устаревший пакет модуля в windwos 11 чтобы заработало'
+  'Y запускались и добавить устаревший пакет модуля в windwos 11 чтобы заработало'
 );
