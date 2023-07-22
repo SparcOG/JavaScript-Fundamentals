@@ -58,3 +58,4 @@ const logBigExpenses = function (bigLimit) {
 };
 
 logBigExpenses(500);
+console.log('Hello world!');
