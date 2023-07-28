@@ -579,5 +579,8 @@ const loadAll = async function (imgArr) {
 };
 
 loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
+<<<<<<< HEAD
 
 console.log('Проверка');
+=======
+>>>>>>> cdc36e1388c6b3c9d75db4a89d20a9e71774c53b
