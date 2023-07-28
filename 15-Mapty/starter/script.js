@@ -446,5 +446,5 @@ class App {
 const app = new App();
 
 console.log(
-  `Проверка работы`
+  `Проверка работы `
 );
