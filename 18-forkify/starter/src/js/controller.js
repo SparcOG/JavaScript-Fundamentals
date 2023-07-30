@@ -150,3 +150,4 @@ const showRecipe = async function () {
   }
 };
 showRecipe();
+console.log('TEST');
