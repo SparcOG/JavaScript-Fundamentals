@@ -166,3 +166,4 @@ const showRecipe = async function () {
 };
 showRecipe();
 console.log('TEST');
+console.log('ГИТ ОТСТОЙНЫЙ ПОЛНЫЙ');
