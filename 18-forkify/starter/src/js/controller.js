@@ -176,6 +176,7 @@ const showRecipe = async function () {
     alert(err);
   }
 };
+<<<<<<< HEAD
 
 console.log(window.location);
 ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe));
@@ -184,3 +185,8 @@ console.log(window.location);
 // window.addEventListener('load', showRecipe);
 console.log('Опять проблема c гитом, думаю нужно зайти и удалить этот файл вручную, она часто возникает когда я пользуюсь кодспейсом');
 console.log('asdcvasdv');
+=======
+showRecipe();
+console.log('TEST');
+console.log('ГИТ ОТСТОЙНЫЙ ПОЛНЫЙ');
+>>>>>>> 7b835688e2abc4b35da5722216ff2413487c5a0e
