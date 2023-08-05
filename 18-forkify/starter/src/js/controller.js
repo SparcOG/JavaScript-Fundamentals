@@ -4,22 +4,13 @@ import recipeView from './views/recipeView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-
 const recipeContainer = document.querySelector('.recipe');
 
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
+
 
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
-
-
 
 const controlRecipes = async function () {
   try {
@@ -30,7 +21,7 @@ const controlRecipes = async function () {
     recipeView.renderSpinner();
 
     // 1) Loading recipe
-    await model.loadRecipe(id)
+    await model.loadRecipe(id);
 
     // 2) Rendering recipe
     recipeView.render(model.state.recipe);
@@ -40,9 +31,9 @@ const controlRecipes = async function () {
 };
 
 console.log(window.location);
-['hashchange', 'load'].forEach(ev => window.addEventListener(ev, controlRecipes));
+['hashchange', 'load'].forEach(ev =>
+  window.addEventListener(ev, controlRecipes)
+);
 
 // window.addEventListener('hashchange', controlRecipes);
 // window.addEventListener('load', controlRecipes);
-console.log('Гитхаб самая отстойная компания, дай бог что то придумать, чтобы не использовать ваши тупые сервисы');
-
